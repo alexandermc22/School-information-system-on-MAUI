@@ -6,7 +6,7 @@ public class SubjectEntity : IEntity
     public required string Name { get; set; }
     public required string Code { get; set; }
         
-    public required ICollection<ActionEntity> Subjects { get; set; }
+    public required ICollection<ActionEntity> Actions { get; set; }
 
-    public ICollection<StudentSubjectEntity> StudentSubjects = new List<StudentSubjectEntity>();
+    public ICollection<StudentSubjectEntity> Students = new List<StudentSubjectEntity>();
 }
