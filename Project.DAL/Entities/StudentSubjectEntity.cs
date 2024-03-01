@@ -2,9 +2,9 @@
 
 public class StudentSubjectEntity : IEntity
 {
-    public Guid Id { get; set; }
-    public Guid StudentId { get; set; }
-    public Guid SubjectId { get; set; }
+    public required Guid Id { get; set; }
+    public required Guid StudentId { get; set; }
+    public required Guid SubjectId { get; set; }
     public required StudentEntity Student { get; set; }
     public required SubjectEntity Subject { get; set; }
         
