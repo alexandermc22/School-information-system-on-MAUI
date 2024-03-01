@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="DataBase.bd" uuid="3fe07d8f-c1c1-4279-8f3d-f45a5e2a7ebf">
+    <data-source source="LOCAL" name="Data Source=project" uuid="700c7372-37a9-4829-9e1b-7642a540943b">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Games\c#\project\DataBase.bd</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/Project.DAL/Data Source=project</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

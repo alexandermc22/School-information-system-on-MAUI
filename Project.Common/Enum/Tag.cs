@@ -1,6 +1,6 @@
 ﻿namespace Project.Common.Enum;
 public enum Tag
 {
-    a = 1,
-    b = 2
+    Lecture = 0,
+    Exam = 1
 }
