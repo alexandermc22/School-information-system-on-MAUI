@@ -13,21 +13,30 @@ public class ProjectDbContext(DbContextOptions contextOptions, bool seedDemoData
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        
         modelBuilder.Entity<SubjectEntity>()
             .HasMany(i => i.Students)
             .WithOne(i => i.Subject)
             .OnDelete(DeleteBehavior.Cascade);
-
+        
+        modelBuilder.Entity<SubjectEntity>()
+            .HasMany(i => i.Actions)
+            .WithOne(i => i.Subject)
+            .OnDelete(DeleteBehavior.Cascade);
+        
         modelBuilder.Entity<StudentEntity>()
-            .HasMany<StudentSubjectEntity>()
+            .HasMany(i => i.Subjects)
             .WithOne(i => i.Student)
             .OnDelete(DeleteBehavior.Cascade);
         
-        modelBuilder.Entity<ActionEntity>();
-            
-        
-        modelBuilder.Entity<GradeEntity>();
-        
-        
+        modelBuilder.Entity<GradeEntity>()
+            .HasOne(i => i.Action)
+            .WithMany(i => i.Grades)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<StudentEntity>()
+            .HasMany<GradeEntity>()
+            .WithOne(i => i.Student)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

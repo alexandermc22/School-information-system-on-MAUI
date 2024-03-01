@@ -5,8 +5,8 @@ public class SubjectEntity : IEntity
     public Guid Id { get; set; }
     public required string Name { get; set; }
     public required string Code { get; set; }
-        
-    public required ICollection<ActionEntity> Actions { get; set; }
 
-    public ICollection<StudentSubjectEntity> Students = new List<StudentSubjectEntity>();
+    public ICollection<ActionEntity> Actions { get; set; } = new List<ActionEntity>();
+
+    public ICollection<StudentSubjectEntity> Students  { get; set; } = new List<StudentSubjectEntity>();
 }
