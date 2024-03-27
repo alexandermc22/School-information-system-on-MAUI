@@ -8,5 +8,5 @@ public class SubjectEntity : IEntity
 
     public ICollection<ActionEntity> Actions { get; set; } = new List<ActionEntity>();
 
-    public ICollection<StudentSubjectEntity> Students  { get; set; } = new List<StudentSubjectEntity>();
+    public ICollection<StudentSubjectEntity> StudentSubject  { get; set; } = new List<StudentSubjectEntity>();
 }
