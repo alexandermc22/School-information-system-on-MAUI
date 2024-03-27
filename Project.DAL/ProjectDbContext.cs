@@ -15,7 +15,7 @@ public class ProjectDbContext(DbContextOptions contextOptions, bool seedDemoData
         base.OnModelCreating(modelBuilder);
         
         modelBuilder.Entity<SubjectEntity>()
-            .HasMany(i => i.Students)
+            .HasMany(i => i.StudentSubject)
             .WithOne(i => i.Subject)
             .OnDelete(DeleteBehavior.Cascade);
         
@@ -25,7 +25,7 @@ public class ProjectDbContext(DbContextOptions contextOptions, bool seedDemoData
             .OnDelete(DeleteBehavior.Cascade);
         
         modelBuilder.Entity<StudentEntity>()
-            .HasMany(i => i.Subjects)
+            .HasMany(i => i.StudentSubject)
             .WithOne(i => i.Student)
             .OnDelete(DeleteBehavior.Cascade);
         
