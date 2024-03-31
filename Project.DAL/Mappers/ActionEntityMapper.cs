@@ -8,8 +8,10 @@ public class ActionEntityMapper : IEntityMapper<ActionEntity>
     {
         existingEntity.Start = newEntity.Start;
         existingEntity.End = newEntity.End;
-        existingEntity.LectureRoom = existingEntity.LectureRoom;
+        existingEntity.LectureRoom = newEntity.LectureRoom;
         existingEntity.Tag = newEntity.Tag;
         existingEntity.Description = newEntity.Description;
+        existingEntity.Tag = newEntity.Tag;
+        existingEntity.Subject = newEntity.Subject;
     }
 }
