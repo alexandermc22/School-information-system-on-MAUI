@@ -2,5 +2,6 @@
 public enum Tag
 {
     Lecture = 0,
-    Exam = 1
+    Exam = 1,
+	None
 }
