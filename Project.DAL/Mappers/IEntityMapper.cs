@@ -2,8 +2,8 @@
 
 namespace Project.DAL.Mappers;
 
-public interface IEntityMapper<in TEntity>
-    where TEntity : IEntity
+public interface IEntityMapper<in TEntyty>
+    where TEntyty : IEntity
 {
-    void MapToExistingEntity(TEntity existingEntity, TEntity newEntity);
-}
+    void MapToExistingEntity(TEntyty existingEntity, TEntyty newEntity);
+}   
