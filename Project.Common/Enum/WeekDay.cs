@@ -1,5 +1,4 @@
-namespace DefaultNamespace;
-
+namespace Project.Common.Enum;
 public enum WeekDay
 {
     Monday = 1,

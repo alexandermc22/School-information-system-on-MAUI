@@ -1,4 +1,4 @@
-namespace DefaultNamespace;
+namespace Project.Common.Enum;
 
 public enum Mark
 {

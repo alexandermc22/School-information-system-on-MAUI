@@ -1,12 +1,12 @@
-namespace Project.BL.Model;
-
-public class MarkTableModel
+using Project.Common.Enum;
+namespace Project.BL.Models;
+public record class MarkTableModel : ModelBase
 {
-    public required Mark MarkValue { get; set }
-   
-    public static MarkTableModel Empty = new ()
+    public required Mark MarkValue { get; set; }
+
+    public static MarkTableModel Empty => new()
     {
         Id = Guid.NewGuid(),
-        Mark = Mark.F
-    }
+        MarkValue = Mark.None
+    };
 }
