@@ -2,9 +2,9 @@
 
 namespace Project.DAL.Mappers;
 
-public class ActionEntityMapper : IEntityMapper<ActionEntity>
+public class ActionEntityMapper : IEntityMapper<ActivityEntity>
 {
-    public void MapToExistingEntity(ActionEntity existingEntity, ActionEntity newEntity)
+    public void MapToExistingEntity(ActivityEntity existingEntity, ActivityEntity newEntity)
     {
         existingEntity.Start = newEntity.Start;
         existingEntity.End = newEntity.End;

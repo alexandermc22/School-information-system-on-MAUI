@@ -6,10 +6,10 @@ public class GradeEntityMapper : IEntityMapper<GradeEntity>
 {
     public void MapToExistingEntity(GradeEntity existingEntity, GradeEntity newEntity)
     {
-        existingEntity.Score = newEntity.Score;
+        existingEntity.MarkValue = newEntity.MarkValue;
         existingEntity.Description = newEntity.Description;
         // ?
-        existingEntity.Action = newEntity.Action;
+        existingEntity.Activity = newEntity.Activity;
         existingEntity.Student = newEntity.Student;
     }
 }

@@ -1,10 +1,10 @@
 using Project.Common.Enum;
 namespace Project.BL.Models;
-public record class MarkTableModel : ModelBase
+public record class GradeListModel : ModelBase
 {
     public required Mark MarkValue { get; set; }
 
-    public static MarkTableModel Empty => new()
+    public static GradeListModel Empty => new()
     {
         Id = Guid.NewGuid(),
         MarkValue = Mark.None

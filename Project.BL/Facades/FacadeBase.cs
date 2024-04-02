@@ -8,19 +8,19 @@ using Project.DAL.Repositories;
 using Project.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 
-namespace CookBook.BL.Facades;
+namespace Project.BL.Facades;
 
 public abstract class
     FacadeBase<TEntity, TListModel, TDetailModel, TEntityMapper>(
         IUnitOfWorkFactory unitOfWorkFactory,
-        IModelMapper<TEntity, TListModel, TDetailModel> modelMapper)
+        IModelMapperDetail<TEntity, TListModel, TDetailModel> modelMapperDetail)
     : IFacade<TEntity, TListModel, TDetailModel>
     where TEntity : class, IEntity
     where TListModel : IModel
     where TDetailModel : class, IModel
     where TEntityMapper : IEntityMapper<TEntity>, new()
 {
-    protected readonly IModelMapper<TEntity, TListModel, TDetailModel> ModelMapper = modelMapper;
+    protected readonly IModelMapperDetail<TEntity, TListModel, TDetailModel> ModelMapperDetail = modelMapperDetail;
     protected readonly IUnitOfWorkFactory UnitOfWorkFactory = unitOfWorkFactory;
 
     protected virtual ICollection<string> IncludesNavigationPathDetail => new List<string>();
@@ -54,7 +54,7 @@ public abstract class
 
         return entity is null
             ? null
-            : ModelMapper.MapToDetailModel(entity);
+            : ModelMapperDetail.MapToDetailModel(entity);
     }
 
     // Always use paging in production
@@ -66,7 +66,7 @@ public abstract class
             .Get()
             .ToListAsync().ConfigureAwait(false);
 
-        return ModelMapper.MapToListModel(entities);
+        return ModelMapperDetail.MapToListModel(entities);
     }
 
     public virtual async Task<TDetailModel> SaveAsync(TDetailModel model)
@@ -75,7 +75,7 @@ public abstract class
 
         GuardCollectionsAreNotSet(model);
 
-        TEntity entity = ModelMapper.MapToEntity(model);
+        TEntity entity = ModelMapperDetail.MapToEntity(model);
 
         IUnitOfWork uow = UnitOfWorkFactory.Create();
         IRepository<TEntity> repository = uow.GetRepository<TEntity, TEntityMapper>();
@@ -83,13 +83,13 @@ public abstract class
         if (await repository.ExistsAsync(entity).ConfigureAwait(false))
         {
             TEntity updatedEntity = await repository.UpdateAsync(entity).ConfigureAwait(false);
-            result = ModelMapper.MapToDetailModel(updatedEntity);
+            result = ModelMapperDetail.MapToDetailModel(updatedEntity);
         }
         else
         {
             entity.Id = Guid.NewGuid();
             TEntity insertedEntity = repository.Insert(entity);
-            result = ModelMapper.MapToDetailModel(insertedEntity);
+            result = ModelMapperDetail.MapToDetailModel(insertedEntity);
         }
 
         await uow.CommitAsync().ConfigureAwait(false);

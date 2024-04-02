@@ -7,7 +7,7 @@ public class ProjectDbContext(DbContextOptions contextOptions, bool seedDemoData
 {
     public DbSet<StudentEntity> Students { get; set; }
     public DbSet<SubjectEntity> Subjects { get; set; }
-    public DbSet<ActionEntity> Actions { get; set; }
+    public DbSet<ActivityEntity> Actions { get; set; }
     public DbSet<GradeEntity> Grades { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -30,7 +30,7 @@ public class ProjectDbContext(DbContextOptions contextOptions, bool seedDemoData
             .OnDelete(DeleteBehavior.Cascade);
         
         modelBuilder.Entity<GradeEntity>()
-            .HasOne(i => i.Action)
+            .HasOne(i => i.Activity)
             .WithMany(i => i.Grades)
             .OnDelete(DeleteBehavior.Cascade);
 
