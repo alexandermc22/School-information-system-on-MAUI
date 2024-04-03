@@ -13,6 +13,7 @@ public class SubjectListModelMapper
             {
                 Id = entity.Id,
                 Name = entity.Name,
+                ImageUrl = entity.ImageUrl,
             };
 
     public override SubjectEntity MapToEntity(SubjectListModel model)

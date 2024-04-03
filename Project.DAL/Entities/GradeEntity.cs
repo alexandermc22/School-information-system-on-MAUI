@@ -6,7 +6,9 @@ public class GradeEntity : IEntity
     public required Guid Id { get; set; }
     public required Mark MarkValue { get; set; }
     public string? Description { get; set; }
-        
+    
+    public required DateTime GradeDate { get; set; }
+    
     public required Guid ActivityId { get; set; }
     public required Guid StudentId { get; set; }
     public required ActivityEntity Activity { get; set; }

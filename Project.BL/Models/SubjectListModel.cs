@@ -3,7 +3,7 @@ namespace Project.BL.Models;
 public record class SubjectListModel: ModelBase
 {
     public required string Name { get; set; }
-    //public string? ImageUrl { get; set; } // KIRILL ????
+    public string? ImageUrl { get; set; } // KIRILL ????
 
     public static SubjectListModel Empty => new ()
     {

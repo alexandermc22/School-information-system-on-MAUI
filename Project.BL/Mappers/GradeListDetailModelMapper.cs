@@ -39,6 +39,7 @@ public class GradeListDetailModelMapper:
                     SubjectCode = string.Empty,
                     ActivityId = entity.ActivityId,
                     MarkValue = entity.MarkValue,
+                    GradeDate = entity.GradeDate,
                 };
             }
             else
@@ -50,6 +51,7 @@ public class GradeListDetailModelMapper:
                     SubjectCode = entity.Activity.Subject.Code,
                     ActivityId = entity.ActivityId,
                     MarkValue = entity.MarkValue,
+                    GradeDate = entity.GradeDate,
                 };
             }
         }
@@ -64,6 +66,7 @@ public class GradeListDetailModelMapper:
             Id = model.Id,
             MarkValue = model.MarkValue,
             Description = null,
+            GradeDate = model.GradeDate,
             ActivityId = model.ActivityId,
             StudentId = StudentId,
             Activity = null!,
