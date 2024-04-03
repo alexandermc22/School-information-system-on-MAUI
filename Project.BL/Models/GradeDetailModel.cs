@@ -9,14 +9,12 @@ public record class GradeDetailModel: ModelBase
     public required Mark MarkValue { get; set; }
 	public required string Description { get; set; }
     public required DateTime GradeDate { get; set; }
-    public required string Description { get; set; }
 
     public static GradeDetailModel Empty => new()
     {
         Id = Guid.NewGuid(),
         SubjectId = Guid.Empty,
         SubjectCode = string.Empty,
-		Description = string.Empty,
         ActivityId = Guid.Empty,
         Description = string.Empty,
         MarkValue = Mark.None,

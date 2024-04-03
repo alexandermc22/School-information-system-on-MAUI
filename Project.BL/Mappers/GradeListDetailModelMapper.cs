@@ -40,6 +40,7 @@ public class GradeListDetailModelMapper:
                     ActivityId = entity.ActivityId,
                     MarkValue = entity.MarkValue,
                     GradeDate = entity.GradeDate,
+                    Description = entity.Description,
                 };
             }
             else
@@ -52,6 +53,7 @@ public class GradeListDetailModelMapper:
                     ActivityId = entity.ActivityId,
                     MarkValue = entity.MarkValue,
                     GradeDate = entity.GradeDate,
+                    Description = entity.Description
                 };
             }
         }
