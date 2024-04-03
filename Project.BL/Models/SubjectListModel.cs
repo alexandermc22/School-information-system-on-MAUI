@@ -10,7 +10,7 @@ public record class SubjectListModel: ModelBase
     {
         Id = Guid.NewGuid(),
         Name = string.Empty,
-        Code = string.Code
+        Code = string.Empty
     };
     
     
