@@ -11,18 +11,38 @@ using Microsoft.EntityFrameworkCore;
 namespace Project.BL.Facades;
 
 public abstract class
-    FacadeBase<TEntity, TListModel, TDetailModel, TEntityMapper>(
-        IUnitOfWorkFactory unitOfWorkFactory,
-        IModelMapperDetail<TEntity, TListModel, TDetailModel> modelMapperDetail)
+    FacadeBase<TEntity, TListModel, TDetailModel, TEntityMapper>
     : IFacade<TEntity, TListModel, TDetailModel>
     where TEntity : class, IEntity
     where TListModel : IModel
     where TDetailModel : class, IModel
     where TEntityMapper : IEntityMapper<TEntity>, new()
 {
-    protected readonly IModelMapperDetail<TEntity, TListModel, TDetailModel> ModelMapperDetail = modelMapperDetail;
-    protected readonly IUnitOfWorkFactory UnitOfWorkFactory = unitOfWorkFactory;
+    protected readonly IUnitOfWorkFactory UnitOfWorkFactory;
+    protected readonly IModelMapperDetail<TEntity, TDetailModel>? ModelMapperDetail=null;
+    protected readonly IModelMapperList<TEntity, TListModel> ModelMapperList;
 
+    // Первый конструктор
+    public FacadeBase(
+        IUnitOfWorkFactory unitOfWorkFactory,
+        IModelMapperList<TEntity, TListModel> modelMapperList,
+        IModelMapperDetail<TEntity,TDetailModel> modelMapperDetail)
+    {
+        UnitOfWorkFactory = unitOfWorkFactory ?? throw new ArgumentNullException(nameof(unitOfWorkFactory));
+        ModelMapperList = modelMapperList ?? throw new ArgumentNullException(nameof(modelMapperList));
+        ModelMapperDetail = modelMapperDetail ?? throw new ArgumentNullException(nameof(modelMapperDetail));
+    }   
+
+    // Второй конструктор
+    public FacadeBase(
+        IUnitOfWorkFactory unitOfWorkFactory,
+        IModelMapperList<TEntity, TListModel> modelMapperList)
+    {
+        UnitOfWorkFactory = unitOfWorkFactory ?? throw new ArgumentNullException(nameof(unitOfWorkFactory));
+        ModelMapperList = modelMapperList ?? throw new ArgumentNullException(nameof(modelMapperList));
+    }
+    
+    
     protected virtual ICollection<string> IncludesNavigationPathDetail => new List<string>();
 
     public async Task DeleteAsync(Guid id)
@@ -41,6 +61,8 @@ public abstract class
 
     public virtual async Task<TDetailModel?> GetAsync(Guid id)
     {
+        if(ModelMapperDetail == null)
+            throw new ArgumentNullException(nameof(ModelMapperDetail));
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
 
         IQueryable<TEntity> query = uow.GetRepository<TEntity, TEntityMapper>().Get();
@@ -66,11 +88,13 @@ public abstract class
             .Get()
             .ToListAsync().ConfigureAwait(false);
 
-        return ModelMapperDetail.MapToListModel(entities);
+        return ModelMapperList.MapToListModel(entities);
     }
 
     public virtual async Task<TDetailModel> SaveAsync(TDetailModel model)
     {
+        if(ModelMapperDetail == null)
+            throw new ArgumentNullException(nameof(ModelMapperDetail));
         TDetailModel result;
 
         GuardCollectionsAreNotSet(model);
