@@ -13,7 +13,8 @@ public class SubjectListModelMapper
             {
                 Id = entity.Id,
                 Name = entity.Name,
-                Code = entity.Code
+                Code = entity.Code,
+                ImageUrl = entity.ImageUrl
             };
 
     public override SubjectEntity MapToEntity(SubjectListModel model)
@@ -22,6 +23,7 @@ public class SubjectListModelMapper
             Id = model.Id,
             Name = model.Name,
             Code = model.Code,
+            ImageUrl = model.ImageUrl,
             StudentSubject = null!,
             Actions = null!,
         };

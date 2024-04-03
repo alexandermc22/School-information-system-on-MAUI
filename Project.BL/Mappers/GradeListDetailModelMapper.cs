@@ -67,7 +67,7 @@ public class GradeListDetailModelMapper:
         {
             Id = model.Id,
             MarkValue = model.MarkValue,
-            Description = null,
+            Description = model.Description,
             GradeDate = model.GradeDate,
             ActivityId = model.ActivityId,
             StudentId = StudentId,
