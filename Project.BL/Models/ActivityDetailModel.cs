@@ -22,7 +22,7 @@ public record class ActivityDetailModel: ModelBase
         Code = string.Empty,
         SubjectName = string.Empty,
         Duration = TimeSpan.Zero,
-        Description = null,
+        Description = string.Empty,
         ActivityStartTime = DateTime.MinValue,
         ActivityEndTime = DateTime.MinValue,
 
