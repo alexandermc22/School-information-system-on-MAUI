@@ -8,6 +8,7 @@ public record class GradeDetailModel: ModelBase
     public required Guid ActivityId { get; set; }
     public required Mark MarkValue { get; set; }
     public required DateTime GradeDate { get; set; }
+    public required string Description { get; set; }
 
     public static GradeDetailModel Empty => new()
     {
@@ -15,6 +16,7 @@ public record class GradeDetailModel: ModelBase
         SubjectId = Guid.Empty,
         SubjectCode = string.Empty,
         ActivityId = Guid.Empty,
+        Description = string.Empty,
         MarkValue = Mark.None,
         GradeDate = DateTime.MinValue
     };
