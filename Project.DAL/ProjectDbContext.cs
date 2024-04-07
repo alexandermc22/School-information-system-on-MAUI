@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Project.DAL.Entities;
+using Project.DAL.Seeds;
 
 namespace Project.DAL;
 
@@ -20,7 +21,7 @@ public class ProjectDbContext(DbContextOptions contextOptions, bool seedDemoData
             .OnDelete(DeleteBehavior.Cascade);
         
         modelBuilder.Entity<SubjectEntity>()
-            .HasMany(i => i.Actions)
+            .HasMany(i => i.Activity)
             .WithOne(i => i.Subject)
             .OnDelete(DeleteBehavior.Cascade);
         
@@ -38,5 +39,19 @@ public class ProjectDbContext(DbContextOptions contextOptions, bool seedDemoData
             .HasMany<GradeEntity>()
             .WithOne(i => i.Student)
             .OnDelete(DeleteBehavior.Cascade);
+        
+        if (seedDemoData)
+        {
+            ActivitySeeds.Seed(modelBuilder);
+            GradeSeeds.Seed(modelBuilder);
+            StudentSeeds.Seed(modelBuilder);
+            StudentSubjectSeeds.Seed(modelBuilder);
+            SubjectSeeds.Seed(modelBuilder);
+        }
+        
+        
+        
     }
+    
+    
 }
