@@ -25,6 +25,6 @@ public class SubjectListModelMapper
             Code = model.Code,
             ImageUrl = model.ImageUrl,
             StudentSubject = null!,
-            Actions = null!,
+            Activity = null!,
         };
 }

@@ -8,7 +8,7 @@ public class SubjectEntity : IEntity
     
     public string? ImageUrl { get; set; }
 
-    public ICollection<ActivityEntity> Actions { get; set; } = new List<ActivityEntity>();
+    public ICollection<ActivityEntity> Activity { get; set; } = new List<ActivityEntity>();
     
     public ICollection<StudentSubjectEntity> StudentSubject  { get; set; } = new List<StudentSubjectEntity>();
 }

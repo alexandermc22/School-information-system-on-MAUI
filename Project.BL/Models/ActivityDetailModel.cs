@@ -14,7 +14,7 @@ public record class ActivityDetailModel: ModelBase
     public Tag ActivityType { get; set; }
     public DayOfWeek ActivityWeekDay { get; set; }
     public LectureRoom ActivityRoom { get; set; }
-    public Mark ActivityMark { get; set; }
+    public Grade ActivityGrade { get; set; }
 
     public static ActivityDetailModel Empty => new()
     {

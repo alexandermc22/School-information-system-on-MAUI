@@ -22,7 +22,7 @@ public abstract class
     protected readonly IModelMapperDetail<TEntity, TDetailModel>? ModelMapperDetail=null;
     protected readonly IModelMapperList<TEntity, TListModel> ModelMapperList;
 
-    // Первый конструктор
+    // First constructor
     public FacadeBase(
         IUnitOfWorkFactory unitOfWorkFactory,
         IModelMapperList<TEntity, TListModel> modelMapperList,
@@ -33,7 +33,7 @@ public abstract class
         ModelMapperDetail = modelMapperDetail ?? throw new ArgumentNullException(nameof(modelMapperDetail));
     }   
 
-    // Второй конструктор
+    // Second constructor
     public FacadeBase(
         IUnitOfWorkFactory unitOfWorkFactory,
         IModelMapperList<TEntity, TListModel> modelMapperList)
