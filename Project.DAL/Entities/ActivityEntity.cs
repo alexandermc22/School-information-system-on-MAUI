@@ -1,7 +1,7 @@
 ﻿using Project.Common.Enum;
 namespace Project.DAL.Entities;
 
-public class ActionEntity : IEntity
+public class ActivityEntity : IEntity
 {
     public required Guid Id { get; set; }
     public required DateTime Start { get; set; }

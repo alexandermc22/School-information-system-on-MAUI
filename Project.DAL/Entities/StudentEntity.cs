@@ -3,8 +3,8 @@
     {
         public required Guid Id { get; set; }
         public required string FirstName { get; set; }
-        public required string SecondName { get; set; }
+        public required string LastName { get; set; }
         public string? Photo { get; set; }
         
-        public ICollection<StudentSubjectEntity> Subjects  { get; set; } = new List<StudentSubjectEntity>();
+        public ICollection<StudentSubjectEntity> StudentSubject  { get; set; } = new List<StudentSubjectEntity>();
     }
