@@ -33,5 +33,31 @@ public class StudentFacade(
             ? null
             : ModelMapperList.MapToListModel(entity);
     }
+    
+    public virtual async Task<List<StudentListModel>?> GetSortAsync()
+    {
+        if(ModelMapperList == null)
+            throw new ArgumentNullException(nameof(ModelMapperList));
+        await using IUnitOfWork uow = UnitOfWorkFactory.Create();
+
+        IQueryable<StudentEntity> query = uow.GetRepository<StudentEntity, StudentEntityMapper>().Get();
+
+        foreach (string includePath in IncludesNavigationPathDetail)
+        {
+            query = query.Include(includePath);
+        }
+
+        IQueryable<StudentEntity> sortedStudents = query.OrderBy(s => s.LastName);
+        List<StudentListModel> SLM = new List<StudentListModel>();
+
+        foreach (var student  in sortedStudents)
+        {
+            SLM.Add( ModelMapperList.MapToListModel(student));
+        }
+
+        return SLM.Count == 0
+            ? null
+            : SLM;
+    }
 }
             
