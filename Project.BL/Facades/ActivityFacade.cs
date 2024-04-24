@@ -1,4 +1,5 @@
-﻿using Project.BL.Mappers;
+﻿using Microsoft.EntityFrameworkCore;
+using Project.BL.Mappers;
 using Project.BL.Models;
 using Project.DAL.Entities;
 using Project.DAL.Mappers;
@@ -14,7 +15,31 @@ public class ActivityFacade(
     IActivityFacade
 {
     
-    
+    public virtual async Task<List<ActivityListModel>?> GetFilteredAsync(Guid subjectId,DateTime activityStartTime, DateTime activityEndTime)
+    {
+        if(ModelMapperList == null)
+            throw new ArgumentNullException(nameof(ModelMapperList));
+        await using IUnitOfWork uow = UnitOfWorkFactory.Create();
+
+        IQueryable<ActivityEntity> query = uow.GetRepository<ActivityEntity, ActivityEntityMapper>().Get();
+
+        foreach (string includePath in IncludesNavigationPathDetail)
+        {
+            query = query.Include(includePath);
+        }
+        var filteredActivities = query
+            .Where(a => a.Start >= activityStartTime && a.End <= activityEndTime && a.SubjectId == subjectId)
+            .ToList();
+
+        List<ActivityListModel> ALM = new List<ActivityListModel>();
+        foreach (var activity in filteredActivities)
+        {
+            ALM.Add(ModelMapperList.MapToListModel(activity));
+        }
+        return ALM.Count == 0
+            ? null
+            : ALM;
+    }
     
     
     
