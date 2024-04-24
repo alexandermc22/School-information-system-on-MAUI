@@ -13,6 +13,11 @@ public class ActivityFacade(
     FacadeBase<ActivityEntity,ActivityListModel,ActivityDetailModel,ActivityEntityMapper>(unitOfWorkFactory, activityModelMapper),
     IActivityFacade
 {
+    
+    
+    
+    
+    
     public async Task SaveAsync(ActivityListModel model, Guid subjectId)
     {
         ActivityEntity entity = activityModelMapper.MapToEntity(model, subjectId);
