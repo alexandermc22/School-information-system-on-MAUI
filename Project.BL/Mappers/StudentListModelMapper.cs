@@ -2,8 +2,8 @@
 using Project.BL.Models;
 namespace Project.BL.Mappers;
 
-public class StudentListModelMapper
-    : ModelMapperListBase<StudentEntity,StudentListModel>
+public class StudentListModelMapper(StudentSubjectsListDetailModelMapper studentSubjectsListDetailModelMapper)
+    : ModelMapperListDetailBase<StudentEntity,StudentDetailModel,StudentListModel>
 {
 
     public override StudentListModel MapToListModel(StudentEntity? entity)
@@ -16,8 +16,11 @@ public class StudentListModelMapper
                 LastName = entity.LastName,
                 Photo = entity.Photo
             };
-
-    public override StudentEntity MapToEntity(StudentListModel model)
+    
+    public override StudentEntity MapToEntity(StudentDetailModel model)
+        => throw new NotImplementedException("This method is unsupported. Use the other overload.");
+    
+    public  StudentEntity MapToEntity(StudentListModel model)
         => new()
         {
             Id = model.Id,
@@ -26,5 +29,11 @@ public class StudentListModelMapper
             Photo = model.Photo,
             StudentSubject = null!,
         };
-
+    
+    public override StudentDetailModel MapToDetailModel(StudentEntity? entity)
+        => new StudentDetailModel()
+        {
+            Id = entity.Id,
+            StudentSubjects = studentSubjectsListDetailModelMapper.MapToListModel(entity.StudentSubject).ToObservableCollection()
+        };
 }

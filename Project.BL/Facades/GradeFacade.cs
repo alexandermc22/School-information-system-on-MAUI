@@ -27,8 +27,7 @@ public class GradeFacade(
     
     public  async Task<List<GradeListModel>?> GetSortAsync()
     {
-        if(ModelMapperList == null)
-            throw new ArgumentNullException(nameof(ModelMapperList));
+
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
 
         IQueryable<GradeEntity> query = uow.GetRepository<GradeEntity, GradeEntityMapper>().Get();
@@ -43,7 +42,7 @@ public class GradeFacade(
 
         foreach (var grade  in sortedGrades)
         {
-            GLM.Add( ModelMapperList.MapToListModel(grade));
+            GLM.Add( ModelMapper.MapToListModel(grade));
         }
 
         return GLM.Count == 0

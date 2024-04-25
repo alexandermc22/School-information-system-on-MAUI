@@ -40,8 +40,7 @@ public class StudentSubjectsFacade(
     
     public virtual async Task<List<StudentSubjectsListModel>?> GetSortAsync()
     {
-        if(ModelMapperList == null)
-            throw new ArgumentNullException(nameof(ModelMapperList));
+
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
 
         IQueryable<StudentSubjectEntity> query = uow.GetRepository<StudentSubjectEntity, StudentSubjectEntityMapper>().Get();
@@ -56,7 +55,7 @@ public class StudentSubjectsFacade(
 
         foreach (var studentSubjects  in sortedStudentSubject)
         {
-            SSLM.Add( ModelMapperList.MapToListModel(studentSubjects));
+            SSLM.Add( ModelMapper.MapToListModel(studentSubjects));
         }
 
         return SSLM.Count == 0

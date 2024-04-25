@@ -16,8 +16,6 @@ public class StudentFacade(
 {
     public  async Task<StudentListModel?> GetByNameAsync(string firstName, string lastName)
     {
-        if(ModelMapperList == null)
-            throw new ArgumentNullException(nameof(ModelMapperList));
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
 
         IQueryable<StudentEntity> query = uow.GetRepository<StudentEntity, StudentEntityMapper>().Get();
@@ -31,13 +29,12 @@ public class StudentFacade(
 
         return entity is null
             ? null
-            : ModelMapperList.MapToListModel(entity);
+            : ModelMapper.MapToListModel(entity);
     }
     
     public  async Task<List<StudentListModel>?> GetSortAsync()
     {
-        if(ModelMapperList == null)
-            throw new ArgumentNullException(nameof(ModelMapperList));
+
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
 
         IQueryable<StudentEntity> query = uow.GetRepository<StudentEntity, StudentEntityMapper>().Get();
@@ -52,7 +49,7 @@ public class StudentFacade(
 
         foreach (var student  in sortedStudents)
         {
-            SLM.Add( ModelMapperList.MapToListModel(student));
+            SLM.Add( ModelMapper.MapToListModel(student));
         }
 
         return SLM.Count == 0

@@ -16,8 +16,7 @@ public class SubjectFacade(
 {
     public  async Task<SubjectListModel?> GetByNameAsync(string name)
     {
-        if(ModelMapperList == null)
-            throw new ArgumentNullException(nameof(ModelMapperList));
+
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
 
         IQueryable<SubjectEntity> query = uow.GetRepository<SubjectEntity, SubjectEntityMapper>().Get();
@@ -31,13 +30,12 @@ public class SubjectFacade(
 
         return entity is null
             ? null
-            : ModelMapperList.MapToListModel(entity);
+            : ModelMapper.MapToListModel(entity);
     }
     
     public  async Task<List<SubjectListModel>?> GetSortAsync()
     {
-        if(ModelMapperList == null)
-            throw new ArgumentNullException(nameof(ModelMapperList));
+
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
 
         IQueryable<SubjectEntity> query = uow.GetRepository<SubjectEntity, SubjectEntityMapper>().Get();
@@ -52,7 +50,7 @@ public class SubjectFacade(
 
         foreach (var subject  in sortedSubjects)
         {
-            SLM.Add( ModelMapperList.MapToListModel(subject));
+            SLM.Add( ModelMapper.MapToListModel(subject));
         }
 
         return SLM.Count == 0
