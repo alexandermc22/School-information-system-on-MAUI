@@ -1,6 +1,6 @@
 ﻿namespace Project.DAL.Entities;
 
-public class SubjectEntity : IEntity
+public record SubjectEntity : IEntity
 {
     public required Guid Id { get; set; }
     public required string Name { get; set; }
