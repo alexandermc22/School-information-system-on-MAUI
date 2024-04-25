@@ -1,4 +1,5 @@
-﻿using Project.BL.Mappers;
+﻿using Microsoft.EntityFrameworkCore;
+using Project.BL.Mappers;
 using Project.BL.Models;
 using Project.DAL.Entities;
 using Project.DAL.Mappers;
@@ -22,5 +23,31 @@ public class GradeFacade(
         
         await repository.UpdateAsync(entity);
         await uow.CommitAsync();
+    }
+    
+    public virtual async Task<List<GradeListModel>?> GetSortAsync()
+    {
+        if(ModelMapperList == null)
+            throw new ArgumentNullException(nameof(ModelMapperList));
+        await using IUnitOfWork uow = UnitOfWorkFactory.Create();
+
+        IQueryable<GradeEntity> query = uow.GetRepository<GradeEntity, GradeEntityMapper>().Get();
+
+        foreach (string includePath in IncludesNavigationPathDetail)
+        {
+            query = query.Include(includePath);
+        }
+
+        IQueryable<GradeEntity> sortedGrades = query.OrderBy(s => s.Activity.Subject.Name); // TODO check if subj != null
+        List<GradeListModel> GLM = new List<GradeListModel>();
+
+        foreach (var grade  in sortedGrades)
+        {
+            GLM.Add( ModelMapperList.MapToListModel(grade));
+        }
+
+        return GLM.Count == 0
+            ? null
+            : GLM;
     }
 }
