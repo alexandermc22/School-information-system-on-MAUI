@@ -10,7 +10,7 @@ namespace Project.BL.Facades;
 
 public class SubjectStudentsFacade(
     IUnitOfWorkFactory unitOfWorkFactory,
-    SubjectStudentsListDetailModelMapper subjectStudentsModelMapper) : 
+    SubjectStudentsModelMapper subjectStudentsModelMapper) : 
     FacadeBase<StudentSubjectEntity,SubjectStudentsListModel,SubjectStudentsDetailModel,StudentSubjectEntityMapper>(unitOfWorkFactory, subjectStudentsModelMapper),
     ISubjectStudentsFacade
 {

@@ -10,7 +10,7 @@ namespace Project.BL.Facades;
 
 public class ActivityFacade(
     IUnitOfWorkFactory unitOfWorkFactory,
-    ActivityListDetailModelMapper activityModelMapper) : 
+    ActivityModelMapper activityModelMapper) : 
     FacadeBase<ActivityEntity,ActivityListModel,ActivityDetailModel,ActivityEntityMapper>(unitOfWorkFactory, activityModelMapper),
     IActivityFacade
 {

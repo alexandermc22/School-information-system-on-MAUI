@@ -20,7 +20,7 @@ public abstract class
     where TDetailModel : class, IModel
     where TEntityMapper : IEntityMapper<TEntity>, new()
 {
-    protected readonly IUnitOfWorkFactory UnitOfWorkFactory;
+    protected readonly IUnitOfWorkFactory UnitOfWorkFactory= unitOfWorkFactory;
     protected readonly IModelMapper<TEntity,TListModel, TDetailModel> ModelMapper = modelMapper;
 
     // // First constructor

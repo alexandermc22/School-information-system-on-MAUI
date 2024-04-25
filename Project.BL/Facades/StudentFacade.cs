@@ -9,7 +9,7 @@ namespace Project.BL.Facades;
 
 public class StudentFacade(
     IUnitOfWorkFactory unitOfWorkFactory,
-    StudentListModelMapper modelMapper)
+    StudentModelMapper modelMapper)
     :
         FacadeBase<StudentEntity, StudentListModel, StudentDetailModel, StudentEntityMapper>(unitOfWorkFactory,
             modelMapper), IStudentFacade

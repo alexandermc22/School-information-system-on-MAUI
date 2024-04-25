@@ -2,8 +2,8 @@
 using Project.DAL.Entities;
 namespace Project.BL.Mappers;
 
-public class SubjectStudentsListDetailModelMapper: 
-    ModelMapperListDetailBase<StudentSubjectEntity,SubjectStudentsDetailModel,SubjectStudentsListModel>
+public class SubjectStudentsModelMapper: 
+    ModelMapperBase<StudentSubjectEntity,SubjectStudentsDetailModel,SubjectStudentsListModel>
 {
     
     public override SubjectStudentsListModel MapToListModel(StudentSubjectEntity? entity)

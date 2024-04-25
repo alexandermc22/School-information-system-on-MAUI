@@ -10,7 +10,7 @@ namespace Project.BL.Facades;
 
 public class GradeFacade(
     IUnitOfWorkFactory unitOfWorkFactory,
-    GradeListDetailModelMapper gradeModelMapper) : 
+    GradeModelMapper gradeModelMapper) : 
     FacadeBase<GradeEntity,GradeListModel,GradeDetailModel,GradeEntityMapper>(unitOfWorkFactory, gradeModelMapper),
     IGradeFacade
 {

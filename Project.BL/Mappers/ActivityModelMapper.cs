@@ -2,8 +2,8 @@
 using Project.DAL.Entities;
 namespace Project.BL.Mappers;
 
-public  class ActivityListDetailModelMapper(GradeListDetailModelMapper gradeListDetailModelMapper) : 
-    ModelMapperListDetailBase<ActivityEntity,ActivityDetailModel,ActivityListModel>
+public  class ActivityModelMapper(GradeModelMapper gradeModelMapper) : 
+    ModelMapperBase<ActivityEntity,ActivityDetailModel,ActivityListModel>
 {
 
     public override ActivityListModel MapToListModel(ActivityEntity? entity)
@@ -58,7 +58,7 @@ public  class ActivityListDetailModelMapper(GradeListDetailModelMapper gradeList
                 ActivityWeekDay = entity.Start.DayOfWeek,
                 ActivityRoom = entity.LectureRoom,
                 Description = entity.Description,
-                Grades = gradeListDetailModelMapper.MapToListModel(entity.Grades).ToObservableCollection()
+                Grades = gradeModelMapper.MapToListModel(entity.Grades).ToObservableCollection()
             };
     
     public override ActivityEntity MapToEntity(ActivityDetailModel model)

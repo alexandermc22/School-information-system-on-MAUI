@@ -2,8 +2,8 @@
 using Project.BL.Models;
 namespace Project.BL.Mappers;
 
-public class SubjectListModelMapper(SubjectStudentsListDetailModelMapper subjectStudentsListDetailModelMapper)
-    : ModelMapperListDetailBase<SubjectEntity,SubjectDetailModel,SubjectListModel>
+public class SubjectModelMapper(SubjectStudentsModelMapper subjectStudentsModelMapper)
+    : ModelMapperBase<SubjectEntity,SubjectDetailModel,SubjectListModel>
 {
 
     public override SubjectListModel MapToListModel(SubjectEntity? entity)
@@ -35,6 +35,6 @@ public class SubjectListModelMapper(SubjectStudentsListDetailModelMapper subject
         => new SubjectDetailModel
             {
                 Id = entity.Id,
-                SubjectStudents = subjectStudentsListDetailModelMapper.MapToListModel(entity.StudentSubject).ToObservableCollection()
+                SubjectStudents = subjectStudentsModelMapper.MapToListModel(entity.StudentSubject).ToObservableCollection()
             };
 }

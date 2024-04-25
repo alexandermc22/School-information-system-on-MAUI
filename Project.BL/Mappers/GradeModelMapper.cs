@@ -2,8 +2,8 @@
 using Project.DAL.Entities;
 namespace Project.BL.Mappers;
 
-public class GradeListDetailModelMapper: 
-    ModelMapperListDetailBase<GradeEntity,GradeDetailModel,GradeListModel>
+public class GradeModelMapper: 
+    ModelMapperBase<GradeEntity,GradeDetailModel,GradeListModel>
 {
     
     public override GradeListModel MapToListModel(GradeEntity? entity)
@@ -23,11 +23,12 @@ public class GradeListDetailModelMapper:
                 GradeDate = detail.GradeDate
             };
 
-    public IEnumerable<GradeListModel> MapToListModel(IEnumerable<GradeEntity> entities)
-        => entities.Select(MapToListModel);
+    // public IEnumerable<GradeListModel> MapToListModel(IEnumerable<GradeEntity> entities)
+    //     => entities.Select(MapToListModel);
 
     public override GradeDetailModel MapToDetailModel(GradeEntity? entity)
     {
+
         if (entity?.Activity is null)
         {
             return GradeDetailModel.Empty;

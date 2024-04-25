@@ -9,7 +9,7 @@ namespace Project.BL.Facades;
 
 public class SubjectFacade(
     IUnitOfWorkFactory unitOfWorkFactory,
-    SubjectListModelMapper modelMapper)
+    SubjectModelMapper modelMapper)
     :
         FacadeBase<SubjectEntity, SubjectListModel, SubjectDetailModel, SubjectEntityMapper>(unitOfWorkFactory,
             modelMapper), ISubjectFacade
