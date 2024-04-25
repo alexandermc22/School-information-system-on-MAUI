@@ -25,7 +25,7 @@ public class GradeFacade(
         await uow.CommitAsync();
     }
     
-    public virtual async Task<List<GradeListModel>?> GetSortAsync()
+    public  async Task<List<GradeListModel>?> GetSortAsync()
     {
         if(ModelMapperList == null)
             throw new ArgumentNullException(nameof(ModelMapperList));

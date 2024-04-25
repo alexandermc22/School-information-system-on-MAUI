@@ -14,7 +14,7 @@ public class StudentFacade(
         FacadeBase<StudentEntity, StudentListModel, StudentDetailModel, StudentEntityMapper>(unitOfWorkFactory,
             modelMapper), IStudentFacade
 {
-    public virtual async Task<StudentListModel?> GetByNameAsync(string firstName, string lastName)
+    public  async Task<StudentListModel?> GetByNameAsync(string firstName, string lastName)
     {
         if(ModelMapperList == null)
             throw new ArgumentNullException(nameof(ModelMapperList));
@@ -34,7 +34,7 @@ public class StudentFacade(
             : ModelMapperList.MapToListModel(entity);
     }
     
-    public virtual async Task<List<StudentListModel>?> GetSortAsync()
+    public  async Task<List<StudentListModel>?> GetSortAsync()
     {
         if(ModelMapperList == null)
             throw new ArgumentNullException(nameof(ModelMapperList));

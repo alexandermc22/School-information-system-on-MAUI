@@ -15,7 +15,7 @@ public class ActivityFacade(
     IActivityFacade
 {
     
-    public virtual async Task<List<ActivityListModel>?> GetFilteredAsync(Guid subjectId,DateTime activityStartTime, DateTime activityEndTime)
+    public  async Task<List<ActivityListModel>?> GetFilteredAsync(Guid subjectId,DateTime activityStartTime, DateTime activityEndTime)
     {
         if(ModelMapperList == null)
             throw new ArgumentNullException(nameof(ModelMapperList));

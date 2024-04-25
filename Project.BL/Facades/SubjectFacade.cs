@@ -14,7 +14,7 @@ public class SubjectFacade(
         FacadeBase<SubjectEntity, SubjectListModel, SubjectDetailModel, SubjectEntityMapper>(unitOfWorkFactory,
             modelMapper), ISubjectFacade
 {
-    public virtual async Task<SubjectListModel?> GetByNameAsync(string name)
+    public  async Task<SubjectListModel?> GetByNameAsync(string name)
     {
         if(ModelMapperList == null)
             throw new ArgumentNullException(nameof(ModelMapperList));
@@ -34,7 +34,7 @@ public class SubjectFacade(
             : ModelMapperList.MapToListModel(entity);
     }
     
-    public virtual async Task<List<SubjectListModel>?> GetSortAsync()
+    public  async Task<List<SubjectListModel>?> GetSortAsync()
     {
         if(ModelMapperList == null)
             throw new ArgumentNullException(nameof(ModelMapperList));

@@ -6,7 +6,7 @@ public record SubjectEntity : IEntity
     public required string Name { get; set; }
     public required string Code { get; set; }
 
-    public Uri? ImageUrl { get; set; } 
+    public required Uri? ImageUrl { get; set; } 
 
     public ICollection<ActivityEntity> Actions { get; set; } = new List<ActivityEntity>();
     
