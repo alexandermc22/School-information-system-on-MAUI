@@ -4,7 +4,7 @@ namespace Project.BL.Models;
 public record class GradeDetailModel: ModelBase
 {
     public required Guid SubjectId { get; set; }
-    public required string SubjectCode { get; set; }
+    public required string SubjectName { get; set; }
     public required Guid ActivityId { get; set; }
     public required Mark MarkValue { get; set; }
 	public required string Description { get; set; }
@@ -14,7 +14,7 @@ public record class GradeDetailModel: ModelBase
     {
         Id = Guid.NewGuid(),
         SubjectId = Guid.Empty,
-        SubjectCode = string.Empty,
+        SubjectName = string.Empty,
         ActivityId = Guid.Empty,
         Description = string.Empty,
         MarkValue = Mark.None,
