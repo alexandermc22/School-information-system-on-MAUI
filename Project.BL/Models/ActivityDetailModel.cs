@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using Project.Common.Enum;
 
 namespace Project.BL.Models;
@@ -14,7 +15,8 @@ public record class ActivityDetailModel: ModelBase
     public Tag ActivityType { get; set; }
     public DayOfWeek ActivityWeekDay { get; set; }
     public LectureRoom ActivityRoom { get; set; }
-    public Mark ActivityMark { get; set; }
+    
+    public ObservableCollection<GradeListModel> Grades { get; set; } = new();
 
     public static ActivityDetailModel Empty => new()
     {
