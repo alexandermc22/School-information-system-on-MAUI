@@ -13,5 +13,6 @@ public class ActivityEntityMapper : IEntityMapper<ActivityEntity>
         existingEntity.Description = newEntity.Description;
         existingEntity.Tag = newEntity.Tag;
         existingEntity.Subject = newEntity.Subject;
+        existingEntity.SubjectId = newEntity.SubjectId;
     }
 }
