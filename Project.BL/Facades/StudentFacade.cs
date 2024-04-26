@@ -19,11 +19,7 @@ public class StudentFacade(
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
 
         IQueryable<StudentEntity> query = uow.GetRepository<StudentEntity, StudentEntityMapper>().Get();
-
-        foreach (string includePath in IncludesNavigationPathDetail)
-        {
-            query = query.Include(includePath);
-        }
+        
 
         StudentEntity? entity = await query.SingleOrDefaultAsync(e => (e.FirstName == firstName && e.LastName == lastName)).ConfigureAwait(false);
 
@@ -38,11 +34,7 @@ public class StudentFacade(
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
 
         IQueryable<StudentEntity> query = uow.GetRepository<StudentEntity, StudentEntityMapper>().Get();
-
-        foreach (string includePath in IncludesNavigationPathDetail)
-        {
-            query = query.Include(includePath);
-        }
+        
 
         IQueryable<StudentEntity> sortedStudents = query.OrderBy(s => s.LastName);
         List<StudentListModel> SLM = new List<StudentListModel>();
@@ -57,6 +49,8 @@ public class StudentFacade(
             : SLM;
     }
     
-    // TODO saveasync
+    protected override ICollection<string> IncludesNavigationPathDetail =>
+        new[] {$"{nameof(StudentEntity.StudentSubject)}.{nameof(StudentSubjectEntity.Subject)}"};
+    
 }
             

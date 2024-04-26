@@ -21,11 +21,7 @@ public class ActivityFacade(
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
 
         IQueryable<ActivityEntity> query = uow.GetRepository<ActivityEntity, ActivityEntityMapper>().Get();
-
-        foreach (string includePath in IncludesNavigationPathDetail)
-        {
-            query = query.Include(includePath);
-        }
+        
         var filteredActivities = query
             .Where(a => a.Start >= activityStartTime && a.End <= activityEndTime && a.SubjectId == subjectId)
             .ToList();
@@ -46,11 +42,6 @@ public class ActivityFacade(
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
 
         IQueryable<ActivityEntity> query = uow.GetRepository<ActivityEntity, ActivityEntityMapper>().Get();
-
-        foreach (string includePath in IncludesNavigationPathDetail)
-        {
-            query = query.Include(includePath);
-        }
         var filteredActivities = query
             .Where(a => a.SubjectId == subjectId)
             .ToList();
@@ -88,4 +79,7 @@ public class ActivityFacade(
         await repository.UpdateAsync(entity);
         await uow.CommitAsync();
     }
+    
+    protected override ICollection<string> IncludesNavigationPathDetail =>
+        new[] {$"{nameof(ActivityEntity.Grades)}.{nameof(GradeEntity.Student)}"};
 }

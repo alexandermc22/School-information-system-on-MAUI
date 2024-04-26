@@ -31,12 +31,7 @@ public class GradeFacade(
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
 
         IQueryable<GradeEntity> query = uow.GetRepository<GradeEntity, GradeEntityMapper>().Get();
-
-        foreach (string includePath in IncludesNavigationPathDetail)
-        {
-            query = query.Include(includePath);
-        }
-
+        
         IQueryable<GradeEntity> sortedGrades = query.OrderBy(s => s.Activity.Subject.Name); // TODO check if subj != null
         List<GradeListModel> GLM = new List<GradeListModel>();
 

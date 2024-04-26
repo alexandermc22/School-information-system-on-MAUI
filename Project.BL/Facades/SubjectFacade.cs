@@ -58,5 +58,6 @@ public class SubjectFacade(
             : SLM;
     }
     
-    //TODO saveasync
+    protected override ICollection<string> IncludesNavigationPathDetail =>
+        new[] {$"{nameof(SubjectEntity.StudentSubject)}.{nameof(StudentSubjectEntity.Student)}"};
 }

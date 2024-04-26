@@ -44,12 +44,6 @@ public class StudentSubjectsFacade(
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
 
         IQueryable<StudentSubjectEntity> query = uow.GetRepository<StudentSubjectEntity, StudentSubjectEntityMapper>().Get();
-
-        foreach (string includePath in IncludesNavigationPathDetail)
-        {
-            query = query.Include(includePath);
-        }
-
         IQueryable<StudentSubjectEntity> sortedStudentSubject = query.OrderBy(s => s.Subject.Name);
         List<StudentSubjectsListModel> SSLM = new List<StudentSubjectsListModel>();
 
@@ -62,4 +56,5 @@ public class StudentSubjectsFacade(
             ? null
             : SSLM;
     }
+    
 }
