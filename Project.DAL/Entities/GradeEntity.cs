@@ -1,7 +1,7 @@
 ﻿using Project.Common.Enum;
 namespace Project.DAL.Entities;
 
-public class GradeEntity : IEntity
+public record GradeEntity : IEntity
 {
     public required Guid Id { get; set; }
     public required Grade GradeValue { get; set; }

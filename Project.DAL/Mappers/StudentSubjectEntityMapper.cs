@@ -8,5 +8,7 @@ public class StudentSubjectEntityMapper : IEntityMapper<StudentSubjectEntity>
     {
         existingEntity.Student = newEntity.Student;
         existingEntity.Subject = newEntity.Subject;
+        existingEntity.StudentId = newEntity.StudentId;
+        existingEntity.SubjectId = newEntity.SubjectId;
     }
 }

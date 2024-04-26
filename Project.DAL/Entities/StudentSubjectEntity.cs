@@ -1,6 +1,6 @@
 ﻿namespace Project.DAL.Entities;
 
-public class StudentSubjectEntity : IEntity
+public record StudentSubjectEntity : IEntity
 {
     public required Guid Id { get; set; }
     public required Guid StudentId { get; set; }
