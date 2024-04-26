@@ -2,8 +2,8 @@
 using Project.DAL.Entities;
 namespace Project.BL.Mappers;
 
-public class GradeListDetailModelMapper: 
-    ModelMapperListDetailBase<GradeEntity,GradeDetailModel,GradeListModel>
+public class GradeModelMapper: 
+    ModelMapperBase<GradeEntity,GradeDetailModel,GradeListModel>
 {
     
     public override GradeListModel MapToListModel(GradeEntity? entity)
@@ -11,19 +11,24 @@ public class GradeListDetailModelMapper:
             ? GradeListModel.Empty
             : new GradeListModel
             {
-                GradeValue = entity.GradeValue
+                MarkValue = entity.MarkValue,
+                SubjectName = entity.Activity.Subject.Name, // TODO check if subj != null
+                GradeDate = entity.GradeDate
             };
     public  GradeListModel MapToListModel(GradeDetailModel detail)
         =>  new GradeListModel
             {
-                GradeValue = detail.GradeValue
+                MarkValue = detail.MarkValue,
+                SubjectName = detail.SubjectName, 
+                GradeDate = detail.GradeDate
             };
 
-    public IEnumerable<GradeListModel> MapToListModel(IEnumerable<GradeEntity> entities)
-        => entities.Select(MapToListModel);
+    // public IEnumerable<GradeListModel> MapToListModel(IEnumerable<GradeEntity> entities)
+    //     => entities.Select(MapToListModel);
 
     public override GradeDetailModel MapToDetailModel(GradeEntity? entity)
     {
+
         if (entity?.Activity is null)
         {
             return GradeDetailModel.Empty;
@@ -36,9 +41,9 @@ public class GradeListDetailModelMapper:
                 {
                     Id = entity.Id,
                     SubjectId = Guid.Empty,
-                    SubjectCode = string.Empty,
+                    SubjectName = string.Empty,
                     ActivityId = entity.ActivityId,
-                    GradeValue = entity.GradeValue,
+                    MarkValue = entity.MarkValue,
                     GradeDate = entity.GradeDate,
                     Description = entity.Description,
                 };
@@ -49,9 +54,9 @@ public class GradeListDetailModelMapper:
                 {
                     Id = entity.Id,
                     SubjectId = entity.Activity.SubjectId,
-                    SubjectCode = entity.Activity.Subject.Code,
+                    SubjectName = entity.Activity.Subject.Name,
                     ActivityId = entity.ActivityId,
-                    GradeValue = entity.GradeValue,
+                    MarkValue = entity.MarkValue,
                     GradeDate = entity.GradeDate,
                     Description = entity.Description
                 };
@@ -66,7 +71,7 @@ public class GradeListDetailModelMapper:
         => new()
         {
             Id = model.Id,
-            GradeValue = model.GradeValue,
+            MarkValue = model.MarkValue,
             Description = model.Description,
             GradeDate = model.GradeDate,
             ActivityId = model.ActivityId,
