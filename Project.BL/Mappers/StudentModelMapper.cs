@@ -16,9 +16,16 @@ public class StudentModelMapper(StudentSubjectsModelMapper studentSubjectsModelM
                 LastName = entity.LastName,
                 Photo = entity.Photo
             };
-    
+
     public override StudentEntity MapToEntity(StudentDetailModel model)
-        => throw new NotImplementedException("This method is unsupported. Use the other overload.");
+        => new()
+        {
+            Id = model.Id,
+            FirstName = model.FirstName,
+            LastName = model.LastName,
+            Photo = model.Photo,
+            StudentSubject = null!
+        };
     
     public  StudentEntity MapToEntity(StudentListModel model)
         => new()
@@ -34,6 +41,10 @@ public class StudentModelMapper(StudentSubjectsModelMapper studentSubjectsModelM
         => new StudentDetailModel()
         {
             Id = entity.Id,
+            FirstName = entity.FirstName,
+            LastName = entity.LastName,
+            Photo = entity.Photo,
             StudentSubjects = studentSubjectsModelMapper.MapToListModel(entity.StudentSubject).ToObservableCollection()
+            
         };
 }

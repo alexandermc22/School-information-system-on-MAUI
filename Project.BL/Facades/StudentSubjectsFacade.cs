@@ -38,7 +38,7 @@ public class StudentSubjectsFacade(
         await uow.CommitAsync();
     }
     
-    public virtual async Task<List<StudentSubjectsListModel>?> GetSortAsync()
+    public  async Task<IEnumerable<StudentSubjectsListModel>?> GetSortAsync()
     {
 
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();

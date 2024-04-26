@@ -32,7 +32,7 @@ public class StudentFacade(
             : ModelMapper.MapToListModel(entity);
     }
     
-    public  async Task<List<StudentListModel>?> GetSortAsync()
+    public  async Task<IEnumerable<StudentListModel>?> GetSortAsync()
     {
 
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
@@ -56,5 +56,7 @@ public class StudentFacade(
             ? null
             : SLM;
     }
+    
+    // TODO saveasync
 }
             

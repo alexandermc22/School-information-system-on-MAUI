@@ -15,7 +15,7 @@ public class ActivityFacade(
     IActivityFacade
 {
     
-    public  async Task<List<ActivityListModel>?> GetFilteredAsync(Guid subjectId,DateTime activityStartTime, DateTime activityEndTime)
+    public  async Task<IEnumerable<ActivityListModel>?> GetFilteredAsync(Guid subjectId,DateTime activityStartTime, DateTime activityEndTime)
     {
 
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
@@ -40,7 +40,30 @@ public class ActivityFacade(
             : ALM;
     }
     
-    
+    public  async Task<IEnumerable<ActivityListModel>?> GetFilteredAsync(Guid subjectId)
+    {
+
+        await using IUnitOfWork uow = UnitOfWorkFactory.Create();
+
+        IQueryable<ActivityEntity> query = uow.GetRepository<ActivityEntity, ActivityEntityMapper>().Get();
+
+        foreach (string includePath in IncludesNavigationPathDetail)
+        {
+            query = query.Include(includePath);
+        }
+        var filteredActivities = query
+            .Where(a => a.SubjectId == subjectId)
+            .ToList();
+
+        List<ActivityListModel> ALM = new List<ActivityListModel>();
+        foreach (var activity in filteredActivities)
+        {
+            ALM.Add(ModelMapper.MapToListModel(activity));
+        }
+        return ALM.Count == 0
+            ? null
+            : ALM;
+    }
     
     public async Task SaveAsync(ActivityListModel model, Guid subjectId)
     {

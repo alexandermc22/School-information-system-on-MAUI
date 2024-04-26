@@ -25,7 +25,7 @@ public class GradeFacade(
         await uow.CommitAsync();
     }
     
-    public  async Task<List<GradeListModel>?> GetSortAsync()
+    public  async Task<IEnumerable<GradeListModel>?> GetSortAsync()
     {
 
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();

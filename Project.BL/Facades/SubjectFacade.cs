@@ -33,7 +33,7 @@ public class SubjectFacade(
             : ModelMapper.MapToListModel(entity);
     }
     
-    public  async Task<List<SubjectListModel>?> GetSortAsync()
+    public  async Task<IEnumerable<SubjectListModel>?> GetSortAsync()
     {
 
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
@@ -57,4 +57,6 @@ public class SubjectFacade(
             ? null
             : SLM;
     }
+    
+    //TODO saveasync
 }
