@@ -1,11 +1,11 @@
 ﻿using Project.DAL.Entities;
 using Project.BL.Models;
+
 namespace Project.BL.Mappers;
 
 public class StudentModelMapper(StudentSubjectsModelMapper studentSubjectsModelMapper)
-    : ModelMapperBase<StudentEntity,StudentDetailModel,StudentListModel>
+    : ModelMapperBase<StudentEntity, StudentDetailModel, StudentListModel>
 {
-
     public override StudentListModel MapToListModel(StudentEntity? entity)
         => entity is null
             ? StudentListModel.Empty
@@ -26,8 +26,8 @@ public class StudentModelMapper(StudentSubjectsModelMapper studentSubjectsModelM
             Photo = model.Photo,
             StudentSubject = null!
         };
-    
-    public  StudentEntity MapToEntity(StudentListModel model)
+
+    public StudentEntity MapToEntity(StudentListModel model)
         => new()
         {
             Id = model.Id,
@@ -36,15 +36,22 @@ public class StudentModelMapper(StudentSubjectsModelMapper studentSubjectsModelM
             Photo = model.Photo,
             StudentSubject = null!,
         };
-    
+
     public override StudentDetailModel MapToDetailModel(StudentEntity? entity)
-        => new StudentDetailModel()
+    {
+        if (entity is null)
+            return StudentDetailModel.Empty;
+        else
         {
-            Id = entity.Id,
-            FirstName = entity.FirstName,
-            LastName = entity.LastName,
-            Photo = entity.Photo,
-            StudentSubjects = studentSubjectsModelMapper.MapToListModel(entity.StudentSubject).ToObservableCollection()
-            
-        };
+            return new StudentDetailModel
+            {
+                Id = entity.Id,
+                FirstName = entity.FirstName,
+                LastName = entity.LastName,
+                Photo = entity.Photo,
+                StudentSubjects = studentSubjectsModelMapper.MapToListModel(entity.StudentSubject)
+                    .ToObservableCollection()
+            };
+        }
+    }
 }

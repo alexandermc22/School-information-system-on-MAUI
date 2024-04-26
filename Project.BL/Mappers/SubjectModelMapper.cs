@@ -1,4 +1,5 @@
-﻿using Project.DAL.Entities;
+﻿using System.ComponentModel.Design;
+using Project.DAL.Entities;
 using Project.BL.Models;
 namespace Project.BL.Mappers;
 
@@ -38,9 +39,14 @@ public class SubjectModelMapper(SubjectStudentsModelMapper subjectStudentsModelM
             StudentSubject = null!,
             Activity = null!,
         };
-    
+
     public override SubjectDetailModel MapToDetailModel(SubjectEntity? entity)
-        => new SubjectDetailModel
+    {
+        if(entity is null)
+            return SubjectDetailModel.Empty;
+        else
+        {
+            return new SubjectDetailModel
             {
                 Id = entity.Id,
                 Name = entity.Name,
@@ -48,4 +54,8 @@ public class SubjectModelMapper(SubjectStudentsModelMapper subjectStudentsModelM
                 ImageUrl = entity.ImageUrl,
                 SubjectStudents = subjectStudentsModelMapper.MapToListModel(entity.StudentSubject).ToObservableCollection()
             };
+        }
+   
+    }
+            
 }
