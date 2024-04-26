@@ -20,29 +20,8 @@ public abstract class
     where TDetailModel : class, IModel
     where TEntityMapper : IEntityMapper<TEntity>, new()
 {
-    protected readonly IUnitOfWorkFactory UnitOfWorkFactory= unitOfWorkFactory;
     protected readonly IModelMapper<TEntity,TListModel, TDetailModel> ModelMapper = modelMapper;
-
-    // // First constructor
-    // public FacadeBase(
-    //     IUnitOfWorkFactory unitOfWorkFactory,
-    //     IModelMapperList<TEntity, TListModel> modelMapperList,
-    //     IModelMapperDetail<TEntity,TDetailModel> modelMapperDetail)
-    // {
-    //     UnitOfWorkFactory = unitOfWorkFactory ?? throw new ArgumentNullException(nameof(unitOfWorkFactory));
-    //     ModelMapperList = modelMapperList ?? throw new ArgumentNullException(nameof(modelMapperList));
-    //     ModelMapperDetail = modelMapperDetail ?? throw new ArgumentNullException(nameof(modelMapperDetail));
-    // }   
-    //
-    // // Second constructor
-    // public FacadeBase(
-    //     IUnitOfWorkFactory unitOfWorkFactory,
-    //     IModelMapperList<TEntity, TListModel> modelMapperList)
-    // {
-    //     UnitOfWorkFactory = unitOfWorkFactory ?? throw new ArgumentNullException(nameof(unitOfWorkFactory));
-    //     ModelMapperList = modelMapperList ?? throw new ArgumentNullException(nameof(modelMapperList));
-    // }
-    
+    protected readonly IUnitOfWorkFactory UnitOfWorkFactory= unitOfWorkFactory;
     
     protected virtual ICollection<string> IncludesNavigationPathDetail => new List<string>();
 
@@ -75,7 +54,7 @@ public abstract class
 
         return entity is null
             ? null
-            : modelMapper.MapToDetailModel(entity);
+            : ModelMapper.MapToDetailModel(entity);
     }
 
     // Always use paging in production
@@ -87,7 +66,7 @@ public abstract class
             .Get()
             .ToListAsync().ConfigureAwait(false);
 
-        return modelMapper.MapToListModel(entities);
+        return ModelMapper.MapToListModel(entities);
     }
 
     public virtual async Task<TDetailModel> SaveAsync(TDetailModel model)
@@ -96,7 +75,7 @@ public abstract class
 
         GuardCollectionsAreNotSet(model);
 
-        TEntity entity = modelMapper.MapToEntity(model);
+        TEntity entity = ModelMapper.MapToEntity(model);
 
         IUnitOfWork uow = UnitOfWorkFactory.Create();
         IRepository<TEntity> repository = uow.GetRepository<TEntity, TEntityMapper>();
@@ -104,13 +83,13 @@ public abstract class
         if (await repository.ExistsAsync(entity).ConfigureAwait(false))
         {
             TEntity updatedEntity = await repository.UpdateAsync(entity).ConfigureAwait(false);
-            result = modelMapper.MapToDetailModel(updatedEntity);
+            result = ModelMapper.MapToDetailModel(updatedEntity);
         }
         else
         {
             entity.Id = Guid.NewGuid();
             TEntity insertedEntity = repository.Insert(entity);
-            result = modelMapper.MapToDetailModel(insertedEntity);
+            result = ModelMapper.MapToDetailModel(insertedEntity);
         }
 
         await uow.CommitAsync().ConfigureAwait(false);
