@@ -10,7 +10,7 @@ public static class StudentSeeds
         Id = Guid.Parse("87833e45-67ji-4d6b-930b-fe54ki88dbd8"),
         FirstName = "John",
         LastName = "Doe",
-        Photo = "https://example.com/john_doe_photo.jpg",
+        Photo = null,
         StudentSubject = new List<StudentSubjectEntity>()
     };
 
@@ -19,7 +19,7 @@ public static class StudentSeeds
         Id = Guid.Parse("99833e45-67ji-4d6b-930b-fe54ki88dbd8"),
         FirstName = "Jane",
         LastName = "Doe",
-        Photo = "https://example.com/jane_doe_photo.jpg",
+        Photo = null,
         StudentSubject = new List<StudentSubjectEntity>() 
     };
 

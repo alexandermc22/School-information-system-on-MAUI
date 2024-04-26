@@ -11,7 +11,7 @@ public static class SubjectSeeds
         Id = Guid.Parse("87833e49-67a5-4d6b-930b-fe54b488dbd8"),
         Name = "Mathematics",
         Code = "MATH101",
-        ImageUrl = "https://example.com/mathematics_image.jpg",
+        ImageUrl = null,
         Activity = new List<ActivityEntity>(),
         StudentSubject = new List<StudentSubjectEntity>()
     };
@@ -21,7 +21,7 @@ public static class SubjectSeeds
         Id = Guid.Parse("88833e49-67a5-4d6b-930b-fe54b488dbd8"),
         Name = "English",
         Code = "ENG101",
-        ImageUrl = "https://example.com/english_image.jpg",
+        ImageUrl = null,
         Activity = new List<ActivityEntity>(),
         StudentSubject = new List<StudentSubjectEntity>()
     };

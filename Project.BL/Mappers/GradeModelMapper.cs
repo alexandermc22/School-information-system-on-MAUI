@@ -11,14 +11,14 @@ public class GradeModelMapper:
             ? GradeListModel.Empty
             : new GradeListModel
             {
-                MarkValue = entity.MarkValue,
+                GradeValue = entity.GradeValue,
                 SubjectName = entity.Activity.Subject.Name, // TODO check if subj != null
                 GradeDate = entity.GradeDate
             };
     public  GradeListModel MapToListModel(GradeDetailModel detail)
         =>  new GradeListModel
             {
-                MarkValue = detail.MarkValue,
+                GradeValue = detail.GradeValue,
                 SubjectName = detail.SubjectName, 
                 GradeDate = detail.GradeDate
             };
@@ -43,7 +43,7 @@ public class GradeModelMapper:
                     SubjectId = Guid.Empty,
                     SubjectName = string.Empty,
                     ActivityId = entity.ActivityId,
-                    MarkValue = entity.MarkValue,
+                    GradeValue = entity.GradeValue,
                     GradeDate = entity.GradeDate,
                     Description = entity.Description,
                 };
@@ -56,7 +56,7 @@ public class GradeModelMapper:
                     SubjectId = entity.Activity.SubjectId,
                     SubjectName = entity.Activity.Subject.Name,
                     ActivityId = entity.ActivityId,
-                    MarkValue = entity.MarkValue,
+                    GradeValue = entity.GradeValue,
                     GradeDate = entity.GradeDate,
                     Description = entity.Description
                 };
@@ -71,7 +71,7 @@ public class GradeModelMapper:
         => new()
         {
             Id = model.Id,
-            MarkValue = model.MarkValue,
+            GradeValue = model.GradeValue,
             Description = model.Description,
             GradeDate = model.GradeDate,
             ActivityId = model.ActivityId,
