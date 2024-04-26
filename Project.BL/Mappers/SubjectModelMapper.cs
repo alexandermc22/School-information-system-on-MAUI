@@ -24,7 +24,7 @@ public class SubjectModelMapper(SubjectStudentsModelMapper subjectStudentsModelM
             Name = model.Name,
             Code = model.Code,
             StudentSubject = null!,
-            Actions = null!,
+            Activity = null!,
             ImageUrl = model.ImageUrl
         };
     
@@ -36,7 +36,7 @@ public class SubjectModelMapper(SubjectStudentsModelMapper subjectStudentsModelM
             Code = model.Code,
             ImageUrl = model.ImageUrl,
             StudentSubject = null!,
-            Actions = null!,
+            Activity = null!,
         };
     
     public override SubjectDetailModel MapToDetailModel(SubjectEntity? entity)

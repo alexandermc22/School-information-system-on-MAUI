@@ -5,7 +5,6 @@ namespace Project.BL.Models;
 public record StudentDetailModel: ModelBase
 {
     
-    public required Guid Id { get; set; }
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
     public required Uri? Photo { get; set; }

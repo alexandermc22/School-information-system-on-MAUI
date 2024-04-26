@@ -8,7 +8,7 @@ public record class GradeDetailModel: ModelBase
     public required string SubjectName { get; set; }
     public required Guid ActivityId { get; set; }
     public required Grade GradeValue { get; set; }
-	public required string Description { get; set; }
+	public required string? Description { get; set; }
     public required DateTime GradeDate { get; set; }
 
     public static GradeDetailModel Empty => new()

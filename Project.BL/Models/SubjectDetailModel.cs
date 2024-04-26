@@ -3,8 +3,7 @@ namespace Project.BL.Models;
 
 public record SubjectDetailModel : ModelBase
 {
-
-    public required Guid Id { get; set; }
+    
     public required string Name { get; set; }
     public required string Code { get; set; }
 
