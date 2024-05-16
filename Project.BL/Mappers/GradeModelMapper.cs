@@ -11,6 +11,7 @@ public class GradeModelMapper :
             ? GradeListModel.Empty
             : new GradeListModel
             {
+                StudentName = $"{entity.Student.FirstName} {entity.Student.LastName}",
                 GradeValue = entity.GradeValue,
                 SubjectName = entity.Activity.Subject.Name, // TODO check if subj != null
                 GradeDate = entity.GradeDate
@@ -19,6 +20,7 @@ public class GradeModelMapper :
     public GradeListModel MapToListModel(GradeDetailModel detail)
         => new GradeListModel
         {
+            StudentName = detail.StudentName,
             GradeValue = detail.GradeValue,
             SubjectName = detail.SubjectName,
             GradeDate = detail.GradeDate
@@ -38,6 +40,7 @@ public class GradeModelMapper :
             return new GradeDetailModel
             {
                 Id = entity.Id,
+                StudentName = $"{entity.Student.FirstName} {entity.Student.LastName}",
                 SubjectId = entity.Activity.SubjectId,
                 SubjectName = entity.Activity.Subject.Name,
                 ActivityId = entity.ActivityId,
