@@ -24,14 +24,14 @@ namespace Project.App;
                 });
 
             ConfigureAppSettings(builder);
-
+            
             builder.Services
                 .AddDALServices(GetDALOptions(builder.Configuration))
                 .AddAppServices()
                 .AddBLServices();
 
             var app = builder.Build();
-
+            
             MigrateDb(app.Services.GetRequiredService<IDbMigrator>());
             RegisterRouting(app.Services.GetRequiredService<INavigationService>());
 

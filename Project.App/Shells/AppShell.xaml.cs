@@ -18,6 +18,6 @@ public partial class AppShell
     }
     
     [RelayCommand]
-    private async Task GoToRecipesAsync()
+    private async Task GoToStudentsAsync()
         => await _navigationService.GoToAsync<StudentListViewModel>();
 }
