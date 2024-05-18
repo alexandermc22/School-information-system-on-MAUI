@@ -7,7 +7,7 @@ using System.Reflection;
 using Project.DAL;
 using Project.DAL.Migrator;
 using Project.DAL.Options;
-
+[assembly:System.Resources.NeutralResourcesLanguage("en")]
 namespace Project.App;
     public static class MauiProgram
     {
@@ -16,6 +16,7 @@ namespace Project.App;
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
