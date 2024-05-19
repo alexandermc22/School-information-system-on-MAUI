@@ -45,7 +45,7 @@ namespace Project.DAL.Migrations
 
                     b.HasIndex("SubjectId");
 
-                    b.ToTable("Actions");
+                    b.ToTable("Activities");
                 });
 
             modelBuilder.Entity("Project.DAL.Entities.GradeEntity", b =>
@@ -118,7 +118,7 @@ namespace Project.DAL.Migrations
 
                     b.HasIndex("SubjectId");
 
-                    b.ToTable("StudentSubjectEntity");
+                    b.ToTable("StudentSubject");
                 });
 
             modelBuilder.Entity("Project.DAL.Entities.SubjectEntity", b =>
@@ -163,7 +163,7 @@ namespace Project.DAL.Migrations
                         .IsRequired();
 
                     b.HasOne("Project.DAL.Entities.StudentEntity", "Student")
-                        .WithMany()
+                        .WithMany("Grades")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -199,6 +199,8 @@ namespace Project.DAL.Migrations
 
             modelBuilder.Entity("Project.DAL.Entities.StudentEntity", b =>
                 {
+                    b.Navigation("Grades");
+
                     b.Navigation("StudentSubject");
                 });
 

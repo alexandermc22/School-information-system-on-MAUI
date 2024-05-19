@@ -3,13 +3,23 @@
     x:Class="Project.App.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Project.App"
+    xmlns:r="clr-namespace:Project.App.Views.Student"
+    xmlns:z="clr-namespace:Project.App.Views.Subject"
+    xmlns:local="clr-namespace:Project.App.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="Project.App">
+    
+    <TabBar>
+        <Tab Title="StudentList">
+            <ShellContent  ContentTemplate= "{DataTemplate r:StudentListView}"
+                           Route= "//students"></ShellContent>
+        </Tab>
+        <Tab Title="Subject">
+            <ShellContent  ContentTemplate= "{DataTemplate z:SubjectListView}"
+                           Route= "//subjects"></ShellContent>
+        </Tab>
+    </TabBar>
+    <ShellContent ContentTemplate="{DataTemplate r:StudentListView}" Route="students" />
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
 
 </Shell>

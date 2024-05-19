@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Project.DAL.Entities;
-using Project.DAL.Seeds;
+// using Project.DAL.Seeds;
 
 namespace Project.DAL;
 
@@ -8,8 +8,9 @@ public class ProjectDbContext(DbContextOptions contextOptions, bool seedDemoData
 {
     public DbSet<StudentEntity> Students { get; set; }
     public DbSet<SubjectEntity> Subjects { get; set; }
-    public DbSet<ActivityEntity> Actions { get; set; }
+    public DbSet<ActivityEntity> Activities { get; set; }
     public DbSet<GradeEntity> Grades { get; set; }
+    public DbSet<StudentSubjectEntity> StudentSubject { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -34,20 +35,25 @@ public class ProjectDbContext(DbContextOptions contextOptions, bool seedDemoData
             .HasOne(i => i.Activity)
             .WithMany(i => i.Grades)
             .OnDelete(DeleteBehavior.Cascade);
-
-        modelBuilder.Entity<StudentEntity>()
-            .HasMany<GradeEntity>()
-            .WithOne(i => i.Student)
+        
+        modelBuilder.Entity<GradeEntity>()
+            .HasOne(i => i.Student)
+            .WithMany(i => i.Grades)
             .OnDelete(DeleteBehavior.Cascade);
         
-        if (seedDemoData)
-        {
-            ActivitySeeds.Seed(modelBuilder);
-            GradeSeeds.Seed(modelBuilder);
-            StudentSeeds.Seed(modelBuilder);
-            StudentSubjectSeeds.Seed(modelBuilder);
-            SubjectSeeds.Seed(modelBuilder);
-        }
+        // modelBuilder.Entity<StudentEntity>()
+        //     .HasMany<GradeEntity>()
+        //     .WithOne(i => i.Student)
+        //     .OnDelete(DeleteBehavior.Cascade);
+        
+        // if (seedDemoData)
+        // {
+        //     ActivitySeeds.Seed(modelBuilder);
+        //     GradeSeeds.Seed(modelBuilder);
+        //     StudentSeeds.Seed(modelBuilder);
+        //     StudentSubjectSeeds.Seed(modelBuilder);
+        //     SubjectSeeds.Seed(modelBuilder);
+        // }
         
         
         

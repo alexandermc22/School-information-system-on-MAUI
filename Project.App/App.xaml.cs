@@ -1,12 +1,11 @@
-﻿namespace Project.App
-{
-    public partial class App : Application
-    {
-        public App(IServiceProvider serviceProvider)
-        {
-            InitializeComponent();
+﻿namespace Project.App;
 
-            MainPage = serviceProvider.GetRequiredService<AppShell>();
-        }
+public partial class App : Application
+{
+    public App(IServiceProvider serviceProvider )
+    {
+        InitializeComponent();
+
+        MainPage = serviceProvider.GetRequiredService<AppShell>();
     }
 }

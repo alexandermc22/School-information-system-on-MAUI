@@ -24,7 +24,8 @@ public class StudentModelMapper(StudentSubjectsModelMapper studentSubjectsModelM
             FirstName = model.FirstName,
             LastName = model.LastName,
             Photo = model.Photo,
-            StudentSubject = null!
+            StudentSubject = null!,
+            Grades = null!
         };
 
     public StudentEntity MapToEntity(StudentListModel model)
@@ -35,6 +36,7 @@ public class StudentModelMapper(StudentSubjectsModelMapper studentSubjectsModelM
             LastName = model.LastName,
             Photo = model.Photo,
             StudentSubject = null!,
+            Grades = null!
         };
 
     public override StudentDetailModel MapToDetailModel(StudentEntity? entity)

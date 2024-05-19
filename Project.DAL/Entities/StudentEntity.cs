@@ -6,5 +6,6 @@
         public required string LastName { get; set; }
         public required Uri? Photo { get; set; }
         
+        public required ICollection<GradeEntity> Grades { get; set; } = new List<GradeEntity>();
         public ICollection<StudentSubjectEntity> StudentSubject  { get; set; } = new List<StudentSubjectEntity>();
     }

@@ -1,7 +1,80 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Project.App.Views.Student.StudentListView">
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:views="clr-namespace:Project.App.Views"
+                       x:Class="Project.App.Views.Student.StudentListView"
+                       xmlns:vm="clr-namespace:Project.App.ViewModels"
+                       BackgroundColor="#333333">
     
-</ContentView>
+    <ContentPage.BindingContext>
+        <vm:SubjectListViewModel/>
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto,*" ColumnDefinitions="200,*">
+
+        <!-- Main Content Area -->
+        <Grid Grid.Row="0" Grid.Column="1" Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- User Information -->
+            <StackLayout Orientation="Horizontal" 
+                         VerticalOptions="Center" 
+                         HorizontalOptions="End" 
+                         Margin="0,0,0,10">
+                <StackLayout Orientation="Vertical" Margin="10,0">
+                    <Label Text="{Binding Name}" FontSize="20" TextColor="Black"/>
+                    <Label Text="Teacher" FontSize="14" TextColor="Gray"/>
+                    <Label Text="{Binding id}" FontSize="14" TextColor="Gray"/>
+                </StackLayout>
+            </StackLayout>
+
+            <!-- Sort and List View -->
+            <StackLayout Grid.Row="1">
+                <!-- Sort Button -->
+                <Picker Title="Sort by" WidthRequest="150" HorizontalOptions="End" Margin="0,0,0,10"/>
+
+                <!-- Students List -->
+                <CollectionView ItemsSource="{Binding Students}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="10" Margin="0,0,0,5" BackgroundColor="#ECECEC">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Label Text="{Binding Name}" Grid.Column="1" VerticalOptions="Center"/>
+                                <Label Text="{Binding ID}" Grid.Column="2" VerticalOptions="Center"/>
+                                
+                                <Button 
+                                        x:Name="SubjectsBtn"
+                                        Text="Subjects" 
+                                        Grid.Column="3" 
+                                        BackgroundColor="#FFF5CC" 
+                                        TextColor="Black"
+                                        Clicked="OnSubjectsClicked"/>
+                                
+                                <Button Text="✏️" 
+                                        Grid.Column="4" 
+                                        BackgroundColor="Transparent" 
+                                        TextColor="Red"/>
+                                
+                                <Button Text="🗑️" 
+                                        Grid.Column="5" 
+                                        BackgroundColor="Transparent" 
+                                        TextColor="Red"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </Grid>
+    </Grid>
+</views:ContentPageBase>

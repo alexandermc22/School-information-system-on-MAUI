@@ -39,7 +39,7 @@ namespace Project.App.Resources.Texts {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.App.Resources.Texts.AppShellTexts", typeof(AppShellTexts).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FirstProject.App.Resources.Texts.AppShellTexts", typeof(AppShellTexts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

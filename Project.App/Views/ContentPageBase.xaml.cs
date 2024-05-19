@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Project.App.ViewModels;
 namespace Project.App.Views;
 
-public partial class ContentPageBase : ContentPage
+public partial class ContentPageBase
 {
     protected IViewModel ViewModel { get; }
     public ContentPageBase(IViewModel viewModel)

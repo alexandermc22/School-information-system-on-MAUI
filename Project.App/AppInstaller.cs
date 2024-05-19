@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using Project.App.Services;
-using Project.App.Shells;
 using Project.App.ViewModels;
 using Project.App.Views;
 

@@ -8,32 +8,32 @@ using Project.BL.Models;
 namespace Project.App.ViewModels;
 
 public partial class StudentListViewModel(
-    IStudentFacade studentFacade,
+    // IStudentFacade studentFacade,
     INavigationService navigationService,
     IMessengerService messengerService)
     : ViewModelBase(messengerService), IRecipient<StudentEditMessage>, IRecipient<StudentDeleteMessage>
 {
-    public IEnumerable<StudentListModel> Students { get; set; } = null!;
+    // public IEnumerable<StudentListModel> Students { get; set; } = null!;
     
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
 
-        Students = await studentFacade.GetAsync();
+        // Students = await studentFacade.GetAsync();
     }
     
-    [RelayCommand]
-    private async Task GoToCreateAsync()
-    {
-        await navigationService.GoToAsync("/edit");
-    }
-    
-    [RelayCommand]
-    private async Task GoToDetailAsync(Guid id)
-    {
-        await navigationService.GoToAsync<StudentDetailViewModel>(
-            new Dictionary<string, object?> { [nameof(StudentDetailViewModel.Id)] = id });
-    }
+    // [RelayCommand]
+    // private async Task GoToCreateAsync()
+    // {
+    //     await navigationService.GoToAsync("/edit");
+    // }
+    //
+    // [RelayCommand]
+    // private async Task GoToDetailAsync(Guid id)
+    // {
+    //     await navigationService.GoToAsync<StudentDetailViewModel>(
+    //         new Dictionary<string, object?> { [nameof(StudentDetailViewModel.Id)] = id });
+    // }
     
     public async void Receive(StudentEditMessage message)
     {

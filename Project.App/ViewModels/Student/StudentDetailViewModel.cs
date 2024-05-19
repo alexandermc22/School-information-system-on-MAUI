@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Project.App.Messages;
-using Project.App.Resources.Texts;
 using Project.App.Services;
 using Project.BL.Facades;
 using Project.BL.Models;
@@ -39,7 +38,7 @@ public partial class StudentDetailViewModel(
             }
             catch (InvalidOperationException)
             {
-                await alertService.DisplayAsync(StudentDetailViewModelTexts.DeleteError_Alert_Title, StudentDetailViewModelTexts.DeleteError_Alert_Message);
+                await alertService.DisplayAsync("StudentDetailViewModelTexts.DeleteError_Alert_Title", "StudentDetailViewModelTexts.DeleteError_Alert_Message");
             }
         }
     }

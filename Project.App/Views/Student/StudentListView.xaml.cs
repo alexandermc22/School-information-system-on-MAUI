@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using Project.App.ViewModels;
 
 namespace Project.App.Views.Student;
 
-public partial class StudentListView : ContentView
+public partial class StudentListView: ContentPageBase
 {
     public StudentListView(StudentListViewModel viewModel)
-        // : base(viewModel)
+         : base(viewModel)
     {
         InitializeComponent();
+    }
+
+    private void OnSubjectsClicked(object sender, EventArgs e)
+    {
+         
     }
 }
