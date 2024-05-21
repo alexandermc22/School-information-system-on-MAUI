@@ -110,9 +110,6 @@
       <MauiXaml Update="Views\ContentPageBase.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
-      <MauiXaml Update="Resources\Styles\Styles.xaml">
-        <DependentUpon>LabelStyle.xaml</DependentUpon>
-      </MauiXaml>
     </ItemGroup>
 
     <ItemGroup>

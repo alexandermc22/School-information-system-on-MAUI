@@ -7,7 +7,10 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
-                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+                <ResourceDictionary Source="Resources/Styles/ButtonStyle.xaml" />
+                <ResourceDictionary Source="Resources/Styles/ContentPageStyle.xaml" />
+                <ResourceDictionary Source="Resources/Styles/FrameStyle.xaml" />
+                <ResourceDictionary Source="Resources/Styles/LabelStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
