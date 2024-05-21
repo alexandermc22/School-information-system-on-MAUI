@@ -1,17 +1,26 @@
-﻿using Project.DAL.Entities;
-using Project.BL.Models;
+﻿//using Project.DAL.Entities;
+//using Project.BL.Models;
 namespace Project.BL.Mappers;
 
 public abstract class ModelMapperBase<TEntity,TDetailModel, TListModel> : IModelMapper<TEntity, TListModel, TDetailModel>
-    where TEntity : IEntity
-    where TListModel : IModel
-    where TDetailModel : IModel
+    //where TEntity : IEntity
+    //where TListModel : IModel
+    //where TDetailModel : IModel
 {
     public abstract TListModel MapToListModel(TEntity? entity);
 
-    public IEnumerable<TListModel> MapToListModel(IEnumerable<TEntity> entities)
-        => entities.Select(MapToListModel);
+    /*public IEnumerable<TListModel> MapToListModel(IEnumerable<TEntity> entities)
+        => entities.Select(MapToListModel);*/
+    public IEnumerable<TListModel> MapToListModel(IEnumerable<TEntity>? entities)
+    {
+        if (entities == null)
+        {
+            // Возможно, вам нужно определить, как обрабатывать ситуацию, когда список пустой
+            return Enumerable.Empty<TListModel>();
+        }
 
+        return entities.Select(MapToListModel);
+    }
     public abstract TDetailModel MapToDetailModel(TEntity entity);
     public abstract TEntity MapToEntity(TDetailModel model);
 }
