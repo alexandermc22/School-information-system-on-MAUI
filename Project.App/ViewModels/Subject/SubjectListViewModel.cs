@@ -13,38 +13,9 @@ public partial class SubjectListViewModel(
     IMessengerService messengerService)
     : ViewModelBase(messengerService), IRecipient<SubjectEditMessage>, IRecipient<SubjectDeleteMessage>
 {
-    public IEnumerable<SubjectListModel> Subjects { get; set; } = null
+    public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
     
-     public SubjectListViewModel()
-     {
-                // Инициализация мок-данных
-                Subjects = new IEnumerable<SubjectListModel>
-                {
-                    new SubjectListModel
-                    {
-                        Id = Guid.NewGuid(),
-                        Name = "Math",
-                        Code = "MATH101",
-                        ImageUrl = new Uri("https://example.com/images/math.png")
-                    },
-                    new SubjectListModel
-                    {
-                        Id = Guid.NewGuid(),
-                        Name = "Chemistry",
-                        Code = "CHEM101",
-                        ImageUrl = new Uri("https://example.com/images/chemistry.png")
-                    },
-                    new SubjectListModel
-                    {
-                        Id = Guid.NewGuid(),
-                        Name = "Biology",
-                        Code = "BIO101",
-                        ImageUrl = new Uri("https://example.com/images/biology.png")
-                    },
-                    // Добавьте больше предметов по необходимости
-                };
-            }
-    
+
     
     protected override async Task LoadDataAsync()
     {

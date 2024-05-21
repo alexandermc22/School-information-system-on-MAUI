@@ -18,7 +18,7 @@ public static class BLInstaller
 
         services.Scan(selector => selector
             .FromAssemblyOf<BusinessLogic>()
-            .AddClasses(filter => filter.AssignableTo(typeof(ModelMapperBase<,,>)))
+            .AddClasses(filter => filter.AssignableTo(typeof(IModelMapper<,,>)))
             .AsMatchingInterface()
             .WithSingletonLifetime());
 

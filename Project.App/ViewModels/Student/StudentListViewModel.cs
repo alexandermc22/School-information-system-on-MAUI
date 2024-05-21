@@ -8,12 +8,12 @@ using Project.BL.Models;
 namespace Project.App.ViewModels;
 
 public partial class StudentListViewModel(
-    // IStudentFacade studentFacade,
+    IStudentFacade studentFacade,
     INavigationService navigationService,
     IMessengerService messengerService)
     : ViewModelBase(messengerService), IRecipient<StudentEditMessage>, IRecipient<StudentDeleteMessage>
 {
-    // public IEnumerable<StudentListModel> Students { get; set; } = null!;
+    public IEnumerable<StudentListModel> Students { get; set; } = null!;
     
     protected override async Task LoadDataAsync()
     {
@@ -27,7 +27,7 @@ public partial class StudentListViewModel(
     // {
     //     await navigationService.GoToAsync("/edit");
     // }
-    //
+    
     // [RelayCommand]
     // private async Task GoToDetailAsync(Guid id)
     // {

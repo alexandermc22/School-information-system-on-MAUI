@@ -6,9 +6,7 @@
                        xmlns:vm="clr-namespace:Project.App.ViewModels"
                        BackgroundColor="#333333">
     
-    <ContentPage.BindingContext>
-        <vm:SubjectListViewModel/>
-    </ContentPage.BindingContext>
+
 
     <Grid RowDefinitions="Auto,*" ColumnDefinitions="200,*">
 
