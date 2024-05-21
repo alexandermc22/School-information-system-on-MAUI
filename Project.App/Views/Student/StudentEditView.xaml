@@ -9,6 +9,8 @@
                        Style="{StaticResource ContentPageStyle}"
                        x:Name="StudentEditViewRoot"
                        x:DataType="vm:StudentEditViewModel">
+       
+                       
  <Grid RowDefinitions="70, *">
         <Grid Grid.Row="0"
               ColumnDefinitions="*, Auto"

@@ -1,7 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Project.App.Views.Student.StudentDetailView">
-    
-</ContentView>
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:views="clr-namespace:Project.App.Views"
+                       xmlns:vm="clr-namespace:Project.App.ViewModels"
+                       x:Class="Project.App.Views.Student.StudentDetailView"
+                       Title="da"
+                       Style="{StaticResource ContentPageStyle}"
+                       x:Name="StudentDetailViewRoot"
+                       x:DataType="vm:StudentDetailViewModel">
+                        
+    <VerticalStackLayout Spacing="20">
+        <HorizontalStackLayout HorizontalOptions="End"
+                               Spacing="15"
+                               HeightRequest="30">
+            <Button Text="udoli"
+                    CornerRadius="5"
+                    BackgroundColor="{StaticResource ErrorColor}"
+                    Command="{Binding DeleteCommand}" />
+
+            <Button Text="edit"
+                    CornerRadius="5"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    Command="{Binding GoToEditCommand}" />
+        </HorizontalStackLayout>
+
+        <Grid HorizontalOptions="Center" VerticalOptions="Start"
+              RowDefinitions="170, *" ColumnDefinitions="*, Auto, Auto, *"
+              RowSpacing="20" ColumnSpacing="20">
+
+            <Frame Grid.Row="0" Grid.Column="1"
+                   HorizontalOptions="Center" VerticalOptions="Center"
+                   Style="{StaticResource ImageFrameStyle}">
+                <Image Aspect="AspectFill"
+                       WidthRequest="170" HeightRequest="170"
+                       Source="{Binding Student.Photo, TargetNullValue='ingredient_placeholder.jpg'}"/>
+            </Frame>
+
+            <VerticalStackLayout Grid.Row="0" Grid.RowSpan="2"
+                                 Grid.Column="2"
+                                 Spacing="20">
+                <Label FontSize="24" 
+                       Text="{Binding Student.FirstName}" />
+
+                <Label FontSize="14" 
+                       Text="{Binding Student.LastName}"/>
+            </VerticalStackLayout>
+        </Grid>
+    </VerticalStackLayout>
+</views:ContentPageBase>

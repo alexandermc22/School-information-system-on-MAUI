@@ -2,7 +2,7 @@
 using Project.App.Services;
 using Project.App.ViewModels;
 using Project.App.Views;
-
+using Project.App.Views.Student;
 namespace Project.App;
 
 public static class AppInstaller

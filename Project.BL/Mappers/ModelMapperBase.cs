@@ -7,7 +7,7 @@ public abstract class ModelMapperBase<TEntity,TDetailModel, TListModel> : IModel
     public abstract TListModel MapToListModel(TEntity? entity);
 
     public IEnumerable<TListModel> MapToListModel(IEnumerable<TEntity> entities)
-        => entities.Select(MapToListModel);
+         => entities.Select(MapToListModel);
 
     public abstract TDetailModel MapToDetailModel(TEntity entity);
     public abstract TEntity MapToEntity(TDetailModel model);

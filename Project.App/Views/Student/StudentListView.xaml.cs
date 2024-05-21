@@ -9,10 +9,7 @@ public partial class StudentListView: ContentPageBase
          : base(viewModel)
     {
         InitializeComponent();
+        // BindingContext = App.Services.GetRequiredService<StudentListViewModel>();
     }
-
-    private void OnSubjectsClicked(object sender, EventArgs e)
-    {
-         
-    }
+    
 }

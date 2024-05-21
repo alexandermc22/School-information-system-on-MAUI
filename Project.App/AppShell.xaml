@@ -8,8 +8,7 @@
     xmlns:local="clr-namespace:Project.App.Views"
     x:Class="Project.App.AppShell"
     x:Name="AppShellRoot"
-    Shell.FlyoutBehavior="Disabled"
-    Title="Project.App">
+    Shell.FlyoutBehavior="Disabled">
     
     <Shell.MenuBarItems>
         <MenuBarItem>

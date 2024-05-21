@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using System.Reflection;
 using Project.App.ViewModels;
 using Project.BL.Facades;
+using Project.BL.Models;
 using Project.DAL;
 using Project.DAL.Migrator;
 using Project.DAL.Options;
@@ -33,19 +34,11 @@ public static class MauiProgram
             .AddBLServices();
         
         
-        // // Регистрация сервисов
-        // builder.Services.AddSingleton<INavigationService, NavigationService>();
-        // builder.Services.AddSingleton<IMessengerService, MessengerService>();
-        //
-        // // Регистрация фасадов
-        // builder.Services.AddTransient<IStudentFacade, StudentFacade>();
-        //
-        // // Регистрация ViewModel
-        // builder.Services.AddTransient<StudentEditViewModel>();
+
         
         var app = builder.Build();
         
-        // Проверка всех зарегистрированных зависимостей
+        // // Проверка всех зарегистрированных зависимостей
         // using (var scope = app.Services.CreateScope())
         // {
         //     var services = scope.ServiceProvider;
@@ -55,7 +48,8 @@ public static class MauiProgram
         //         services.GetRequiredService<INavigationService>();
         //         services.GetRequiredService<IMessengerService>();
         //         services.GetRequiredService<IStudentFacade>();
-        //         services.GetRequiredService<StudentEditViewModel>();
+        //         var t = services.GetRequiredService<StudentEditViewModel>();
+        //         
         //     }
         //     catch (Exception ex)
         //     {
@@ -65,6 +59,15 @@ public static class MauiProgram
         
         MigrateDb(app.Services.GetRequiredService<IDbMigrator>());
         RegisterRouting(app.Services.GetRequiredService<INavigationService>());
+
+        // StudentDetailModel s = new StudentDetailModel()
+        // {
+        //     FirstName = "fff",
+        //     LastName = "fsdfsd",
+        //     Photo = null,
+        // };
+        // var p = app.Services.GetRequiredService<IStudentFacade>();
+        // p.SaveAsync(s);
         return app;
     }
     private static void MigrateDb(IDbMigrator migrator) => migrator.Migrate();
