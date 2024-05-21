@@ -11,9 +11,7 @@ public static class SubjectSeeds
         Id = Guid.Parse("87833e49-67a5-4d6b-930b-fe54b488dbd8"),
         Name = "Mathematics",
         Code = "MATH101",
-        ImageUrl = "https://example.com/mathematics_image.jpg",
-        Activity = new List<ActivityEntity>(),
-        StudentSubject = new List<StudentSubjectEntity>()
+        ImageUrl = new Uri("https://example.com/mathematics_image.jpg"),
     };
     
     public static readonly SubjectEntity English = new()
@@ -21,21 +19,19 @@ public static class SubjectSeeds
         Id = Guid.Parse("88833e49-67a5-4d6b-930b-fe54b488dbd8"),
         Name = "English",
         Code = "ENG101",
-        ImageUrl = "https://example.com/english_image.jpg",
-        Activity = new List<ActivityEntity>(),
-        StudentSubject = new List<StudentSubjectEntity>()
+        ImageUrl = new Uri("https://example.com/english_image.jpg"),
     };
 
     static SubjectSeeds()
     {
-        Math.StudentSubject.Add(StudentSubjectSeeds.Student1Math);
-        Math.StudentSubject.Add(StudentSubjectSeeds.Student2English);
-        Math.Activity.Add(ActivitySeeds.FirstLecture);
+        //Math.Activity.Add(ActivitySeeds.FirstLecture);
+        //Math.StudentSubject.Add(StudentSubjectSeeds.Student1Math);
+        //Math.StudentSubject.Add(StudentSubjectSeeds.Student2English);
     }
 
     public static void Seed(this ModelBuilder modelBuilder) =>
         modelBuilder.Entity<SubjectEntity>().HasData(
-            Math,
-            English
+            Math with { Activity = Array.Empty<ActivityEntity>(), StudentSubject = Array.Empty<StudentSubjectEntity>()},
+            English with { Activity = Array.Empty<ActivityEntity>(), StudentSubject = Array.Empty<StudentSubjectEntity>() }
         );
 }
