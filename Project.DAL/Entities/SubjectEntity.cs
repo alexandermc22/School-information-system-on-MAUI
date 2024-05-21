@@ -8,7 +8,7 @@ public record SubjectEntity : IEntity
 
     public required Uri? ImageUrl { get; set; } 
 
-    public ICollection<ActivityEntity> Activity { get; set; } = new List<ActivityEntity>();
+    public ICollection<ActivityEntity> Activity { get; init; } = new List<ActivityEntity>();
     
-    public ICollection<StudentSubjectEntity> StudentSubject  { get; set; } = new List<StudentSubjectEntity>();
+    public ICollection<StudentSubjectEntity> StudentSubject  { get; init; } = new List<StudentSubjectEntity>();
 }
