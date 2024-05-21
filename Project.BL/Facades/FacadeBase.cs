@@ -11,16 +11,16 @@ using Microsoft.EntityFrameworkCore;
 namespace Project.BL.Facades;
 
 public abstract class
-    FacadeBase<TEntity, TListModel, TDetailModel, TEntityMapper>(
+    FacadeBase<TEntity,TDetailModel, TListModel , TEntityMapper>(
         IUnitOfWorkFactory unitOfWorkFactory,
-        IModelMapper<TEntity, TListModel, TDetailModel> modelMapper)
+        IModelMapper<TEntity,TDetailModel, TListModel> modelMapper)
     : IFacade<TEntity, TListModel, TDetailModel>
     where TEntity : class, IEntity
     where TListModel : IModel
     where TDetailModel : class, IModel
     where TEntityMapper : IEntityMapper<TEntity>, new()
 {
-    protected readonly IModelMapper<TEntity,TListModel, TDetailModel> ModelMapper = modelMapper;
+    protected readonly IModelMapper<TEntity,TDetailModel,TListModel> ModelMapper = modelMapper;
     protected readonly IUnitOfWorkFactory UnitOfWorkFactory= unitOfWorkFactory;
     
     protected virtual ICollection<string> IncludesNavigationPathDetail => new List<string>();

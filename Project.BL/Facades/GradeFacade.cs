@@ -10,8 +10,8 @@ namespace Project.BL.Facades;
 
 public class GradeFacade(
     IUnitOfWorkFactory unitOfWorkFactory,
-    GradeModelMapper gradeModelMapper) : 
-    FacadeBase<GradeEntity,GradeListModel,GradeDetailModel,GradeEntityMapper>(unitOfWorkFactory, gradeModelMapper),
+    IGradeModelMapper gradeModelMapper) : 
+    FacadeBase<GradeEntity,GradeDetailModel,GradeListModel,GradeEntityMapper>(unitOfWorkFactory, gradeModelMapper),
     IGradeFacade
 {
     public async Task SaveAsync(GradeDetailModel model, Guid studentId)

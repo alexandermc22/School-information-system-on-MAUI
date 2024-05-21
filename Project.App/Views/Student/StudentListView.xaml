@@ -2,9 +2,14 @@
 <views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:views="clr-namespace:Project.App.Views"
-                       x:Class="Project.App.Views.Student.StudentListView"
+                       xmlns:m="clr-namespace:Project.BL.Models;assembly=Project.BL"
                        xmlns:vm="clr-namespace:Project.App.ViewModels"
-                       BackgroundColor="#333333">
+                       x:Class="Project.App.Views.Student.StudentListView"
+                       
+                       Title="Privet"
+                       Style="{StaticResource ContentPageStyle}"
+                       x:Name="StudentListViewRoot"
+                       x:DataType="vm:StudentListViewModel">
     
 
 

@@ -9,9 +9,9 @@ namespace Project.BL.Facades;
 
 public class StudentFacade(
     IUnitOfWorkFactory unitOfWorkFactory,
-    StudentModelMapper modelMapper)
+    IStudentModelMapper modelMapper)
     :
-        FacadeBase<StudentEntity, StudentListModel, StudentDetailModel, StudentEntityMapper>(unitOfWorkFactory,
+        FacadeBase<StudentEntity,StudentDetailModel, StudentListModel, StudentEntityMapper>(unitOfWorkFactory,
             modelMapper), IStudentFacade
 {
     public  async Task<StudentListModel?> GetByNameAsync(string firstName, string lastName)

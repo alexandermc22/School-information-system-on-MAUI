@@ -19,22 +19,22 @@ public partial class StudentListViewModel(
     {
         await base.LoadDataAsync();
 
-        // Students = await studentFacade.GetAsync();
+         Students = await studentFacade.GetAsync();
     }
-    
-    // [RelayCommand]
-    // private async Task GoToCreateAsync()
-    // {
-    //     await navigationService.GoToAsync("/edit");
-    // }
-    
-    // [RelayCommand]
-    // private async Task GoToDetailAsync(Guid id)
-    // {
-    //     await navigationService.GoToAsync<StudentDetailViewModel>(
-    //         new Dictionary<string, object?> { [nameof(StudentDetailViewModel.Id)] = id });
-    // }
-    
+
+    [RelayCommand]
+    private async Task GoToCreateAsync()
+    {
+        await navigationService.GoToAsync("/edit");
+    }
+
+    [RelayCommand]
+    private async Task GoToDetailAsync(Guid id)
+    {
+        await navigationService.GoToAsync<StudentDetailViewModel>(
+            new Dictionary<string, object?> { [nameof(StudentDetailViewModel.Id)] = id });
+    }
+
     public async void Receive(StudentEditMessage message)
     {
         await LoadDataAsync();

@@ -2,10 +2,7 @@
 using Project.BL.Models;
 namespace Project.BL.Mappers;
 
-public abstract class ModelMapperBase<TEntity,TDetailModel, TListModel> : IModelMapper<TEntity, TListModel, TDetailModel>
-    where TEntity : IEntity
-    where TListModel : IModel
-    where TDetailModel : IModel
+public abstract class ModelMapperBase<TEntity,TDetailModel, TListModel> : IModelMapper<TEntity,TDetailModel, TListModel >
 {
     public abstract TListModel MapToListModel(TEntity? entity);
 

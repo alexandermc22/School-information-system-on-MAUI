@@ -3,8 +3,8 @@ using Project.DAL.Entities;
 using Project.BL.Models;
 namespace Project.BL.Mappers;
 
-public class SubjectModelMapper(SubjectStudentsModelMapper subjectStudentsModelMapper)
-    : ModelMapperBase<SubjectEntity,SubjectDetailModel,SubjectListModel>
+public class SubjectModelMapper(ISubjectStudentsModelMapper subjectStudentsModelMapper)
+    : ModelMapperBase<SubjectEntity,SubjectDetailModel,SubjectListModel>, ISubjectModelMapper
 {
 
     public override SubjectListModel MapToListModel(SubjectEntity? entity)

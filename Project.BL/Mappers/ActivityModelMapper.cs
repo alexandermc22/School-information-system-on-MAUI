@@ -1,9 +1,10 @@
-﻿using Project.BL.Models;
+﻿using Project.BL.Facades;
+using Project.BL.Models;
 using Project.DAL.Entities;
 namespace Project.BL.Mappers;
 
-public  class ActivityModelMapper(GradeModelMapper gradeModelMapper) : 
-    ModelMapperBase<ActivityEntity,ActivityDetailModel,ActivityListModel>
+public  class ActivityModelMapper(IGradeModelMapper gradeModelMapper) : 
+    ModelMapperBase<ActivityEntity,ActivityDetailModel,ActivityListModel> , IActivityModelMapper
 {
 
     public override ActivityListModel MapToListModel(ActivityEntity? entity)

@@ -3,7 +3,7 @@ using Project.DAL.Entities;
 namespace Project.BL.Mappers;
 
 public class StudentSubjectsModelMapper:
-    ModelMapperBase<StudentSubjectEntity,StudentSubjectsDetailModel,StudentSubjectsListModel>
+    ModelMapperBase<StudentSubjectEntity,StudentSubjectsDetailModel,StudentSubjectsListModel>, IStudentSubjectsModelMapper
 {
     
     public override StudentSubjectsListModel MapToListModel(StudentSubjectEntity? entity)

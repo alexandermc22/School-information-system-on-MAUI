@@ -4,7 +4,7 @@ using Project.DAL.Entities;
 namespace Project.BL.Mappers;
 
 public class GradeModelMapper :
-    ModelMapperBase<GradeEntity, GradeDetailModel, GradeListModel>
+    ModelMapperBase<GradeEntity, GradeDetailModel, GradeListModel>, IGradeModelMapper
 {
     public override GradeListModel MapToListModel(GradeEntity? entity)
         => entity is null

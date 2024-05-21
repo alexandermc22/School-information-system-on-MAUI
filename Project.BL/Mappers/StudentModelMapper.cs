@@ -3,8 +3,8 @@ using Project.BL.Models;
 
 namespace Project.BL.Mappers;
 
-public class StudentModelMapper(StudentSubjectsModelMapper studentSubjectsModelMapper)
-    : ModelMapperBase<StudentEntity, StudentDetailModel, StudentListModel>
+public class StudentModelMapper(IStudentSubjectsModelMapper studentSubjectsModelMapper)
+    : ModelMapperBase<StudentEntity, StudentDetailModel, StudentListModel> , IStudentModelMapper
 {
     public override StudentListModel MapToListModel(StudentEntity? entity)
         => entity is null

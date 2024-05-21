@@ -3,7 +3,7 @@ using Project.App.Services;
 using Project.App.ViewModels;
 namespace Project.App;
 
-public partial class AppShell : Shell
+public partial class AppShell 
 {
     private readonly INavigationService _navigationService;
     public AppShell(INavigationService navigationService)

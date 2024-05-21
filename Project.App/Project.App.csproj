@@ -110,6 +110,9 @@
       <MauiXaml Update="Views\ContentPageBase.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
+      <MauiXaml Update="Resources\Styles\Styles.xaml">
+        <DependentUpon>LabelStyle.xaml</DependentUpon>
+      </MauiXaml>
     </ItemGroup>
 
     <ItemGroup>
@@ -117,6 +120,9 @@
       <AdditionalFiles Include="Views\Student\StudentDetailView.xaml" />
       <AdditionalFiles Include="Views\Student\StudentEditView.xaml" />
       <AdditionalFiles Include="Views\Student\StudentListView.xaml" />
+      <AdditionalFiles Update="Resources\Styles\Styles.xaml">
+        <DependentUpon>LabelStyle.xaml</DependentUpon>
+      </AdditionalFiles>
     </ItemGroup>
 
     <ItemGroup>

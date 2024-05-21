@@ -31,11 +31,11 @@ public static class DALInstaller
             new DbContextSqlFactory(options.DatabaseFilePath, options?.SeedDemoData ?? false));
         services.AddSingleton<IDbMigrator, DbMigrator>();
 
-        services.AddSingleton<ActivityEntityMapper>();
         services.AddSingleton<GradeEntityMapper>();
+        services.AddSingleton<ActivityEntityMapper>();
         services.AddSingleton<StudentEntityMapper>();
-        services.AddSingleton<StudentSubjectEntityMapper>();
         services.AddSingleton<SubjectEntityMapper>();
+        services.AddSingleton<StudentSubjectEntityMapper>();
         return services;
     }
 }

@@ -1,14 +1,11 @@
 using Project.BL.Mappers;
+// using Project.Common.Tests;
 using Project.DAL;
+// using Project.DAL.Tests;
 using Project.DAL.UnitOfWork;
-using Project.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
-using Project.Common.Tests;
-using Microsoft.EntityFrameworkCore.Internal;
-using Project.DAL.Tests;
 using Xunit;
 using Xunit.Abstractions;
-
 
 namespace Project.BL.Tests;
 
@@ -21,24 +18,27 @@ public class FacadeTestsBase: IAsyncLifetime
         XUnitTestOutputConverter converter = new(output);
         Console.SetOut(converter);
         
-        DbContextFactory = new DbContextSqLiteTestingFactory(GetType().FullName!, seedTestingData: true);
-
-
-        ActivityListDetailModelMapper = new ActivityListDetailModelMapper();
-        GradeListDetailModelMapper = new GradeListDetailModelMapper();
-        StudentListModelMapper = new StudentListModelMapper();
-        SubjectListModelMapper = new SubjectListModelMapper();
+        DbContextFactory = new DbContextSqLiteTestingFactory(GetType().FullName!, seedTestingData: false);
+        
+        
+        GradeModelMapper = new GradeModelMapper();
+        ActivityModelMapper = new ActivityModelMapper(GradeModelMapper);
+        StudentSubjectsModelMapper = new StudentSubjectsModelMapper();
+         StudentModelMapper = new StudentModelMapper(StudentSubjectsModelMapper);
+        SubjectStudentsModelMapper = new SubjectStudentsModelMapper();
+        SubjectModelMapper = new SubjectModelMapper(SubjectStudentsModelMapper);
+        
         UnitOfWorkFactory = new UnitOfWorkFactory(DbContextFactory);
-
-
-
+        
     }
 
     protected IDbContextFactory<ProjectDbContext> DbContextFactory { get; }
-    protected ActivityListDetailModelMapper ActivityListDetailModelMapper { get; }
-    protected GradeListDetailModelMapper GradeListDetailModelMapper { get; } 
-    protected StudentListModelMapper StudentListModelMapper { get; }
-    protected SubjectListModelMapper SubjectListModelMapper { get; }
+    protected GradeModelMapper GradeModelMapper { get; } 
+    protected ActivityModelMapper ActivityModelMapper { get; }
+    protected StudentSubjectsModelMapper StudentSubjectsModelMapper { get; }
+    protected StudentModelMapper StudentModelMapper { get; }
+    protected SubjectStudentsModelMapper SubjectStudentsModelMapper { get;  }
+    protected SubjectModelMapper SubjectModelMapper { get;  }
     protected UnitOfWorkFactory UnitOfWorkFactory { get; }
     
     public async Task InitializeAsync()

@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="Project.App.AppShell"
+    
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:r="clr-namespace:Project.App.Views.Student"
     xmlns:z="clr-namespace:Project.App.Views.Subject"
     xmlns:local="clr-namespace:Project.App.Views"
+    x:Class="Project.App.AppShell"
+    x:Name="AppShellRoot"
     Shell.FlyoutBehavior="Disabled"
     Title="Project.App">
     
-    <TabBar>
-        <Tab Title="StudentList">
-            <ShellContent  ContentTemplate= "{DataTemplate r:StudentListView}"
-                           Route= "//students"></ShellContent>
-        </Tab>
-        <Tab Title="Subject">
-            <ShellContent  ContentTemplate= "{DataTemplate z:SubjectListView}"
-                           Route= "//subjects"></ShellContent>
-        </Tab>
-    </TabBar>
+    <Shell.MenuBarItems>
+        <MenuBarItem>
+                <MenuFlyoutItem Command="{Binding Source={x:Reference AppShellRoot}, Path=GoToStudentsCommand}"></MenuFlyoutItem>
+
+        </MenuBarItem>
+
+    </Shell.MenuBarItems>
     <ShellContent ContentTemplate="{DataTemplate r:StudentListView}" Route="students" />
 
 

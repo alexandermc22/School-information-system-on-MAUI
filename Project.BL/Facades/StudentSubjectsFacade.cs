@@ -10,8 +10,8 @@ namespace Project.BL.Facades;
 
 public class StudentSubjectsFacade(
     IUnitOfWorkFactory unitOfWorkFactory,
-    StudentSubjectsModelMapper studentSubjectsModelMapper) : 
-    FacadeBase<StudentSubjectEntity,StudentSubjectsListModel,StudentSubjectsDetailModel,StudentSubjectEntityMapper>(unitOfWorkFactory, studentSubjectsModelMapper),
+    IStudentSubjectsModelMapper studentSubjectsModelMapper) : 
+    FacadeBase<StudentSubjectEntity,StudentSubjectsDetailModel,StudentSubjectsListModel,StudentSubjectEntityMapper>(unitOfWorkFactory, studentSubjectsModelMapper),
     IStudentSubjectsFacade
 {
     public async Task SaveAsync(StudentSubjectsListModel model, Guid studentId, Guid subjectId)

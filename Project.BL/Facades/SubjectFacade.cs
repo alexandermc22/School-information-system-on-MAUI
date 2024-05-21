@@ -9,9 +9,9 @@ namespace Project.BL.Facades;
 
 public class SubjectFacade(
     IUnitOfWorkFactory unitOfWorkFactory,
-    SubjectModelMapper modelMapper)
+    ISubjectModelMapper modelMapper)
     :
-        FacadeBase<SubjectEntity, SubjectListModel, SubjectDetailModel, SubjectEntityMapper>(unitOfWorkFactory,
+        FacadeBase<SubjectEntity,SubjectDetailModel, SubjectListModel, SubjectEntityMapper>(unitOfWorkFactory,
             modelMapper), ISubjectFacade
 {
     public  async Task<SubjectListModel?> GetByNameAsync(string name)
