@@ -1,7 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Project.App.Views.Student.StudentEditView">
-    
-</ContentView>
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:views="clr-namespace:Project.App.Views"
+                       xmlns:vm="clr-namespace:Project.App.ViewModels"
+                       x:Class="Project.App.Views.Student.StudentEditView"
+                       Title="text1"
+                       Style="{StaticResource ContentPageStyle}"
+                       x:Name="StudentEditViewRoot"
+                       x:DataType="vm:StudentEditViewModel">
+ <Grid RowDefinitions="70, *">
+        <Grid Grid.Row="0"
+              ColumnDefinitions="*, Auto"
+              ColumnSpacing="15">
+
+            <Button Grid.Column="1"
+                    VerticalOptions="Start"
+                    HeightRequest="30"
+                    Text="save"
+                    CornerRadius="5"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    Command="{Binding SaveCommand}" />
+        </Grid>
+        <Grid Grid.Row="1"
+              HorizontalOptions="Fill" VerticalOptions="Start"
+              RowDefinitions="170, *" ColumnDefinitions="Auto, *"
+              RowSpacing="20" ColumnSpacing="20">
+            <Frame Grid.Row="0" Grid.Column="0"
+                   HorizontalOptions="Center"
+                   Style="{StaticResource ImageFrameStyle}">
+                <Grid>
+                    <Image Source="{Binding Student.Photo, TargetNullValue='ingredient_placeholder.jpg'}"
+                           WidthRequest="170" HeightRequest="170"
+                           Aspect="AspectFill" />
+                </Grid>
+            </Frame>
+
+            <VerticalStackLayout Grid.Row="0" Grid.RowSpan="2"
+                                 Grid.Column="1"
+                                 HorizontalOptions="Fill"
+                                 Spacing="10">
+                <Label Text="lastname"
+                       TextColor="{StaticResource PrimaryLabelTextColor}" />
+                <Entry HorizontalOptions="Fill"
+                       Text="{Binding Student.LastName}" />
+                <Label Text="first"
+                       TextColor="{StaticResource PrimaryLabelTextColor}" />
+                <Entry HorizontalOptions="Fill"
+                       Text="{Binding Student.FirstName}" />
+                <Label Text="image"
+                       TextColor="{StaticResource PrimaryLabelTextColor}" />
+                <Entry HorizontalOptions="Fill"
+                       Text="{Binding Student.Photo}" />
+
+                <!-- <Label Text="description" -->
+                <!--        TextColor="{StaticResource PrimaryLabelTextColor}" /> -->
+                <!-- <Editor HorizontalOptions="Fill" -->
+                <!--         TextColor="{StaticResource FormEntryTextColor}" -->
+                <!--         AutoSize="TextChanges" -->
+                <!--         BackgroundColor="{StaticResource FormEntryBackgroundColor}" -->
+                <!--         Text="{Binding Student.LastName}" /> -->
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</views:ContentPageBase>

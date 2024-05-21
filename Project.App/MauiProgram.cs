@@ -3,6 +3,8 @@ using Project.App.Services;
 using Project.BL;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
+using Project.App.ViewModels;
+using Project.BL.Facades;
 using Project.DAL;
 using Project.DAL.Migrator;
 using Project.DAL.Options;
@@ -29,7 +31,38 @@ public static class MauiProgram
             .AddDALServices(GetDALOptions(builder.Configuration))
             .AddAppServices()
             .AddBLServices();
+        
+        
+        // // Регистрация сервисов
+        // builder.Services.AddSingleton<INavigationService, NavigationService>();
+        // builder.Services.AddSingleton<IMessengerService, MessengerService>();
+        //
+        // // Регистрация фасадов
+        // builder.Services.AddTransient<IStudentFacade, StudentFacade>();
+        //
+        // // Регистрация ViewModel
+        // builder.Services.AddTransient<StudentEditViewModel>();
+        
         var app = builder.Build();
+        
+        // Проверка всех зарегистрированных зависимостей
+        // using (var scope = app.Services.CreateScope())
+        // {
+        //     var services = scope.ServiceProvider;
+        //     try
+        //     {
+        //         // Попытка получения каждого зарегистрированного сервиса
+        //         services.GetRequiredService<INavigationService>();
+        //         services.GetRequiredService<IMessengerService>();
+        //         services.GetRequiredService<IStudentFacade>();
+        //         services.GetRequiredService<StudentEditViewModel>();
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         throw new ArgumentException();
+        //     }
+        // }
+        
         MigrateDb(app.Services.GetRequiredService<IDbMigrator>());
         RegisterRouting(app.Services.GetRequiredService<INavigationService>());
         return app;

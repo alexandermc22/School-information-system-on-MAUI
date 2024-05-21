@@ -7,10 +7,10 @@ using Project.App.ViewModels;
 
 namespace Project.App.Views.Student;
 
-public partial class StudentEditView : ContentView
+public partial class StudentEditView 
 {
     public StudentEditView(StudentEditViewModel viewModel)
-        // : base(viewModel)
+        : base(viewModel)
     {
         InitializeComponent();
     }
