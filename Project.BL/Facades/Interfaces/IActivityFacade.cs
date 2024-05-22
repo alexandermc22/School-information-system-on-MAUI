@@ -1,8 +1,9 @@
 ﻿using Project.BL.Models;
+using Project.DAL.Entities;
 
 namespace Project.BL.Facades;
 
-public interface IActivityFacade
+public interface IActivityFacade : IFacade<ActivityEntity, ActivityListModel , ActivityDetailModel>
 {
     Task SaveAsync(ActivityDetailModel model, Guid subjectId);
     Task SaveAsync(ActivityListModel model, Guid subjectId);
