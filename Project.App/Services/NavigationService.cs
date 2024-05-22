@@ -10,26 +10,26 @@ public class NavigationService : INavigationService
 {
     public IEnumerable<RouteModel> Routes { get; } = new List<RouteModel>
     {
-        new("//subject", typeof(SubjectListView), typeof(SubjectListViewModel)),
-        // new("//subject/detail", typeof(SubjectDetailView), typeof(SubjectDetailViewModel)),
+        new("//subjects", typeof(SubjectListView), typeof(SubjectListViewModel)),
+        new("//subjects/detail", typeof(SubjectDetailView), typeof(SubjectDetailViewModel)),
         
-        // new("//subject/edit", typeof(SubjectEditView), typeof(SubjectEditViewModel)),
-        // new("//subject/detail/edit", typeof(SubjectEditView), typeof(SubjectEditViewModel)),
-        // new("//subject/detail/activity", typeof(ActivityView), typeof(ActivityViewModel)),
-        // new("//subject/detail/activity/detail", typeof(ActivityView), typeof(ActivityViewModel)),
-        // new("//subject/detail/activity/detail/edit", typeof(ActivityView), typeof(ActivityViewModel)),
+        new("//subjects/edit", typeof(SubjectEditView), typeof(SubjectEditViewModel)),
+        new("//subjects/detail/edit", typeof(SubjectEditView), typeof(SubjectEditViewModel)),
+        // new("//subjects/detail/activity", typeof(ActivityView), typeof(ActivityViewModel)),
+        // new("//subjects/detail/activity/detail", typeof(ActivityView), typeof(ActivityViewModel)),
+        // new("//subjects/detail/activity/detail/edit", typeof(ActivityView), typeof(ActivityViewModel)),
         //
-        // new("//subject/detail/activity/detail/grade", typeof(GradeView), typeof(ActivityEditViewModel)),
+        // new("//subjects/detail/activity/detail/grade", typeof(GradeView), typeof(ActivityEditViewModel)),
         //
-        // new("//subject/detail/activity/detail/grade/detail", typeof(ActivityView), typeof(ActivityViewModel)),
-        // new("//subject/detail/activity/detail/grade/detail/edit", typeof(ActivityView), typeof(ActivityViewModel)),
+        // new("//subjects/detail/activity/detail/grade/detail", typeof(ActivityView), typeof(ActivityViewModel)),
+        // new("//subjects/detail/activity/detail/grade/detail/edit", typeof(ActivityView), typeof(ActivityViewModel)),
         //
         new("//students", typeof(StudentListView), typeof(StudentListViewModel)),
         new("//students/detail", typeof(StudentDetailView), typeof(StudentDetailViewModel)),
         
         new("//students/edit", typeof(StudentEditView), typeof(StudentEditViewModel)),
         new("//students/detail/edit", typeof(StudentEditView), typeof(StudentEditViewModel)),
-        
+        new("//students/detail/edit/studentsubjects", typeof(StudentSubjectsEditView), typeof(StudentSubjectsEditViewModel)),
     };
 
     public async Task GoToAsync<TViewModel>()

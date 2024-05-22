@@ -45,15 +45,29 @@ public class StudentModelMapper(IStudentSubjectsModelMapper studentSubjectsModel
             return StudentDetailModel.Empty;
         else
         {
-            return new StudentDetailModel
+            var student = new StudentDetailModel()
             {
                 Id = entity.Id,
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,
                 Photo = entity.Photo,
-                StudentSubjects = studentSubjectsModelMapper.MapToListModel(entity.StudentSubject)
-                    .ToObservableCollection()
             };
+            if (entity.StudentSubject != null)
+            {
+                student.StudentSubjects = studentSubjectsModelMapper.MapToListModel(entity.StudentSubject)
+                    .ToObservableCollection();
+            }
+
+            return student;
+            // return new StudentDetailModel
+            // {
+            //     Id = entity.Id,
+            //     FirstName = entity.FirstName,
+            //     LastName = entity.LastName,
+            //     Photo = entity.Photo,
+            //    StudentSubjects = studentSubjectsModelMapper.MapToListModel(entity.StudentSubject)
+            //        .ToObservableCollection()
+            // };
         }
     }
 }

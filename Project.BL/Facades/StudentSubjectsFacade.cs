@@ -14,9 +14,9 @@ public class StudentSubjectsFacade(
     FacadeBase<StudentSubjectEntity,StudentSubjectsDetailModel,StudentSubjectsListModel,StudentSubjectEntityMapper>(unitOfWorkFactory, studentSubjectsModelMapper),
     IStudentSubjectsFacade
 {
-    public async Task SaveAsync(StudentSubjectsListModel model, Guid studentId, Guid subjectId)
+    public async Task SaveAsync(StudentSubjectsListModel model, Guid studentId)
     {
-        StudentSubjectEntity entity = studentSubjectsModelMapper.MapToEntity(model,studentId, subjectId);
+        StudentSubjectEntity entity = studentSubjectsModelMapper.MapToEntity(model,studentId);
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
         IRepository<StudentSubjectEntity> repository =
             uow.GetRepository<StudentSubjectEntity, StudentSubjectEntityMapper>();
@@ -27,14 +27,14 @@ public class StudentSubjectsFacade(
         }
     }
     
-    public async Task SaveAsync(StudentSubjectsDetailModel model, Guid studentId, Guid subjectId)
+    public async Task SaveAsync(StudentSubjectsDetailModel model, Guid studentId)
     {
-        StudentSubjectEntity entity = studentSubjectsModelMapper.MapToEntity(model,studentId, subjectId);
+        StudentSubjectEntity entity = studentSubjectsModelMapper.MapToEntity(model,studentId);
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
         IRepository<StudentSubjectEntity> repository =
             uow.GetRepository<StudentSubjectEntity, StudentSubjectEntityMapper>();
         
-        await repository.UpdateAsync(entity);
+        repository.Insert(entity);
         await uow.CommitAsync();
     }
     

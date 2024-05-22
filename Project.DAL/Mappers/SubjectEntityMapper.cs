@@ -7,6 +7,6 @@ public class SubjectEntityMapper : IEntityMapper<SubjectEntity>
     public void MapToExistingEntity(SubjectEntity existingEntity, SubjectEntity newEntity)
     {
         existingEntity.Name = newEntity.Name;
-        existingEntity.Code = existingEntity.Code;
+        existingEntity.Code = newEntity.Code;
     }
 }

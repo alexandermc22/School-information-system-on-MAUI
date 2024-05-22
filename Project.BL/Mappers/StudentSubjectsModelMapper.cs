@@ -50,22 +50,22 @@ public class StudentSubjectsModelMapper:
     public override StudentSubjectEntity MapToEntity(StudentSubjectsDetailModel model)
         => throw new NotImplementedException("This method is unsupported. Use the other overload.");
     
-    public StudentSubjectEntity MapToEntity(StudentSubjectsDetailModel model, Guid studentId, Guid subjectId)
+    public StudentSubjectEntity MapToEntity(StudentSubjectsDetailModel model, Guid studentId)
         => new()
         {
             Id = model.Id,
             StudentId = studentId,
-            SubjectId = subjectId,
+            SubjectId = model.SubjectId,
             Student = null!,
             Subject = null!
         };
 
-    public StudentSubjectEntity MapToEntity(StudentSubjectsListModel model, Guid studentId, Guid subjectId)
+    public StudentSubjectEntity MapToEntity(StudentSubjectsListModel model, Guid studentId)
         => new()
         {
             Id = model.Id,
             StudentId = studentId,
-            SubjectId = subjectId,
+            SubjectId = model.SubjectId,
             Student = null!,
             Subject = null!
         };

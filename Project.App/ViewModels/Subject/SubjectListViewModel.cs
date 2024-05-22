@@ -8,34 +8,47 @@ using Project.BL.Models;
 namespace Project.App.ViewModels;
 
 public partial class SubjectListViewModel(
-    // IStudentFacade studentFacade,
+    ISubjectFacade subjectFacade,
     INavigationService navigationService,
     IMessengerService messengerService)
     : ViewModelBase(messengerService), IRecipient<SubjectEditMessage>, IRecipient<SubjectDeleteMessage>
 {
     public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
-    
+    private bool _isSortRequired = false;
 
     
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
 
-        // Students = await studentFacade.GetAsync();
+        if (_isSortRequired)
+        {
+            Subjects = await subjectFacade.GetSortAsync();
+            _isSortRequired = false;
+        }
+        else 
+            Subjects = await subjectFacade.GetAsync();
     }
     
-    // [RelayCommand]
-    // private async Task GoToCreateAsync()
-    // {
-    //     await navigationService.GoToAsync("/edit");
-    // }
-    //
-    // [RelayCommand]
-    // private async Task GoToDetailAsync(Guid id)
-    // {
-    //     await navigationService.GoToAsync<StudentDetailViewModel>(
-    //         new Dictionary<string, object?> { [nameof(StudentDetailViewModel.Id)] = id });
-    // }
+    [RelayCommand]
+    private async Task SortAsync()
+    {
+        _isSortRequired = true;
+        await LoadDataAsync();
+    }
+    
+    [RelayCommand]
+    private async Task GoToCreateAsync()
+    {
+        await navigationService.GoToAsync("/edit");
+    }
+    
+    [RelayCommand]
+    private async Task GoToDetailAsync(Guid id)
+    {
+        await navigationService.GoToAsync<SubjectDetailViewModel>(
+            new Dictionary<string, object?> { [nameof(SubjectDetailViewModel.Id)] = id });
+    }
     
     public async void Receive(SubjectEditMessage message)
     {

@@ -13,6 +13,7 @@ public partial class StudentEditView : ContentPageBase
         : base(viewModel)
     {
         InitializeComponent();
-        // BindingContext = App.Services.GetRequiredService<StudentEditViewModel>();
+         // BindingContext = App.Services.GetRequiredService<StudentEditViewModel>();
+        
     }
 }

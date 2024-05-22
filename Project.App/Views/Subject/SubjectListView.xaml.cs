@@ -9,9 +9,5 @@ public partial class SubjectListView: ContentPageBase
     {
         InitializeComponent();
     }
-
-    private void OnSubjectsClicked(object sender, EventArgs e)
-    {
-         
-    }
+    
 }

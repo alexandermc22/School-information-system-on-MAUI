@@ -103,6 +103,10 @@
         <DependentUpon>ContentPageBase.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Shells\AppShell.xaml.cs">
+        <DependentUpon>AppShell.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -118,9 +122,13 @@
       <MauiXaml Update="Views\ContentPageBase.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
+      <MauiXaml Update="Shells\AppShell.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
     </ItemGroup>
 
     <ItemGroup>
+      <AdditionalFiles Include="Shells\AppShell.xaml" />
       <AdditionalFiles Include="Views\ContentPageBase.xaml" />
       <AdditionalFiles Include="Views\Student\StudentDetailView.xaml" />
       <AdditionalFiles Include="Views\Student\StudentEditView.xaml" />

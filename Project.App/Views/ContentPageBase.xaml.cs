@@ -4,19 +4,19 @@ namespace Project.App.Views;
 
 public partial class ContentPageBase
 {
-    protected IViewModel ViewModel { get; }
-    public ContentPageBase(IViewModel viewModel)
+    protected IViewModel EditViewModel { get; }
+    public ContentPageBase(IViewModel editViewModel)
     {
         InitializeComponent();
 
-        BindingContext = ViewModel = viewModel;
+        BindingContext = EditViewModel = editViewModel;
     }
     
     protected override async void OnAppearing()
     {
         base.OnAppearing();
         
-        await ViewModel.OnAppearingAsync();
+        await EditViewModel.OnAppearingAsync();
     }
     
 }

@@ -16,13 +16,19 @@ public partial class StudentEditViewModel(
     public StudentDetailModel Student { get; init; } = StudentDetailModel.Empty;
     
     [RelayCommand]
-    private async Task SaveAsync()
+    public async Task SaveAsync()
     {
-        await studentFacade.SaveAsync(Student);
+        await studentFacade.SaveAsync(Student with{StudentSubjects = default!});
 
         MessengerService.Send(new StudentEditMessage { StudentId = Student.Id });
 
         navigationService.SendBackButtonPressed();
     }
-
+    
+    [RelayCommand]
+    private async Task GoToStudentSubjectsEditAsync()
+    {
+        await navigationService.GoToAsync("/studentsubjects",
+            new Dictionary<string, object?> { [nameof(StudentSubjectsEditViewModel.Student)] = Student });
+    }
 }

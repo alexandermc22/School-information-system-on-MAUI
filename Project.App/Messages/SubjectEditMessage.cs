@@ -2,5 +2,5 @@
 
 public class SubjectEditMessage
 {
-    
+    public required Guid SubjectId { get; init; }
 }
