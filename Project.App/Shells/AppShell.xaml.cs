@@ -21,7 +21,5 @@ public partial class AppShell
     [RelayCommand]
     private async Task GoToSubjectsAsync()
         => await _navigationService.GoToAsync<SubjectListViewModel>();
-    [RelayCommand]
-    private async Task GoToActivitiesAsync()
-        => await _navigationService.GoToAsync<ActivityListViewModel>();
+
 }
