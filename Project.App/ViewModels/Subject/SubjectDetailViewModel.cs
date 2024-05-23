@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Messaging;
 using Project.App.Messages;
 using Project.App.Services;
+using Project.App.ViewModels.Activity;
 using Project.BL.Facades;
 using Project.BL.Models;
 namespace Project.App.ViewModels;
@@ -44,6 +45,16 @@ IMessengerService messengerService)
         {
             await navigationService.GoToAsync("/edit",
                 new Dictionary<string, object?> { [nameof(SubjectEditViewModel.Subject)] = Subject });
+        }
+    }
+    
+    [RelayCommand]
+    private async Task GoToActivityAsync()
+    {
+        if (Subject is not null)
+        {
+            await navigationService.GoToAsync("/activity",
+                new Dictionary<string, object?> { [nameof(ActivityListViewModel.Subject)] = Subject });
         }
     }
 

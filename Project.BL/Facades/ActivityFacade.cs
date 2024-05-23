@@ -15,6 +15,26 @@ public class ActivityFacade(
     IActivityFacade
 {
     
+    public async Task<IEnumerable<ActivityListModel>?> GetActivityAsync(Guid id)
+    {
+        await using IUnitOfWork uow = UnitOfWorkFactory.Create();
+
+        IQueryable<ActivityEntity> query = uow.GetRepository<ActivityEntity, ActivityEntityMapper>().Get();
+        
+        var filteredActivities = query
+            .Where(a => a.SubjectId >= id)
+            .ToList();
+        List<ActivityListModel> ALM = new List<ActivityListModel>();
+        foreach (var activity in filteredActivities)
+        {
+            ALM.Add(ModelMapper.MapToListModel(activity));
+        }
+        return ALM.Count == 0
+            ? null
+            : ALM;
+    }
+    
+    
     public  async Task<IEnumerable<ActivityListModel>?> GetFilteredAsync(Guid subjectId,DateTime activityStartTime, DateTime activityEndTime)
     {
 

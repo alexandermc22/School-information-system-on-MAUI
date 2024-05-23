@@ -24,6 +24,10 @@
                     CornerRadius="5"
                     BackgroundColor="{StaticResource PrimaryColor}"
                     Command="{Binding GoToEditCommand}" />
+            <Button Text="activiy"
+                    CornerRadius="5"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    Command="{Binding GoToActivityCommand}" />
         </HorizontalStackLayout>
 
         <Grid HorizontalOptions="Center" VerticalOptions="Start"

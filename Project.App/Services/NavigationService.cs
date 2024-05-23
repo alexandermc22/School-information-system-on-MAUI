@@ -1,5 +1,7 @@
 ﻿using Project.App.Models;
 using Project.App.ViewModels;
+using Project.App.ViewModels.Activity;
+using Project.App.Views.Activity;
 // using FirstProject.App.Views.Ingredient;
 using Project.App.Views.Student;
 using Project.App.Views.Subject;
@@ -15,7 +17,7 @@ public class NavigationService : INavigationService
         
         new("//subjects/edit", typeof(SubjectEditView), typeof(SubjectEditViewModel)),
         new("//subjects/detail/edit", typeof(SubjectEditView), typeof(SubjectEditViewModel)),
-        // new("//subjects/detail/activity", typeof(ActivityView), typeof(ActivityViewModel)),
+        new("//subjects/detail/activity", typeof(ActivityListView), typeof(ActivityListViewModel)),
         // new("//subjects/detail/activity/detail", typeof(ActivityView), typeof(ActivityViewModel)),
         // new("//subjects/detail/activity/detail/edit", typeof(ActivityView), typeof(ActivityViewModel)),
         //

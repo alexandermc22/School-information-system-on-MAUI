@@ -43,8 +43,8 @@ public partial class ActivityDetailViewModel(
     {
         if (Activity is not null)
         {
-            // await navigationService.GoToAsync("/edit",
-                // new Dictionary<string, object?> { [nameof(RecipeEditViewModel.Recipe)] = Recipe with { } });
+            await navigationService.GoToAsync("/edit",
+                new Dictionary<string, object?> { [nameof(ActivityEditViewModel.Activity)] = Activity with { } });
         }
     }
 
