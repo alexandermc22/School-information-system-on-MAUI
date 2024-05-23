@@ -1,7 +1,7 @@
 using Project.BL.Mappers;
 using Project.Common.Tests;
+using Project.Common.Tests.Factories;
 using Project.DAL;
-using Project.DAL.Tests;
 using Project.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Xunit;

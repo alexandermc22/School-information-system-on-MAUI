@@ -2,7 +2,7 @@
 using Project.Common.Enum;
 namespace Project.BL.Models;
 
-public record class GradeDetailModel: ModelBase
+public record GradeDetailModel: ModelBase
 {
     public required Guid SubjectId { get; set; }
     public required string SubjectName { get; set; }

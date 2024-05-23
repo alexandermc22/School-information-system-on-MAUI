@@ -15,11 +15,12 @@ public class ProjectTestingDbContext(DbContextOptions contextOptions, bool seedT
 
         if (seedTestingData)
         {
+            SubjectSeeds.Seed(modelBuilder);
             ActivitySeeds.Seed(modelBuilder);
             GradeSeeds.Seed(modelBuilder);
             StudentSeeds.Seed(modelBuilder);
             StudentSubjectSeeds.Seed(modelBuilder);
-            SubjectSeeds.Seed(modelBuilder);
+            
         }
     }
 }

@@ -10,6 +10,7 @@ public class ProjectDbContext(DbContextOptions contextOptions, bool seedDemoData
     public DbSet<SubjectEntity> Subjects { get; set; }
     public DbSet<ActivityEntity> Actions { get; set; }
     public DbSet<GradeEntity> Grades { get; set; }
+    public DbSet<StudentSubjectEntity> StudentSubjects { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -42,11 +43,12 @@ public class ProjectDbContext(DbContextOptions contextOptions, bool seedDemoData
         
         if (seedDemoData)
         {
+            SubjectSeeds.Seed(modelBuilder);
             ActivitySeeds.Seed(modelBuilder);
             GradeSeeds.Seed(modelBuilder);
             StudentSeeds.Seed(modelBuilder);
             StudentSubjectSeeds.Seed(modelBuilder);
-            SubjectSeeds.Seed(modelBuilder);
+            
         }
         
         

@@ -1,4 +1,5 @@
 using Project.BL.Facades;
+using Project.Common.Tests;
 using Project.Common.Tests.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
@@ -34,6 +35,13 @@ public class GradeFacadeTests : FacadeTestsBase
         //Act
         await _gradeFacadeSUT.SaveAsync(model);
     }*/
+    [Fact]
+    public async Task GetById_SeededStudent1()
+    {
+        var grade = await _gradeFacadeSUT.GetAsync(GradeSeeds.Grade1.Id);
+
+        DeepAssert.Equal(GradeModelMapper.MapToDetailModel(GradeSeeds.Grade1), grade);
+    }
     
     [Fact]
     public async Task GetById_NonExistent()

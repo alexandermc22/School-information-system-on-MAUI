@@ -25,8 +25,8 @@ public static class SubjectSeeds
     static SubjectSeeds()
     {
         //Math.Activity.Add(ActivitySeeds.FirstLecture);
-        //Math.StudentSubject.Add(StudentSubjectSeeds.Student1Math);
-        //Math.StudentSubject.Add(StudentSubjectSeeds.Student2English);
+        Math.StudentSubject.Add(StudentSubjectSeeds.Student1Math);
+        English.StudentSubject.Add(StudentSubjectSeeds.Student2English);
     }
 
     public static void Seed(this ModelBuilder modelBuilder) =>

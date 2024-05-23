@@ -40,7 +40,7 @@ public class SubjectModelMapper(SubjectStudentsModelMapper subjectStudentsModelM
             Activity = null!,
         };
 
-    public override SubjectDetailModel MapToDetailModel(SubjectEntity? entity)
+    /*public override SubjectDetailModel MapToDetailModel(SubjectEntity? entity)
     {
         if(entity is null)
             return SubjectDetailModel.Empty;
@@ -56,6 +56,19 @@ public class SubjectModelMapper(SubjectStudentsModelMapper subjectStudentsModelM
             };
         }
    
-    }
+    }*/
+    
+    public override SubjectDetailModel MapToDetailModel(SubjectEntity? entity)
+        => entity is null
+            ? SubjectDetailModel.Empty
+            : new SubjectDetailModel
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                Code = entity.Code,
+                ImageUrl = entity.ImageUrl,
+                SubjectStudents = subjectStudentsModelMapper.MapToListModel(entity.StudentSubject)
+                    .ToObservableCollection()
+            };
             
 }
