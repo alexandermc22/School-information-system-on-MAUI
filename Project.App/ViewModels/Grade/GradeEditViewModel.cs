@@ -1,6 +1,28 @@
-﻿namespace Project.App.ViewModels.Grade;
+﻿using CommunityToolkit.Mvvm.Input;
+using Project.App.Messages;
+using Project.App.Services;
+using Project.BL.Facades;
+using Project.BL.Models;
+namespace Project.App.ViewModels.Grade;
 
-public class GradeEditViewModel
+[QueryProperty(nameof(Grade), nameof(Grade))]
+public partial class GradeEditViewModel(
+    IGradeFacade gradeFacade,
+    INavigationService navigationService,
+    IMessengerService messengerService)
+    : ViewModelBase(messengerService)
 {
+    public GradeDetailModel Grade { get; init; } = GradeDetailModel.Empty;
     
+    [RelayCommand]
+    private async Task SaveAsync()
+    {
+        await gradeFacade.SaveAsync(Grade);
+
+        // MessengerService.Send(new IngredientEditMessage { IngredientId = Ingredient.Id });
+
+        navigationService.SendBackButtonPressed();
+    }
+    
+
 }
