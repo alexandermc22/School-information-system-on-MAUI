@@ -8,6 +8,7 @@ namespace Project.App.ViewModels;
 
 [QueryProperty(nameof(Student), nameof(Student))]
 public partial class StudentEditViewModel(
+    IAlertService alertService,
     IStudentFacade studentFacade,
     INavigationService navigationService,
     IMessengerService messengerService)
