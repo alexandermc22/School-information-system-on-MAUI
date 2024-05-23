@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Project.App.Messages;
 using Project.App.Services;
 using Project.BL.Facades;
@@ -12,9 +13,12 @@ public partial class StudentEditViewModel(
     IStudentFacade studentFacade,
     INavigationService navigationService,
     IMessengerService messengerService)
-    : ViewModelBase(messengerService)
+    : ViewModelBase(messengerService),
+        IRecipient<StudentSubjectsDeleteMessage>,
+        IRecipient<StudentSubjectsAddMessage>,
+        IRecipient<StudentSubjectsEditMessage>
 {
-    public StudentDetailModel Student { get; init; } = StudentDetailModel.Empty;
+    public StudentDetailModel Student { get; set; } = StudentDetailModel.Empty;
     
     [RelayCommand]
     public async Task SaveAsync()
@@ -31,5 +35,25 @@ public partial class StudentEditViewModel(
     {
         await navigationService.GoToAsync("/studentsubjects",
             new Dictionary<string, object?> { [nameof(StudentSubjectsEditViewModel.Student)] = Student });
+    }
+    
+    public async void Receive(StudentSubjectsDeleteMessage message)
+    {
+        await ReloadDataAsync();
+    }
+
+    public async void Receive(StudentSubjectsAddMessage message)
+    {
+        await ReloadDataAsync();
+    }
+
+    public async void Receive(StudentSubjectsEditMessage message)
+    {
+        await ReloadDataAsync();
+    }
+    private async Task ReloadDataAsync()
+    {
+        Student = await studentFacade.GetAsync(Student.Id)
+                 ?? StudentDetailModel.Empty;
     }
 }

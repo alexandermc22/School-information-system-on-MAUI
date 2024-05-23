@@ -13,7 +13,9 @@ public partial class StudentDetailViewModel(
     INavigationService navigationService,
     IMessengerService messengerService,
     IAlertService alertService)
-    : ViewModelBase(messengerService), IRecipient<StudentEditMessage>
+    : ViewModelBase(messengerService), IRecipient<StudentEditMessage>,
+        IRecipient<StudentSubjectsDeleteMessage>,
+        IRecipient<StudentSubjectsAddMessage>
 {
     public Guid Id { get; set; }
     public StudentDetailModel? Student { get; private set; }
@@ -56,5 +58,13 @@ public partial class StudentDetailViewModel(
         {
             await LoadDataAsync();
         }
+    }
+    public async void Receive(StudentSubjectsDeleteMessage message)
+    {
+        await LoadDataAsync();
+    }
+    public async void Receive(StudentSubjectsAddMessage message)
+    {
+        await LoadDataAsync();
     }
 }

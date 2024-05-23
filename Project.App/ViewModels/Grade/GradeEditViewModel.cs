@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.Input;
 using Project.App.Messages;
 using Project.App.Services;
 using Project.BL.Facades;
@@ -12,7 +13,13 @@ public partial class GradeEditViewModel(
     IMessengerService messengerService)
     : ViewModelBase(messengerService)
 {
-    public GradeDetailModel Grade { get; init; } = GradeDetailModel.Empty;
+    public GradeDetailModel Grade { get; set; } = GradeDetailModel.Empty;
+    
+    public ObservableCollection<StudentListModel> Students { get; set; } = new();
+
+    public StudentListModel? StudentSelected { get; set; }
+
+    // public IngredientAmountDetailModel? IngredientAmountNew { get; private set; }
     
     [RelayCommand]
     private async Task SaveAsync()

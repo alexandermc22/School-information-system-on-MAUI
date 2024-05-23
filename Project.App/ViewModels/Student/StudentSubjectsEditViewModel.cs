@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Project.App.Messages;
 using Project.App.Services;
 using Project.BL.Facades;
@@ -64,7 +65,7 @@ public partial class StudentSubjectsEditViewModel(
 
             StudentSubjectsNew = GetStudentSubjectsNew();
 
-            MessengerService.Send(new SubjectAddMessage());
+            MessengerService.Send(new StudentSubjectsAddMessage());
         }
     }
 
@@ -76,7 +77,7 @@ public partial class StudentSubjectsEditViewModel(
         {
             await studentSubjectsFacade.SaveAsync(model, Student.Id);
 
-            MessengerService.Send(new SubjectEditMessage() { SubjectId = model.SubjectId });
+            MessengerService.Send(new StudentSubjectsEditMessage());
         }
 
     }
@@ -89,7 +90,7 @@ public partial class StudentSubjectsEditViewModel(
             await studentSubjectsFacade.DeleteAsync(model.Id);
             Student.StudentSubjects.Remove(model);
 
-            MessengerService.Send(new SubjectDeleteMessage());
+            MessengerService.Send(new StudentSubjectsDeleteMessage());
         }
     }
     
@@ -106,4 +107,6 @@ public partial class StudentSubjectsEditViewModel(
             SubjectImageUrl = subjectFirst.ImageUrl
         };
     }
+    
+
 }
