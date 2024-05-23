@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:r="clr-namespace:Project.App.Views.Student"
     xmlns:z="clr-namespace:Project.App.Views.Subject"
+    xmlns:f="clr-namespace:Project.App.Views.Activity"
     xmlns:local="clr-namespace:Project.App.Views"
     x:Class="Project.App.Shells.AppShell"
     x:Name="AppShellRoot"
@@ -18,8 +19,13 @@
             <MenuFlyoutItem Command="{Binding Source={x:Reference AppShellRoot}, Path=GoToSubjectsCommand}"></MenuFlyoutItem>
 
         </MenuBarItem>
+        <MenuBarItem Text="activity"> 
+            <MenuFlyoutItem Command="{Binding Source={x:Reference AppShellRoot}, Path=GoToActivitiesCommand}"></MenuFlyoutItem>
+
+        </MenuBarItem>
     </Shell.MenuBarItems>
     <ShellContent ContentTemplate="{DataTemplate r:StudentListView}" Route="students" />
     <ShellContent ContentTemplate="{DataTemplate z:SubjectListView}" Route="subjects" />
+    <ShellContent ContentTemplate="{DataTemplate f:ActivityListView}" Route="activities" />
 
 </Shell>
