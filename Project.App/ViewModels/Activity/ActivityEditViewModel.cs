@@ -12,7 +12,7 @@ public partial class ActivityEditViewModel(
     IMessengerService messengerService)
     : ViewModelBase(messengerService)
 {
-    public ActivityDetailModel Activity { get; init; } = ActivityDetailModel.Empty;
+    public ActivityDetailModel Activity { get; set; } = ActivityDetailModel.Empty;
 
     [RelayCommand]
     private async Task SaveAsync()

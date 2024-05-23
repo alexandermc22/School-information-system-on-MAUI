@@ -17,15 +17,11 @@
         </MenuBarItem>
         <MenuBarItem Text="subject"> 
             <MenuFlyoutItem Command="{Binding Source={x:Reference AppShellRoot}, Path=GoToSubjectsCommand}"></MenuFlyoutItem>
-
-        </MenuBarItem>
-        <MenuBarItem Text="activity"> 
-            <MenuFlyoutItem Command="{Binding Source={x:Reference AppShellRoot}, Path=GoToActivitiesCommand}"></MenuFlyoutItem>
+            
 
         </MenuBarItem>
     </Shell.MenuBarItems>
     <ShellContent ContentTemplate="{DataTemplate r:StudentListView}" Route="students" />
     <ShellContent ContentTemplate="{DataTemplate z:SubjectListView}" Route="subjects" />
-    <ShellContent ContentTemplate="{DataTemplate f:ActivityListView}" Route="activities" />
 
 </Shell>
