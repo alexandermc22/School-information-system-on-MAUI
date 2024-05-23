@@ -14,23 +14,37 @@ public class SubjectFacade(
         FacadeBase<SubjectEntity,SubjectDetailModel, SubjectListModel, SubjectEntityMapper>(unitOfWorkFactory,
             modelMapper), ISubjectFacade
 {
-    public  async Task<SubjectListModel?> GetByNameAsync(string name)
+    public async Task<IEnumerable<SubjectListModel>?> GetByNameAsync(string code, string name)
     {
+        // Проверка на пустые строки
+        if (string.IsNullOrWhiteSpace(code) && string.IsNullOrWhiteSpace(name))
+        {
+            // Если оба параметра пустые, вернуть пустой список
+            return new List<SubjectListModel>();
+        }
 
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
 
         IQueryable<SubjectEntity> query = uow.GetRepository<SubjectEntity, SubjectEntityMapper>().Get();
 
-        foreach (string includePath in IncludesNavigationPathDetail)
+        // Формирование условий фильтрации
+        IQueryable<SubjectEntity> filteredSubjects = query;
+        if (!string.IsNullOrWhiteSpace(code))
         {
-            query = query.Include(includePath);
+            filteredSubjects = filteredSubjects.Where(s => s.Code == code);
+        }
+        if (!string.IsNullOrWhiteSpace(name))
+        {
+            filteredSubjects = filteredSubjects.Where(s => s.Name == name);
         }
 
-        SubjectEntity? entity = await query.SingleOrDefaultAsync(e => e.Name == name).ConfigureAwait(false);
+        // Преобразование отфильтрованных студентов в модели списка
+        List<SubjectListModel> SLM = await filteredSubjects
+            .OrderBy(s => s.Code)
+            .Select(subject => ModelMapper.MapToListModel(subject))
+            .ToListAsync();
 
-        return entity is null
-            ? null
-            : ModelMapper.MapToListModel(entity);
+        return SLM.Count == 0 ? null : SLM;
     }
     
     public  async Task<IEnumerable<SubjectListModel>?> GetSortAsync()

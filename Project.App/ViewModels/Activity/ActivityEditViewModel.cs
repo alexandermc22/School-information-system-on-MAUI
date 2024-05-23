@@ -24,11 +24,4 @@ public partial class ActivityEditViewModel(
         navigationService.SendBackButtonPressed();
     }
     
-    [RelayCommand]
-    private async Task GoToRecipeIngredientEditAsync()
-    {
-        // await navigationService.GoToAsync("/grade",
-        //     new Dictionary<string, object?> { [nameof(RecipeIngredientsEditViewModel.Recipe)] = Recipe });
-    }
-    
 }
