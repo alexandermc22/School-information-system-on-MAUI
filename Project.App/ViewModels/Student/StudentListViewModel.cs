@@ -14,25 +14,28 @@ public partial class StudentListViewModel(
     : ViewModelBase(messengerService), IRecipient<StudentEditMessage>, IRecipient<StudentDeleteMessage>
 {
     public IEnumerable<StudentListModel> Students { get; set; } = null!;
-    private bool _isSortRequired = false;
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
-        if (_isSortRequired)
-        {
-            Students = await studentFacade.GetSortAsync();
-            _isSortRequired = false;
-        }
-        else 
-            Students = await studentFacade.GetAsync();
+        
+        Students = await studentFacade.GetAsync();
     }
     
     [RelayCommand]
     private async Task SortAsync()
     {
-        _isSortRequired = true;
-        await LoadDataAsync();
+        await base.LoadDataAsync();
+        
+        Students = await studentFacade.GetSortAsync();
     }
+    
+    // [RelayCommand]
+    // private async Task GetFilteredAsync(string firstName, string lastName)
+    // {
+    //     await base.LoadDataAsync();
+    //
+    //     Students = await studentFacade.GetByNameAsync(firstName, lastName);
+    // }
     
     [RelayCommand]
     private async Task GoToCreateAsync()

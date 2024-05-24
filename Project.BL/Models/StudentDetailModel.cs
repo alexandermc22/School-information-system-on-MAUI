@@ -11,7 +11,7 @@ public record StudentDetailModel: ModelBase
     public ObservableCollection<StudentSubjectsListModel> StudentSubjects { get; set; } = new();
     public static StudentDetailModel Empty => new()
     {
-        Id = Guid.NewGuid(),
+        Id = Guid.Empty,
         FirstName = string.Empty,
         LastName = string.Empty,
         Photo = null

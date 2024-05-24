@@ -69,7 +69,12 @@
                                  Spacing="30">
                 <Button Text="editsubjects"
                         Command="{Binding GoToStudentSubjectsEditCommand}"
+                        IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleInvertedConverter}}"
                         Style="{StaticResource PrimaryButtonStyle}" />
+                <Label Text="error unsaved"
+                       HorizontalOptions="End"
+                       IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleConverter}}" />
+
                 <Label Text="error"
                        HorizontalOptions="End"/>
 
