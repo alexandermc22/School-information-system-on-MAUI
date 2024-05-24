@@ -50,10 +50,12 @@
                        TextColor="{StaticResource PrimaryLabelTextColor}" />
                 <Entry HorizontalOptions="Fill"
                        Text="{Binding Activity.Duration}" />
-                <Label Text="StartTime"
+                <Label Text="Choose date"
                        TextColor="{StaticResource PrimaryLabelTextColor}" />
-                <Entry HorizontalOptions="Fill"
-                       Text="{Binding Activity.ActivityStartTime}" />
+                <DatePicker Format="d"
+                            Date="{Binding Activity.ActivityStartTime}"
+                            MinimumDate="2022-07-10"
+                            MaximumDate="2028-07-20" />
                 <Label Text="ActivityEndTime"
                        TextColor="{StaticResource PrimaryLabelTextColor}" />
                 <Entry HorizontalOptions="Fill"

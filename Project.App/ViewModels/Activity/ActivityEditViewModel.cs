@@ -43,5 +43,10 @@ public partial class ActivityEditViewModel(
                   ?? ActivityDetailModel.Empty;
     }
     
+    public void DateSelected(object sender, DateChangedEventArgs e)
+    {
+        Activity.ActivityStartTime = e.NewDate;
+    }
+    
     
 }
