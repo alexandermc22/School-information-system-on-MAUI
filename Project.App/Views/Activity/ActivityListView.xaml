@@ -48,19 +48,14 @@
                             <Label Grid.Row="1"
                                    Margin="22,12"
                                    FontSize="20"
-                                   Text="{Binding SubjectName}"
+                                   Text="{Binding ActivityType}"
                                    TextColor="White" VerticalOptions="End" />
                             <Label Grid.Row="2"
                                    Margin="22,12"
                                    FontSize="20"
-                                   Text="{Binding Code}"
-                                   TextColor="White" VerticalOptions="End" />
-                            <Label Grid.Row="3"
-                                   Margin="22,12"
-                                   FontSize="20"
                                    Text="{Binding ActivityStartTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}"
                                    TextColor="White" VerticalOptions="End" />
-                            <Label Grid.Row="4"
+                            <Label Grid.Row="3"
                                    Margin="22,12"
                                    FontSize="20"
                                    Text="{Binding ActivityEndTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}"
