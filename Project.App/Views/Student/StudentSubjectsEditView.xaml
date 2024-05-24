@@ -7,36 +7,37 @@
                        xmlns:m="clr-namespace:Project.BL.Models;assembly=Project.BL"
                        xmlns:behaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                        x:Class="Project.App.Views.Student.StudentSubjectsEditView"
-                       Title="edit"
+                       Title="Student Add Subject"
                        Style="{StaticResource ContentPageStyle}"
                        x:DataType="vm:StudentSubjectsEditViewModel"
                        x:Name="StudentSubjectsViewRoot">
     
  <Grid RowDefinitions="Auto, Auto, Auto, *"
-          HorizontalOptions="Fill"
-          RowSpacing="20">
+          HorizontalOptions="Start"
+          RowSpacing="25">
         <HorizontalStackLayout Grid.Row="0"
                                HorizontalOptions="Center"
                                Spacing="10">
-            <Frame Style="{StaticResource ImageFrameStyle}">
-                <Image Source="{Binding Student.Photo, TargetNullValue='ingredient_placeholder.jpg'}"
-                       WidthRequest="320" HeightRequest="240"
-                       Aspect="AspectFill" />
-            </Frame>
+            <!-- <Frame Style="{StaticResource ImageFrameStyle}"> -->
+            <!--     <Image Source="{Binding Student.Photo, TargetNullValue='ingredient_placeholder.jpg'}" -->
+            <!--            WidthRequest="320" HeightRequest="240" -->
+            <!--            Aspect="AspectFill" /> -->
+            <!-- </Frame> -->
 
             <Label Text="{Binding Student.LastName}"
                    VerticalOptions="Center" />
         </HorizontalStackLayout>
 
-        <Label Grid.Row="1"
-               Text="subjects" />
+        <!-- <Label Grid.Row="1" -->
+        <!--        Text="subjects" /> -->
 
-        <Grid Grid.Row="2"
+        <Grid Grid.Row="1"
               RowDefinitions="Auto, Auto"
               ColumnDefinitions="Auto, Auto, Auto, Auto, *"
               RowSpacing="10" ColumnSpacing="15">
             <Label Grid.Row="0" Grid.Column="2"
-                   Text="subject" />
+                   Text="Subjects" 
+                   FontSize="20"/>
 
             <Picker Grid.Row="1" Grid.Column="2"
                     ItemsSource="{Binding Subjects}"
@@ -44,13 +45,14 @@
                     SelectedItem="{Binding SubjectSelected}" />
 
             <Button Grid.Row="1" Grid.Column="3"
-                    Text="addBut"
+                    Text="Add"
                     HorizontalOptions="Start"
                     Command="{Binding AddNewSubjectToStudentCommand}"
-                    Style="{StaticResource PrimaryButtonStyle}"/>
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    FontSize="15"/>
         </Grid>
 
-        <CollectionView Grid.Row="3"
+        <CollectionView Grid.Row="2"
                         ItemsSource="{Binding Student.StudentSubjects}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:StudentSubjectsDetailModel">
@@ -76,13 +78,13 @@
                         </Entry>
                         
 
-                        <Label Grid.Column="3"
-                               VerticalOptions="Center"
-                               Text="{Binding SubjectName}" />
+                        <!-- <Label Grid.Column="3" -->
+                        <!--        VerticalOptions="Center" -->
+                        <!--        Text="{Binding SubjectName}" /> -->
 
-                        <Button Grid.Column="4"
+                        <Button Grid.Column="2"
                                 HorizontalOptions="Start" VerticalOptions="Center"
-                                Text="removeBut"
+                                Text="Delete"
                                 Command="{Binding Source={x:Reference StudentSubjectsViewRoot}, Path=BindingContext.RemoveSubjectCommand}"
                                 CommandParameter="{Binding .}"
                                 Style="{StaticResource ErrorButtonStyle}" />
