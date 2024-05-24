@@ -25,6 +25,15 @@ public partial class ActivityListViewModel(
         Activity = await activityFacade.GetActivityAsync(Subject.Id); //TODO check null
     }
 
+
+    [RelayCommand]
+    private async Task GetFilteredAsync(DateTime startTime, DateTime endTime)
+    {
+        await base.LoadDataAsync();
+
+        Activity = await activityFacade.GetFilteredAsync(Subject.Id, startTime, endTime);
+    }
+    
     [RelayCommand]
     private async Task GoToDetailAsync(Guid id)
         => await navigationService.GoToAsync<ActivityDetailViewModel>(
