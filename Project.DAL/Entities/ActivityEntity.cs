@@ -6,7 +6,7 @@ public record ActivityEntity : IEntity
     public required Guid Id { get; set; }
     public required DateTime Start { get; set; }
     public required DateTime End { get; set; }
-    public required LectureRoom LectureRoom { get; set; }
+    public required string LectureRoom { get; set; }
     public required string Tag { get; set; }
     public required Guid SubjectId { get; set; }
     public required string? Description { get; set; }

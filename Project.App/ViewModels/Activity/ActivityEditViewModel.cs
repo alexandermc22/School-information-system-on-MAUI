@@ -20,15 +20,24 @@ public partial class ActivityEditViewModel(
     public ActivityDetailModel Activity { get; set; } = ActivityDetailModel.Empty;
     public SubjectDetailModel Subject { get; set; } = SubjectDetailModel.Empty;
     
+    
+    
     [RelayCommand]
     private async Task SaveAsync()
     {
-        if (Activity.ActivityType == string.Empty)
+        Activity.ActivityStartTime = DateStartSelected.Date + TimeStartSelected;
+        Activity.ActivityEndTime = DateEndSelected.Date + TimeEndSelected;
+        if (Activity.ActivityType == string.Empty || Activity.ActivityRoom==string.Empty)
         {
-            alertService.DisplayAsync("Error", "You must enter activity type");
+            alertService.DisplayAsync("Error", "You must enter activity type and room");
+        }
+        else if(Activity.ActivityStartTime >= Activity.ActivityEndTime )
+        {
+            alertService.DisplayAsync("Error", "Wrong Date");
         }
         else
         {
+            
             Activity.Duration = Activity.ActivityEndTime - Activity.ActivityStartTime;
             await activityFacade.SaveAsync(Activity,Subject.Id);
 
@@ -54,31 +63,14 @@ public partial class ActivityEditViewModel(
                   ?? ActivityDetailModel.Empty;
     }
     
-    public DateTime DateTimeStartSelected
-    {
-        get => Activity.ActivityStartTime;
-        set
-        {
-            if (Activity.ActivityStartTime != value)
-            {
-                Activity.ActivityStartTime = value;
-                // OnPropertyChanged(); // Вызов PropertyChanged для уведомления об изменении
-            }
-        }
-    }
     
-    public DateTime DateTimeEndSelected
-    {
-        get => Activity.ActivityEndTime;
-        set
-        {
-            if (Activity.ActivityEndTime != value)
-            {
-                Activity.ActivityEndTime = value;
-                // OnPropertyChanged(); // Вызов PropertyChanged для уведомления об изменении
-            }
-        }
-    }
+    public DateTime DateEndSelected { get; set; }
+    
+    public TimeSpan TimeEndSelected { get; set; }
+    
+    public DateTime DateStartSelected { get; set; }
+    
+    public TimeSpan TimeStartSelected { get; set; }
     
     
 }
