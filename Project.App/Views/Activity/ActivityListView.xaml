@@ -6,7 +6,8 @@
                        x:Class="Project.App.Views.Activity.ActivityListView"
                        xmlns:m="clr-namespace:Project.BL.Models;assembly=Project.BL"
                        xmlns:vm="clr-namespace:Project.App.ViewModels"
-                       x:DataType="vm:StudentListViewModel">
+                       xmlns:activity="clr-namespace:Project.App.ViewModels.Activity"
+                       x:DataType="activity:ActivityListViewModel">
     
     <Grid HorizontalOptions="FillAndExpand" RowDefinitions="Auto, *"
           RowSpacing="20">
@@ -19,15 +20,15 @@
                     BackgroundColor="{StaticResource PrimaryColor}"
                     Command="{Binding GoToCreateCommand}" />
 
-            <Button Text="sort"
-                    CornerRadius="5"
-                    BackgroundColor="{StaticResource PrimaryColor}"
-                    Command="{Binding SortCommand}" />
+            <!-- <Button Text="sort" -->
+            <!--         CornerRadius="5" -->
+            <!--         BackgroundColor="{StaticResource PrimaryColor}" -->
+            <!--         Command="{Binding SortCommand}" /> -->
         </HorizontalStackLayout>
         
         
         <CollectionView Grid.Row="1"
-                        ItemsSource="{Binding Students}">
+                        ItemsSource="{Binding Subject}">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Horizontal"
                                  HorizontalItemSpacing="10" VerticalItemSpacing="10"

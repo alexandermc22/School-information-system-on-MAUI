@@ -33,7 +33,7 @@ public partial class ActivityListViewModel(
     [RelayCommand]
     private async Task GoToCreateAsync()
     {
-        await navigationService.GoToAsync("/edit");
+        await navigationService.GoToAsync("/editActivity");
     }
 
     public async void Receive(ActivityEditMessage message)

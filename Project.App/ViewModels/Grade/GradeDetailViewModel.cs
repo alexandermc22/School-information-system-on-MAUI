@@ -43,8 +43,8 @@ public partial class GradeDetailViewModel(
     {
         if (Grade is not null)
         {
-            await navigationService.GoToAsync("/edit",
-                new Dictionary<string, object?> { [nameof(GradeEditViewModel.Grade)] = Grade with { } });
+            // await navigationService.GoToAsync("/edit",
+            //     new Dictionary<string, object?> { [nameof(GradeEditViewModel.Grade)] = Grade with { } });
         }
     }
     public async void Receive(GradeEditMessage message)
