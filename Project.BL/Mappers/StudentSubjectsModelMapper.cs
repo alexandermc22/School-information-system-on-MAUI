@@ -14,7 +14,8 @@ public class StudentSubjectsModelMapper:
                 Id = entity.Id,
                 SubjectCode = entity.Subject.Code,
                 SubjectId = entity.SubjectId,
-                SubjectName = entity.Subject.Name
+                SubjectName = entity.Subject.Name,
+                SubjectImageUrl = entity.Subject.ImageUrl
             };
     
     public override StudentSubjectsDetailModel MapToDetailModel(StudentSubjectEntity? entity)
@@ -36,6 +37,7 @@ public class StudentSubjectsModelMapper:
             SubjectId = detailModel.SubjectId,
             SubjectCode = detailModel.SubjectCode,
             SubjectName = detailModel.SubjectName,
+            SubjectImageUrl = detailModel.SubjectImageUrl
         };
     
     public void MapToExistingDetailModel(StudentSubjectsDetailModel existingDetailModel,
