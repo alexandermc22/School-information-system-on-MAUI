@@ -11,18 +11,20 @@ public class GradeModelMapper :
             ? GradeListModel.Empty
             : new GradeListModel
             {
+                StudentId = entity.StudentId,
+                ActivityId = entity.ActivityId,
                 StudentName = $"{entity.Student.FirstName} {entity.Student.LastName}",
                 GradeValue = entity.GradeValue,
-                SubjectName = entity.Activity.Subject.Name, // TODO check if subj != null
                 GradeDate = entity.GradeDate
             };
 
     public GradeListModel MapToListModel(GradeDetailModel detail)
         => new GradeListModel
         {
+            StudentId = detail.StudentId,
+            ActivityId = detail.ActivityId,
             StudentName = detail.StudentName,
             GradeValue = detail.GradeValue,
-            SubjectName = detail.SubjectName,
             GradeDate = detail.GradeDate
         };
 
@@ -41,8 +43,7 @@ public class GradeModelMapper :
             {
                 Id = entity.Id,
                 StudentName = $"{entity.Student.FirstName} {entity.Student.LastName}",
-                SubjectId = entity.Activity.SubjectId,
-                SubjectName = entity.Activity.Subject.Name,
+                StudentId = entity.Activity.SubjectId,
                 ActivityId = entity.ActivityId,
                 GradeValue = entity.GradeValue,
                 GradeDate = entity.GradeDate,
@@ -54,16 +55,35 @@ public class GradeModelMapper :
     public override GradeEntity MapToEntity(GradeDetailModel model)
         => throw new NotImplementedException("This method is unsupported. Use the other overload.");
 
-    public GradeEntity MapToEntity(GradeDetailModel model, Guid studentId)
+    public GradeEntity MapToEntity(GradeDetailModel model, Guid activityId)
         => new()
         {
             Id = model.Id,
             GradeValue = model.GradeValue,
             Description = model.Description,
             GradeDate = model.GradeDate,
-            ActivityId = model.ActivityId,
-            StudentId = studentId,
+            ActivityId = activityId,
+            StudentId = model.StudentId,
             Activity = null!,
             Student = null!,
         };
+    
+    public GradeEntity MapToEntity(GradeListModel model, Guid activityId)
+        => new()
+        {
+            Id = model.Id,
+            GradeValue = model.GradeValue,
+            GradeDate = model.GradeDate,
+            ActivityId = activityId,
+            StudentId = model.StudentId,
+            Activity = null!,
+            Student = null!,
+        };
+    
+    public void MapToExistingDetailModel(GradeDetailModel existingDetailModel,
+        StudentListModel student)
+    {
+        existingDetailModel.StudentId = student.Id;
+        existingDetailModel.StudentName = $"{student.LastName} {student.FirstName}";
+    }
 }

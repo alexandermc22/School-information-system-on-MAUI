@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Project.App.Services;
 using Project.App.ViewModels;
+using Project.App.ViewModels.Activity;
+
 namespace Project.App.Shells;
 
 public partial class AppShell 
@@ -19,4 +21,5 @@ public partial class AppShell
     [RelayCommand]
     private async Task GoToSubjectsAsync()
         => await _navigationService.GoToAsync<SubjectListViewModel>();
+
 }

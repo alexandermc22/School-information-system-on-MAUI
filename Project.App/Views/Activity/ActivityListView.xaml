@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:views="clr-namespace:Project.App.Views"
+                       x:Class="Project.App.Views.Activity.ActivityListView"
+                       xmlns:m="clr-namespace:Project.BL.Models;assembly=Project.BL"
+                       xmlns:vm="clr-namespace:Project.App.ViewModels.Activity"
+                       x:DataType="vm:ActivityListViewModel">
+    
+    <Grid HorizontalOptions="FillAndExpand" RowDefinitions="Auto, *"
+          RowSpacing="20">
+        
+        <HorizontalStackLayout HorizontalOptions="End"
+                               Spacing="15"
+                               HeightRequest="30">
+            <Button Text="create"
+                    CornerRadius="5"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    Command="{Binding GoToCreateCommand}" />
+
+            <!-- <Button Text="sort" -->
+            <!--         CornerRadius="5" -->
+            <!--         BackgroundColor="{StaticResource PrimaryColor}" -->
+            <!--         Command="{Binding SortCommand}" /> -->
+        </HorizontalStackLayout>
+        
+        
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Activity}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Horizontal"
+                                 HorizontalItemSpacing="10" VerticalItemSpacing="10"
+                                 Span="2" />
+            </CollectionView.ItemsLayout>
+        
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="m:ActivityListModel">
+                <Frame Style="{StaticResource ImageFrameStyle}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference ActivityListViewRoot}, Path=BindingContext.GoToDetailCommand}"
+                                              CommandParameter="{Binding Id}" />
+                    </Frame.GestureRecognizers>
+                    <Grid RowDefinitions="*, *, *, *">
+
+                        <Label Grid.Row="1"
+                               Margin="22,12"
+                               FontSize="20" LineBreakMode="WordWrap"
+                               Text="{Binding SubjectName}"
+                               TextColor="White" VerticalOptions="End" />
+                        <Label Grid.Row="2"
+                               Margin="22,12"
+                               FontSize="20" LineBreakMode="WordWrap"
+                               Text="{Binding Code}"
+                               TextColor="White" VerticalOptions="End" />
+                        <Label Grid.Row="3"
+                               Margin="22,12"
+                               FontSize="20" LineBreakMode="WordWrap"
+                               Text="{Binding ActivityStartTime}"
+                               TextColor="White" VerticalOptions="End" />
+                        <Label Grid.Row="4"
+                               Margin="22,12"
+                               FontSize="20" LineBreakMode="WordWrap"
+                               Text="{Binding ActivityEndTime}"
+                               TextColor="White" VerticalOptions="End" />
+                        
+                    </Grid>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+        
+        <!--<StackLayout Grid.Column="1" Padding="20">  
+          <Grid Padding="10" Margin="20,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    
+                    ~1~ Days of the week @1@
+                    <Label Grid.Column="0" Text="Mo" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="18"/>
+                    <Label Grid.Column="1" Text="Tu" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="18"/>
+                    <Label Grid.Column="2" Text="We" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="18"/>
+                    <Label Grid.Column="3" Text="Th" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="18"/>
+                    <Label Grid.Column="4" Text="Fr" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="18"/>
+                    <Label Grid.Column="5" Text="Su" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="18"/>
+                    
+                    ~1~ Example of an activity @1@
+                    <StackLayout Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" BackgroundColor="LightGray" Padding="5" Margin="5">
+                        <Label Text="English" FontSize="14" FontAttributes="Bold"/>
+                        <Label Text="[Eng]" FontSize="12"/>
+                        <Label Text="D105" FontSize="12"/>
+                        <Label Text="9:00 - 10:50" FontSize="12"/>
+                        <Label Text="Grades" FontSize="12"/>
+                    </StackLayout>
+                    --></CollectionView>
+                    
+                    
+                   
+                    
+                    
+                    
+          </Grid>
+       
+    
+    
+    
+    
+    
+    
+</views:ContentPageBase>

@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:views="clr-namespace:Project.App.Views"
+                       xmlns:vm="clr-namespace:Project.App.ViewModels.Activity"
+                       xmlns:models="clr-namespace:Project.BL.Models;assembly=Project.BL"
+                       x:Class="Project.App.Views.Activity.ActivityEditView"
+                       Title="text1"
+                       Style="{StaticResource ContentPageStyle}"
+                       x:Name="ActivityEditViewRoot"
+                       x:DataType="vm:ActivityEditViewModel">
+       
+                       
+ <Grid RowDefinitions="70, *">
+        <Grid Grid.Row="0"
+              ColumnDefinitions="*, Auto"
+              ColumnSpacing="15">
+
+            <Button Grid.Column="1"
+                    VerticalOptions="Start"
+                    HeightRequest="30"
+                    Text="save"
+                    CornerRadius="5"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    Command="{Binding SaveCommand}" />
+        </Grid>
+        <Grid Grid.Row="1"
+              HorizontalOptions="Fill" VerticalOptions="Start"
+              RowDefinitions="170, *" ColumnDefinitions="Auto, *"
+              RowSpacing="20" ColumnSpacing="20">
+            <Frame Grid.Row="0" Grid.Column="0"
+                   HorizontalOptions="Center"
+                   Style="{StaticResource ImageFrameStyle}">
+            </Frame>
+
+            <VerticalStackLayout Grid.Row="0" Grid.RowSpan="2"
+                                 Grid.Column="1"
+                                 HorizontalOptions="Fill"
+                                 Spacing="10">
+                <Label Text="Code"
+                       TextColor="{StaticResource PrimaryLabelTextColor}" />
+                <Entry HorizontalOptions="Fill"
+                       Text="{Binding Activity.Code}" />
+                <Label Text="Description"
+                       TextColor="{StaticResource PrimaryLabelTextColor}" />
+                <Entry HorizontalOptions="Fill"
+                       Text="{Binding Activity.Description}" />
+                <Label Text="Duration"
+                       TextColor="{StaticResource PrimaryLabelTextColor}" />
+                <Entry HorizontalOptions="Fill"
+                       Text="{Binding Activity.Duration}" />
+                <Label Text="Choose date"
+                       TextColor="{StaticResource PrimaryLabelTextColor}" />
+                <DatePicker Format="d"
+                            Date="{Binding Activity.ActivityStartTime}"
+                            MinimumDate="2022-07-10"
+                            MaximumDate="2028-07-20" />
+                <Label Text="ActivityEndTime"
+                       TextColor="{StaticResource PrimaryLabelTextColor}" />
+                <Entry HorizontalOptions="Fill"
+                       Text="{Binding Activity.ActivityEndTime}" />
+                <Label Text="ActivityWeekDay"
+                       TextColor="{StaticResource PrimaryLabelTextColor}" />
+                <Entry HorizontalOptions="Fill"
+                       Text="{Binding Activity.ActivityWeekDay}" />
+
+                <!-- <Label Text="description" -->
+                <!--        TextColor="{StaticResource PrimaryLabelTextColor}" /> -->
+                <!-- <Editor HorizontalOptions="Fill" -->
+                <!--         TextColor="{StaticResource FormEntryTextColor}" -->
+                <!--         AutoSize="TextChanges" -->
+                <!--         BackgroundColor="{StaticResource FormEntryBackgroundColor}" -->
+                <!--         Text="{Binding Student.LastName}" /> -->
+            </VerticalStackLayout>
+               
+               <VerticalStackLayout Grid.Row="8" Grid.Column="4"
+                                 Spacing="30">
+                <!-- <Button Text="Edit Activity" -->
+                <!--         Command="{Binding GoToRecipeIngredientEditCommand}" -->
+                <!--         Style="{StaticResource PrimaryButtonStyle}" /> -->
+                <Label Text="error"
+                       HorizontalOptions="End"/>
+
+                <!-- <CollectionView ItemsSource="{Binding Activity.StudentSubjects}" -->
+                <!--                 HorizontalOptions="End"> -->
+                <!--     <CollectionView.ItemTemplate> -->
+                <!--         <DataTemplate x:DataType="models:StudentSubjectsDetailModel"> -->
+                <!--             <HorizontalStackLayout> -->
+                <!--                 <Frame Margin="5, 5, 20, 5" -->
+                <!--                        Style="{StaticResource ImageFrameStyle}"> -->
+                <!--                     <Image Source="{Binding SubjectImageUrl, TargetNullValue='ingredient_placeholder.jpg'}" -->
+                <!--                            WidthRequest="60" HeightRequest="60" -->
+                <!--                            Aspect="AspectFill" /> -->
+                <!--                 </Frame> -->
+                <!-- -->
+                <!--                 <Label VerticalOptions="Center"> -->
+                <!--                     <Label.FormattedText> -->
+                <!--                         <FormattedString> -->
+                <!--                             <Span Text="{Binding SubjectName}" /> -->
+                <!--                         </FormattedString> -->
+                <!--                     </Label.FormattedText> -->
+                <!--                 </Label> -->
+                <!--             </HorizontalStackLayout> -->
+                <!--         </DataTemplate> -->
+                <!--     </CollectionView.ItemTemplate> -->
+                <!-- </CollectionView> -->
+            </VerticalStackLayout>
+               
+        </Grid>
+    </Grid>
+</views:ContentPageBase>

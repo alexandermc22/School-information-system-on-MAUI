@@ -14,9 +14,48 @@ public class GradeFacade(
     FacadeBase<GradeEntity,GradeDetailModel,GradeListModel,GradeEntityMapper>(unitOfWorkFactory, gradeModelMapper),
     IGradeFacade
 {
-    public async Task SaveAsync(GradeDetailModel model, Guid studentId)
+    
+    
+    
+    
+    public async Task<IEnumerable<GradeListModel>?> GetGradeAsync(Guid id)
     {
-        GradeEntity entity = gradeModelMapper.MapToEntity(model, studentId);
+        await using IUnitOfWork uow = UnitOfWorkFactory.Create();
+
+        IQueryable<GradeEntity> query = uow.GetRepository<GradeEntity, GradeEntityMapper>().Get();
+        
+        var filteredGrades = query
+            .Where(a => a.ActivityId >= id)
+            .ToList();
+        List<GradeListModel> ALM = new List<GradeListModel>();
+        foreach (var grade in filteredGrades)
+        {
+            ALM.Add(ModelMapper.MapToListModel(grade));
+        }
+        return ALM.Count == 0
+            ? null
+            : ALM;
+    }
+    
+    public async Task SaveAsync(GradeListModel model, Guid activityId)
+    {
+        GradeEntity entity = gradeModelMapper.MapToEntity(model, activityId);
+
+        await using IUnitOfWork uow = UnitOfWorkFactory.Create();
+        IRepository<GradeEntity> repository =
+            uow.GetRepository<GradeEntity, GradeEntityMapper>();
+
+        if (await repository.ExistsAsync(entity))
+        {
+            await repository.UpdateAsync(entity);
+            await uow.CommitAsync();
+        }
+    }
+    
+    
+    public async Task SaveAsync(GradeDetailModel model, Guid activityId)
+    {
+        GradeEntity entity = gradeModelMapper.MapToEntity(model, activityId);
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
         IRepository<GradeEntity> repository =
             uow.GetRepository<GradeEntity, GradeEntityMapper>();

@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Messaging;
 using Project.App.Messages;
 using Project.App.Services;
+using Project.App.ViewModels.Grade;
 using Project.BL.Facades;
 using Project.BL.Models;
 namespace Project.App.ViewModels.Activity;
@@ -43,8 +44,17 @@ public partial class ActivityDetailViewModel(
     {
         if (Activity is not null)
         {
-            // await navigationService.GoToAsync("/edit",
-                // new Dictionary<string, object?> { [nameof(RecipeEditViewModel.Recipe)] = Recipe with { } });
+            await navigationService.GoToAsync("/edit",
+                new Dictionary<string, object?> { [nameof(ActivityEditViewModel.Activity)] = Activity with { } });
+        }
+    }
+    
+    private async Task GoToGradeAsync()
+    {
+        if (Activity is not null)
+        {
+            await navigationService.GoToAsync("/grade",
+                new Dictionary<string, object?> { [nameof(GradeListViewModel.Activity)] = Activity with { } });
         }
     }
 

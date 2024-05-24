@@ -18,12 +18,7 @@ public partial class SubjectEditViewModel(
     public SubjectDetailModel Subject { get; set; } = SubjectDetailModel.Empty;
     
     
-    [RelayCommand]
-    private async Task GoToSubjectActivityAsync()
-    {
-        // await navigationService.GoToAsync("/activities",
-        // new Dictionary<string, object?> { [nameof(ActivityListViewModel.Subject)] = Subject });
-    }
+
 
     [RelayCommand]
     private async Task SaveAsync()

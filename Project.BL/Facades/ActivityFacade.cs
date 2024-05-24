@@ -15,6 +15,26 @@ public class ActivityFacade(
     IActivityFacade
 {
     
+    public async Task<IEnumerable<ActivityListModel>?> GetActivityAsync(Guid id)
+    {
+        await using IUnitOfWork uow = UnitOfWorkFactory.Create();
+
+        IQueryable<ActivityEntity> query = uow.GetRepository<ActivityEntity, ActivityEntityMapper>().Get();
+        
+        var filteredActivities = query
+            .Where(a => a.SubjectId >= id)
+            .ToList();
+        List<ActivityListModel> ALM = new List<ActivityListModel>();
+        foreach (var activity in filteredActivities)
+        {
+            ALM.Add(ModelMapper.MapToListModel(activity));
+        }
+        return ALM.Count == 0
+            ? null
+            : ALM;
+    }
+    
+    
     public  async Task<IEnumerable<ActivityListModel>?> GetFilteredAsync(Guid subjectId,DateTime activityStartTime, DateTime activityEndTime)
     {
 
@@ -76,8 +96,22 @@ public class ActivityFacade(
         IRepository<ActivityEntity> repository =
             uow.GetRepository<ActivityEntity, ActivityEntityMapper>();
         
-        await repository.UpdateAsync(entity);
-        await uow.CommitAsync();
+        // await repository.UpdateAsync(entity);
+        // await uow.CommitAsync();
+        ActivityDetailModel result;
+        if (await repository.ExistsAsync(entity).ConfigureAwait(false))
+        {
+            ActivityEntity updatedEntity = await repository.UpdateAsync(entity).ConfigureAwait(false);
+            result = ModelMapper.MapToDetailModel(updatedEntity);
+        }
+        else
+        {
+            entity.Id = Guid.NewGuid();
+            ActivityEntity insertedEntity = repository.Insert(entity);
+            result = ModelMapper.MapToDetailModel(insertedEntity);
+        }
+
+        await uow.CommitAsync().ConfigureAwait(false);
     }
     
     protected override ICollection<string> IncludesNavigationPathDetail =>
