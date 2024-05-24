@@ -15,4 +15,15 @@ public partial class ActivityEditView
         InitializeComponent();
         // BindingContext = App.Services.GetRequiredService<StudentListViewModel>();
     }
+    
+    // private void TimePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+    // {
+    //     if (e.PropertyName == "Time")
+    //     {
+    //         label.Text = $"Вы выбрали {timePicker.Time}";
+    //     }
+    // }
+    
+   
+    
 }
