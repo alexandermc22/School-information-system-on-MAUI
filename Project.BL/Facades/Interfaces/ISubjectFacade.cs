@@ -6,4 +6,5 @@ namespace Project.BL.Facades;
 public interface ISubjectFacade : IFacade<SubjectEntity, SubjectListModel , SubjectDetailModel>
 {
     public Task<IEnumerable<SubjectListModel>?> GetSortAsync();
+    Task<IEnumerable<SubjectListModel>?> GetByNameAsync(string code, string name);
 }
