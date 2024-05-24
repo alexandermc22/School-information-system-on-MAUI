@@ -13,25 +13,52 @@
                         
     <Grid RowDefinitions="Auto, *"
           RowSpacing="20">
+        <!-- <Grid Grid.Row="0" -->
+        <!--       ColumnDefinitions="*, Auto, Auto" -->
+        <!--       ColumnSpacing="15"> -->
+        <!--     <Button Grid.Column="1" -->
+        <!--             VerticalOptions="Start" -->
+        <!--             HeightRequest="30" -->
+        <!--             Text="delete" -->
+        <!--             CornerRadius="5" -->
+        <!--             BackgroundColor="{StaticResource ErrorColor}" -->
+        <!--             Command="{Binding DeleteCommand}" /> -->
+        <!-- -->
+        <!--     <Button Grid.Row="0" -->
+        <!--             HorizontalOptions="End" VerticalOptions="Start" -->
+        <!--             HeightRequest="30" -->
+        <!--             Text="edit" -->
+        <!--             CornerRadius="5" -->
+        <!--             Command="{Binding GoToEditCommand}" -->
+        <!--             Style="{StaticResource PrimaryButtonStyle}" /> -->
+        <!-- </Grid> -->
+        
+        
+        <!-- <HorizontalStackLayout HorizontalOptions="End" -->
+        <!--                        Spacing="15" -->
+        <!--                        HeightRequest="30"> -->
         <Grid Grid.Row="0"
-              ColumnDefinitions="*, Auto, Auto"
-              ColumnSpacing="15">
-            <Button Grid.Column="1"
+              RowSpacing="15"
+              HeightRequest="30" >
+            <Button 
                     VerticalOptions="Start"
-                    HeightRequest="30"
-                    Text="delete"
+                    WidthRequest="100"
+                    HeightRequest="50"
+                    Text="Delete"
                     CornerRadius="5"
                     BackgroundColor="{StaticResource ErrorColor}"
                     Command="{Binding DeleteCommand}" />
-
-            <Button Grid.Row="0"
+            <Button 
                     HorizontalOptions="End" VerticalOptions="Start"
-                    HeightRequest="30"
-                    Text="edit"
+                    WidthRequest="100"
+                    HeightRequest="50"
+                    Text="Edit"
                     CornerRadius="5"
                     Command="{Binding GoToEditCommand}"
                     Style="{StaticResource PrimaryButtonStyle}" />
         </Grid>
+        
+        
 
         <Grid Grid.Row="1"
               ColumnDefinitions="*, Auto"
