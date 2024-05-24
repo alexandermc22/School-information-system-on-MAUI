@@ -18,8 +18,8 @@ public partial class ActivityListViewModel(
     public SubjectDetailModel Subject { get; set; } = SubjectDetailModel.Empty;
     public IEnumerable<ActivityListModel> Activity { get; set; } = null!;
     
-    private DateTime StartTime { get; set; }
-    private DateTime EndTime { get; set; }
+    public DateTime StartTime { get; set; }
+    public DateTime EndTime { get; set; }
     
     protected override async Task LoadDataAsync()
     {
