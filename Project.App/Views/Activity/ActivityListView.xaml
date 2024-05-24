@@ -16,10 +16,32 @@
         <HorizontalStackLayout HorizontalOptions="End"
                                Spacing="15"
                                HeightRequest="30">
+            
+            <DatePicker Format="d"
+                        Date="{Binding DateStartSelected}"
+                        MinimumDate="2022-07-10"
+                        MaximumDate="2028-07-20" />
+            <TimePicker Time="{Binding TimeStartSelected}" />
+            <Label Text="Choose end time"
+                   TextColor="{StaticResource PrimaryLabelTextColor}" />
+            <DatePicker Format="d"
+                        Date="{Binding DateEndSelected}"
+                        MinimumDate="2022-07-10"
+                        MaximumDate="2028-07-20" />
+            <TimePicker Time="{Binding TimeEndSelected}" />
+
+            <Button Text="Sort"
+                    Command="{Binding GetFilteredCommand}" />
+            
             <Button Text="create"
                     CornerRadius="5"
                     BackgroundColor="{StaticResource PrimaryColor}"
                     Command="{Binding GoToCreateCommand}" />
+            
+            
+            
+               
+             
 
             <!-- <Button Text="sort" -->
             <!--         CornerRadius="5" -->
@@ -38,28 +60,32 @@
         
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:ActivityListModel">
-                    <Frame Style="{StaticResource ImageFrameStyle}">
+                    <Frame Style="{StaticResource ImageFrameStyle}" BackgroundColor="Yellow">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={x:Reference ActivityListViewRoot}, Path=BindingContext.GoToDetailCommand}"
                                                   CommandParameter="{Binding Id}" />
                         </Frame.GestureRecognizers>
-                        <Grid RowDefinitions="*, *, *, *">
-                            <Image Source="icon_activity.png" VerticalOptions="Center" HorizontalOptions="Center" />
-                            <Label Grid.Row="1"
+                        <Grid RowDefinitions="*, *, *, *, *">
+                            <Label Grid.Row="0"
                                    Margin="22,12"
                                    FontSize="20"
                                    Text="{Binding ActivityType}"
-                                   TextColor="White" VerticalOptions="End" />
+                                   TextColor="Black" VerticalOptions="End" />
+                            <Label Grid.Row="1"
+                                   Margin="22,12"
+                                   FontSize="20"
+                                   Text="{Binding ActivityRoom}"
+                                   TextColor="Black" VerticalOptions="End" />
                             <Label Grid.Row="2"
                                    Margin="22,12"
                                    FontSize="20"
                                    Text="{Binding ActivityStartTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}"
-                                   TextColor="White" VerticalOptions="End" />
+                                   TextColor="Black" VerticalOptions="End" />
                             <Label Grid.Row="3"
                                    Margin="22,12"
                                    FontSize="20"
                                    Text="{Binding ActivityEndTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}"
-                                   TextColor="White" VerticalOptions="End" />
+                                   TextColor="Black" VerticalOptions="End" />
                         </Grid>
                     </Frame>
                 </DataTemplate>

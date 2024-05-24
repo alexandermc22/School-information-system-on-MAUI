@@ -5,6 +5,8 @@
                        xmlns:views="clr-namespace:Project.App.Views"
                        xmlns:vm="clr-namespace:Project.App.ViewModels.Activity"
                        xmlns:models="clr-namespace:Project.BL.Models;assembly=Project.BL"
+                       xmlns:picker="clr-namespace:Syncfusion.Maui.Picker"
+                       xmlns:picker1="http://schemas.syncfusion.com/maui"
                        x:Class="Project.App.Views.Activity.ActivityEditView"
                        Title="text1"
                        Style="{StaticResource ContentPageStyle}"
@@ -42,20 +44,25 @@
                               TextColor="{StaticResource PrimaryLabelTextColor}" />
                        <Entry HorizontalOptions="Fill"
                               Text="{Binding Activity.ActivityType}" />
+                       <Label Text="Activity room"
+                              TextColor="{StaticResource PrimaryLabelTextColor}" />
+                       <Entry HorizontalOptions="Fill"
+                              Text="{Binding Activity.ActivityRoom}" />
                        <Label Text="Choose start time"
                               TextColor="{StaticResource PrimaryLabelTextColor}" />
+                       
                        <DatePicker Format="d"
-                                   Date="{Binding DateTimeStartSelected}"
+                                   Date="{Binding DateStartSelected}"
                                    MinimumDate="2022-07-10"
                                    MaximumDate="2028-07-20" />
-                       <TimePicker Time="{Binding DateTimeStartSelected}" />
+                       <TimePicker Time="{Binding TimeStartSelected}" />
                        <Label Text="Choose end time"
                               TextColor="{StaticResource PrimaryLabelTextColor}" />
                        <DatePicker Format="d"
-                                   Date="{Binding DateTimeEndSelected}"
+                                   Date="{Binding DateEndSelected}"
                                    MinimumDate="2022-07-10"
                                    MaximumDate="2028-07-20" />
-                       <TimePicker Time="{Binding DateTimeEndSelected}" />
+                       <TimePicker Time="{Binding TimeEndSelected}" />
                        <!--<Label Text="ActivityEndTime"
                               TextColor="{StaticResource PrimaryLabelTextColor}" />
                        <Entry HorizontalOptions="Fill"

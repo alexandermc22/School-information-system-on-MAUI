@@ -39,29 +39,33 @@
             <ScrollView Orientation="Vertical">
                 <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *"
                       RowSpacing="20">
-                    <Label Grid.Row="0"
-                           Text="{Binding Activity.Code}"
-                           TextColor="{StaticResource PrimaryLabelTextColor}"
-                           FontSize="20" />
-                    <Label Grid.Row="1"
-                           Text="{Binding Activity.Description}"
-                           FontSize="20" />
+                       <Label Grid.Row="0"
+                              Text="Activity"
+                              TextColor="{StaticResource PrimaryLabelTextColor}"
+                              FontSize="40" />
+                       <Label Grid.Row="1"
+                              Text="{Binding Activity.Code}"
+                              TextColor="{StaticResource PrimaryLabelTextColor}"
+                              FontSize="20" />
+                       <Label Grid.Row="2"
+                              Text="{Binding Activity.Description}"
+                              FontSize="20" />
                     
-                    <Label Grid.Row="2"
-                           Text="{Binding Activity.ActivityStartTime}"
-                           FontSize="20" />
+                       <Label Grid.Row="3"
+                              Text="{Binding Activity.ActivityEndTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}"
+                              FontSize="20" />
                     
-                    <Label Grid.Row="3"
-                           Text="{Binding Activity.ActivityRoom}"
-                           FontSize="20" />
+                       <Label Grid.Row="4"
+                              Text="{Binding Activity.ActivityRoom}"
+                              FontSize="20" />
                     
-                    <Label Grid.Row="4"
-                           Text="{Binding Activity.ActivityWeekDay}"
-                           FontSize="20" />
+                       <Label Grid.Row="5"
+                              Text="{Binding Activity.ActivityWeekDay}"
+                              FontSize="20" />
                     
-                    <Label Grid.Row="5"
-                           Text="subjects"
-                           FontSize="16" />
+                       <Label Grid.Row="6"
+                              Text="subjects"
+                              FontSize="16" />
 
                     
                 </Grid>
