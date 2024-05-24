@@ -10,12 +10,12 @@
                        Style="{StaticResource ContentPageStyle}"
                        x:Name="SubjectDetailViewRoot"
                        x:DataType="vm:SubjectDetailViewModel">
-                        
+
     <VerticalStackLayout Spacing="20">
         <HorizontalStackLayout HorizontalOptions="End"
                                Spacing="15"
                                HeightRequest="30">
-            <Button Text="udoli"
+            <Button Text="delete"
                     CornerRadius="5"
                     BackgroundColor="{StaticResource ErrorColor}"
                     Command="{Binding DeleteCommand}" />
@@ -24,33 +24,72 @@
                     CornerRadius="5"
                     BackgroundColor="{StaticResource PrimaryColor}"
                     Command="{Binding GoToEditCommand}" />
-            <Button Text="activiy"
+            <Button Text="activity"
                     CornerRadius="5"
                     BackgroundColor="{StaticResource PrimaryColor}"
                     Command="{Binding GoToActivityCommand}" />
         </HorizontalStackLayout>
 
-        <Grid HorizontalOptions="Center" VerticalOptions="Start"
-              RowDefinitions="170, *" ColumnDefinitions="*, Auto, Auto, *"
-              RowSpacing="20" ColumnSpacing="20">
+       <Grid Grid.Row="1"
+              ColumnDefinitions="*, Auto"
+              ColumnSpacing="20">
+            <ScrollView Orientation="Vertical">
+                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *"
+                      RowSpacing="20">
+                    <Label Grid.Row="0"
+                           Text="{Binding Subject.Name, StringFormat='Name: {0}'}"
+                           TextColor="{StaticResource PrimaryLabelTextColor}"
+                           FontSize="20" />
+                    
+                    <Label Grid.Row="1"
+                           Text="{Binding Subject.Code, StringFormat='Code: {0}'}"
+                           TextColor="{StaticResource PrimaryLabelTextColor}"
+                           FontSize="20" />
 
-            <Frame Grid.Row="0" Grid.Column="1"
-                   HorizontalOptions="Center" VerticalOptions="Center"
-                   Style="{StaticResource ImageFrameStyle}">
-                <Image Aspect="AspectFill"
-                       WidthRequest="170" HeightRequest="170"
-                       Source="{Binding Subject.ImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"/>
-            </Frame>
+                    <Label Grid.Row="2"
+                           Text="Activities:"
+                           FontSize="23" />
 
-            <VerticalStackLayout Grid.Row="0" Grid.RowSpan="2"
-                                 Grid.Column="2"
-                                 Spacing="20">
-                <Label FontSize="24" 
-                       Text="{Binding Subject.Name}" />
+                    <CollectionView Grid.Row="5"
+                                    ItemsSource="{Binding Subject.Activities}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:StudentSubjectsDetailModel">
+                                <HorizontalStackLayout>
+                                    <!--<Frame Margin="5, 5, 20, 5"
+                                           Style="{StaticResource ImageFrameStyle}">
+                                        <Image Source="{Binding SubjectImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
+                                               WidthRequest="60" HeightRequest="60"
+                                               Aspect="AspectFill" />
+                                    </Frame>-->
 
-                <Label FontSize="14" 
-                       Text="{Binding Subject.Code}"/>
-            </VerticalStackLayout>
+                                    <Label VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding SubjectCode, StringFormat='ID: {0}'}"
+                                                      FontSize="21"/>
+                                                <!-- <Span Text=" " /> -->
+                                                <!-- <Span Text="{Binding SubjectName,StringFormat='Name: {0}'}" -->
+                                                <!--       FontSize="21"/> -->
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </HorizontalStackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </ScrollView>
+
+            <Grid Grid.Column="1"
+                  RowDefinitions="Auto, *"
+                  RowSpacing="20">
+                <Frame Grid.Row="0"
+                       Style="{StaticResource ImageFrameStyle}">
+                    <Image Source="{Binding Subject.ImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
+                           WidthRequest="320" HeightRequest="400"
+                           Aspect="AspectFill" />
+                </Frame>
+            </Grid>
         </Grid>
     </VerticalStackLayout>
 </views:ContentPageBase>
