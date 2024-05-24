@@ -1,5 +1,7 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Maui.Converters;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.IdentityModel.Tokens;
 using Project.App.Messages;
 using Project.App.Services;
 using Project.BL.Facades;
@@ -23,11 +25,16 @@ public partial class StudentEditViewModel(
     [RelayCommand]
     public async Task SaveAsync()
     {
-        await studentFacade.SaveAsync(Student with{StudentSubjects = default!});
+        if (Student.FirstName.IsNullOrEmpty() || Student.LastName.IsNullOrEmpty())
+            await alertService.DisplayAsync("Error", "You must enter lastname and firstname");
+        else
+        {
+            await studentFacade.SaveAsync(Student with{StudentSubjects = default!});
 
-        MessengerService.Send(new StudentEditMessage { StudentId = Student.Id });
+            MessengerService.Send(new StudentEditMessage { StudentId = Student.Id });
 
-        navigationService.SendBackButtonPressed();
+            navigationService.SendBackButtonPressed();
+        }
     }
     
     [RelayCommand]
