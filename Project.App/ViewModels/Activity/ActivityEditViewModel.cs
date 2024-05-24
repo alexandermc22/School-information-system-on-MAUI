@@ -22,7 +22,7 @@ public partial class ActivityEditViewModel(
     {
         await activityFacade.SaveAsync(Activity,Subject.Id);
 
-        // MessengerService.Send(new IngredientEditMessage { IngredientId = Ingredient.Id });
+        MessengerService.Send(new ActivityEditMessage { ActivityId = Activity.Id });
 
         navigationService.SendBackButtonPressed();
     }
