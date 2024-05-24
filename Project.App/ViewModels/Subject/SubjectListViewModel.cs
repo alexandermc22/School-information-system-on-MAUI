@@ -37,6 +37,14 @@ public partial class SubjectListViewModel(
         await LoadDataAsync();
     }
     
+    // [RelayCommand]
+    // private async Task GetFilteredAsync(string firstName, string lastName)
+    // {
+    //     await base.LoadDataAsync();
+    //
+    //     // Students = await studentFacade.GetByNameAsync(firstName, lastName);
+    // }
+    
     [RelayCommand]
     private async Task GoToCreateAsync()
     {
