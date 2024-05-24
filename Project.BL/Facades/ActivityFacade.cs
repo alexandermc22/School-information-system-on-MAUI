@@ -96,8 +96,22 @@ public class ActivityFacade(
         IRepository<ActivityEntity> repository =
             uow.GetRepository<ActivityEntity, ActivityEntityMapper>();
         
-        await repository.UpdateAsync(entity);
-        await uow.CommitAsync();
+        // await repository.UpdateAsync(entity);
+        // await uow.CommitAsync();
+        ActivityDetailModel result;
+        if (await repository.ExistsAsync(entity).ConfigureAwait(false))
+        {
+            ActivityEntity updatedEntity = await repository.UpdateAsync(entity).ConfigureAwait(false);
+            result = ModelMapper.MapToDetailModel(updatedEntity);
+        }
+        else
+        {
+            entity.Id = Guid.NewGuid();
+            ActivityEntity insertedEntity = repository.Insert(entity);
+            result = ModelMapper.MapToDetailModel(insertedEntity);
+        }
+
+        await uow.CommitAsync().ConfigureAwait(false);
     }
     
     protected override ICollection<string> IncludesNavigationPathDetail =>

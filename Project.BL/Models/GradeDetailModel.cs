@@ -4,8 +4,7 @@ namespace Project.BL.Models;
 
 public record class GradeDetailModel: ModelBase
 {
-    public required Guid SubjectId { get; set; }
-    public required string SubjectName { get; set; }
+    public required Guid StudentId { get; set; }
     
     public required string StudentName { get; set; }
     public required Guid ActivityId { get; set; }
@@ -16,9 +15,8 @@ public record class GradeDetailModel: ModelBase
     public static GradeDetailModel Empty => new()
     {
         Id = Guid.NewGuid(),
-        SubjectId = Guid.Empty,
+        StudentId = Guid.Empty,
         StudentName = string.Empty,
-        SubjectName = string.Empty,
         ActivityId = Guid.Empty,
         Description = string.Empty,
         GradeValue = Grade.None,

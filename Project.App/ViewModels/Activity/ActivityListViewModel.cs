@@ -7,7 +7,7 @@ using Project.BL.Models;
 namespace Project.App.ViewModels.Activity;
 
 
-[QueryProperty(nameof(Activity), nameof(Activity))]
+[QueryProperty(nameof(Subject), nameof(Subject))]
 public partial class ActivityListViewModel(
     IActivityFacade activityFacade,
     INavigationService navigationService,
@@ -33,7 +33,8 @@ public partial class ActivityListViewModel(
     [RelayCommand]
     private async Task GoToCreateAsync()
     {
-        await navigationService.GoToAsync("/edit");
+        await navigationService.GoToAsync("/editActivity",
+            new Dictionary<string, object?> { [nameof(ActivityEditViewModel.Subject)] = Subject });
     }
 
     // private async Task GoToCreateAsync<ActivityEditViewModel>()
