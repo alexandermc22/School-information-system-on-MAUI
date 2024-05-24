@@ -54,9 +54,30 @@ public partial class ActivityEditViewModel(
                   ?? ActivityDetailModel.Empty;
     }
     
-    public void DateSelected(object sender, DateChangedEventArgs e)
+    public DateTime DateTimeStartSelected
     {
-        Activity.ActivityStartTime = e.NewDate;
+        get => Activity.ActivityStartTime;
+        set
+        {
+            if (Activity.ActivityStartTime != value)
+            {
+                Activity.ActivityStartTime = value;
+                // OnPropertyChanged(); // Вызов PropertyChanged для уведомления об изменении
+            }
+        }
+    }
+    
+    public DateTime DateTimeEndSelected
+    {
+        get => Activity.ActivityEndTime;
+        set
+        {
+            if (Activity.ActivityEndTime != value)
+            {
+                Activity.ActivityEndTime = value;
+                // OnPropertyChanged(); // Вызов PropertyChanged для уведомления об изменении
+            }
+        }
     }
     
     
