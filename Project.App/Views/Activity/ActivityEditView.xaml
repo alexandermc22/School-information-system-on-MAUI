@@ -27,15 +27,11 @@
         </Grid>
         <Grid Grid.Row="1"
               HorizontalOptions="Fill" VerticalOptions="Start"
-              RowDefinitions="170, *" ColumnDefinitions="Auto, *"
+              RowDefinitions="*" ColumnDefinitions=" *"
               RowSpacing="20" ColumnSpacing="20">
-            <Frame Grid.Row="0" Grid.Column="0"
-                   HorizontalOptions="Center"
-                   Style="{StaticResource ImageFrameStyle}">
-            </Frame>
 
-            <VerticalStackLayout Grid.Row="0" Grid.RowSpan="2"
-                                 Grid.Column="1"
+            <VerticalStackLayout Grid.Row="0" 
+                                 Grid.Column="0"
                                  HorizontalOptions="Fill"
                                  Spacing="10">
                 <Label Text="Code"
@@ -50,20 +46,28 @@
                        TextColor="{StaticResource PrimaryLabelTextColor}" />
                 <Entry HorizontalOptions="Fill"
                        Text="{Binding Activity.Duration}" />
-                <Label Text="Choose date"
+                <Label Text="Choose start time"
                        TextColor="{StaticResource PrimaryLabelTextColor}" />
                 <DatePicker Format="d"
-                            Date="{Binding Activity.ActivityStartTime}"
+                            Date="{Binding DateTimeStartSelected}"
                             MinimumDate="2022-07-10"
                             MaximumDate="2028-07-20" />
-                <Label Text="ActivityEndTime"
+                <TimePicker Time="{Binding DateTimeStartSelected}" />
+                <Label Text="Choose end time"
+                       TextColor="{StaticResource PrimaryLabelTextColor}" />
+                <DatePicker Format="d"
+                            Date="{Binding DateTimeEndSelected}"
+                            MinimumDate="2022-07-10"
+                            MaximumDate="2028-07-20" />
+                <TimePicker Time="{Binding DateTimeEndSelected}" />
+                <!--<Label Text="ActivityEndTime"
                        TextColor="{StaticResource PrimaryLabelTextColor}" />
                 <Entry HorizontalOptions="Fill"
                        Text="{Binding Activity.ActivityEndTime}" />
                 <Label Text="ActivityWeekDay"
                        TextColor="{StaticResource PrimaryLabelTextColor}" />
                 <Entry HorizontalOptions="Fill"
-                       Text="{Binding Activity.ActivityWeekDay}" />
+                       Text="{Binding Activity.ActivityWeekDay}" />-->
 
                 <!-- <Label Text="description" -->
                 <!--        TextColor="{StaticResource PrimaryLabelTextColor}" /> -->
@@ -74,13 +78,13 @@
                 <!--         Text="{Binding Student.LastName}" /> -->
             </VerticalStackLayout>
                
-               <VerticalStackLayout Grid.Row="8" Grid.Column="4"
+               <!--<VerticalStackLayout Grid.Row="8" Grid.Column="4"
                                  Spacing="30">
-                <!-- <Button Text="Edit Activity" -->
-                <!--         Command="{Binding GoToRecipeIngredientEditCommand}" -->
-                <!--         Style="{StaticResource PrimaryButtonStyle}" /> -->
+                ~1~ <Button Text="Edit Activity" @1@
+                ~1~         Command="{Binding GoToRecipeIngredientEditCommand}" @1@
+                ~1~         Style="{StaticResource PrimaryButtonStyle}" /> @1@
                 <Label Text="error"
-                       HorizontalOptions="End"/>
+                       HorizontalOptions="End"/>-->
 
                 <!-- <CollectionView ItemsSource="{Binding Activity.StudentSubjects}" -->
                 <!--                 HorizontalOptions="End"> -->
@@ -105,7 +109,7 @@
                 <!--         </DataTemplate> -->
                 <!--     </CollectionView.ItemTemplate> -->
                 <!-- </CollectionView> -->
-            </VerticalStackLayout>
+          
                
         </Grid>
     </Grid>
