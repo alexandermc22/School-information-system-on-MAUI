@@ -6,6 +6,7 @@ using Project.BL.Facades;
 using Project.BL.Models;
 namespace Project.App.ViewModels.Activity;
 
+[QueryProperty(nameof(Subject), nameof(Subject))]
 [QueryProperty(nameof(Activity), nameof(Activity))]
 public partial class ActivityEditViewModel(    
     IActivityFacade activityFacade,
@@ -14,11 +15,12 @@ public partial class ActivityEditViewModel(
     : ViewModelBase(messengerService), IRecipient<ActivityEditMessage>, IRecipient<ActivityDeleteMessage>
 {
     public ActivityDetailModel Activity { get; set; } = ActivityDetailModel.Empty;
-
+    public SubjectDetailModel Subject { get; set; } = SubjectDetailModel.Empty;
+    
     [RelayCommand]
     private async Task SaveAsync()
     {
-        await activityFacade.SaveAsync(Activity);
+        await activityFacade.SaveAsync(Activity,Subject.Id);
 
         // MessengerService.Send(new IngredientEditMessage { IngredientId = Ingredient.Id });
 
