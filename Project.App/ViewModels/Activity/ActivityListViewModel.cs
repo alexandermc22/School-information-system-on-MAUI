@@ -30,7 +30,7 @@ public partial class ActivityListViewModel(
     private async Task GetFilteredAsync(DateTime startTime, DateTime endTime)
     {
         await base.LoadDataAsync();
-
+    
         Activity = await activityFacade.GetFilteredAsync(Subject.Id, startTime, endTime);
     }
     
