@@ -17,7 +17,10 @@ public partial class ActivityListViewModel(
     
     public SubjectDetailModel Subject { get; set; } = SubjectDetailModel.Empty;
     public IEnumerable<ActivityListModel> Activity { get; set; } = null!;
-
+    
+    private DateTime StartTime { get; set; }
+    private DateTime EndTime { get; set; }
+    
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
@@ -25,6 +28,14 @@ public partial class ActivityListViewModel(
         Activity = await activityFacade.GetActivityAsync(Subject.Id); //TODO check null
     }
 
+
+    [RelayCommand]
+    private async Task GetFilteredAsync()
+    {
+        await base.LoadDataAsync();
+        Activity = await activityFacade.GetFilteredAsync(Subject.Id, StartTime, EndTime);
+    }
+    
     [RelayCommand]
     private async Task GoToDetailAsync(Guid id)
         => await navigationService.GoToAsync<ActivityDetailViewModel>(

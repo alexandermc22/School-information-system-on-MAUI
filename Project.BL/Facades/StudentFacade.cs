@@ -17,7 +17,7 @@ public class StudentFacade(
     public async Task<IEnumerable<StudentListModel>?> GetByNameAsync(string lastName, string firstName)
     {
         // Проверка на пустые строки
-        if (string.IsNullOrWhiteSpace(lastName) && string.IsNullOrWhiteSpace(firstName))
+        if (string.IsNullOrEmpty(lastName) && string.IsNullOrEmpty(firstName))
         {
             // Если оба параметра пустые, вернуть пустой список
             return new List<StudentListModel>();
@@ -29,11 +29,11 @@ public class StudentFacade(
 
         // Формирование условий фильтрации
         IQueryable<StudentEntity> filteredStudents = query;
-        if (!string.IsNullOrWhiteSpace(lastName))
+        if (!string.IsNullOrEmpty(lastName))
         {
             filteredStudents = filteredStudents.Where(s => s.LastName == lastName);
         }
-        if (!string.IsNullOrWhiteSpace(firstName))
+        if (!string.IsNullOrEmpty(firstName))
         {
             filteredStudents = filteredStudents.Where(s => s.FirstName == firstName);
         }

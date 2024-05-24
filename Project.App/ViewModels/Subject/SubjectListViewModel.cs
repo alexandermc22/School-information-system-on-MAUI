@@ -14,27 +14,28 @@ public partial class SubjectListViewModel(
     : ViewModelBase(messengerService), IRecipient<SubjectEditMessage>, IRecipient<SubjectDeleteMessage>
 {
     public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
-    private bool _isSortRequired = false;
-
+    private string Code { get; set; } = string.Empty;
+    private string Name { get; set; } = string.Empty;
     
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
-
-        if (_isSortRequired)
-        {
-            Subjects = await subjectFacade.GetSortAsync();
-            _isSortRequired = false;
-        }
-        else 
-            Subjects = await subjectFacade.GetAsync();
+        Subjects = await subjectFacade.GetAsync();
     }
     
     [RelayCommand]
     private async Task SortAsync()
     {
-        _isSortRequired = true;
-        await LoadDataAsync();
+        await base.LoadDataAsync();
+        Subjects = await subjectFacade.GetSortAsync();
+    }
+    
+    [RelayCommand]
+    private async Task GetFilteredAsync()
+    {
+        await base.LoadDataAsync();
+    
+        Subjects = await subjectFacade.GetByNameAsync(Code, Name);
     }
     
     [RelayCommand]

@@ -8,5 +8,8 @@ public interface IActivityFacade : IFacade<ActivityEntity, ActivityListModel , A
     Task<IEnumerable<ActivityListModel>?> GetActivityAsync(Guid id);
     Task SaveAsync(ActivityDetailModel model, Guid subjectId);
     Task SaveAsync(ActivityListModel model, Guid subjectId);
+
+    Task<IEnumerable<ActivityListModel>?> GetFilteredAsync(Guid subjectId, DateTime activityStartTime,
+        DateTime activityEndTime);
     // Task DeleteAsync(Guid id);
 }

@@ -17,7 +17,7 @@ public class SubjectFacade(
     public async Task<IEnumerable<SubjectListModel>?> GetByNameAsync(string code, string name)
     {
         // Проверка на пустые строки
-        if (string.IsNullOrWhiteSpace(code) && string.IsNullOrWhiteSpace(name))
+        if (string.IsNullOrEmpty(code) && string.IsNullOrEmpty(name))
         {
             // Если оба параметра пустые, вернуть пустой список
             return new List<SubjectListModel>();
@@ -29,11 +29,11 @@ public class SubjectFacade(
 
         // Формирование условий фильтрации
         IQueryable<SubjectEntity> filteredSubjects = query;
-        if (!string.IsNullOrWhiteSpace(code))
+        if (!string.IsNullOrEmpty(code))
         {
             filteredSubjects = filteredSubjects.Where(s => s.Code == code);
         }
-        if (!string.IsNullOrWhiteSpace(name))
+        if (!string.IsNullOrEmpty(name))
         {
             filteredSubjects = filteredSubjects.Where(s => s.Name == name);
         }

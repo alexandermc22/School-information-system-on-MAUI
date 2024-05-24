@@ -36,40 +36,35 @@
                                  Span="2" />
             </CollectionView.ItemsLayout>
         
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="m:ActivityListModel">
-                <Frame Style="{StaticResource ImageFrameStyle}">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Source={x:Reference ActivityListViewRoot}, Path=BindingContext.GoToDetailCommand}"
-                                              CommandParameter="{Binding Id}" />
-                    </Frame.GestureRecognizers>
-                    <Grid RowDefinitions="*, *, *, *">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="m:ActivityListModel">
+                    <Frame Style="{StaticResource ImageFrameStyle}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference ActivityListViewRoot}, Path=BindingContext.GoToDetailCommand}"
+                                                  CommandParameter="{Binding Id}" />
+                        </Frame.GestureRecognizers>
+                        <Grid RowDefinitions="*, *, *, *">
+                            <Image Source="icon_activity.png" VerticalOptions="Center" HorizontalOptions="Center" />
+                            <Label Grid.Row="1"
+                                   Margin="22,12"
+                                   FontSize="20"
+                                   Text="{Binding ActivityType}"
+                                   TextColor="White" VerticalOptions="End" />
+                            <Label Grid.Row="2"
+                                   Margin="22,12"
+                                   FontSize="20"
+                                   Text="{Binding ActivityStartTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}"
+                                   TextColor="White" VerticalOptions="End" />
+                            <Label Grid.Row="3"
+                                   Margin="22,12"
+                                   FontSize="20"
+                                   Text="{Binding ActivityEndTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}"
+                                   TextColor="White" VerticalOptions="End" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
 
-                        <Label Grid.Row="1"
-                               Margin="22,12"
-                               FontSize="20" LineBreakMode="WordWrap"
-                               Text="{Binding SubjectName}"
-                               TextColor="White" VerticalOptions="End" />
-                        <Label Grid.Row="2"
-                               Margin="22,12"
-                               FontSize="20" LineBreakMode="WordWrap"
-                               Text="{Binding Code}"
-                               TextColor="White" VerticalOptions="End" />
-                        <Label Grid.Row="3"
-                               Margin="22,12"
-                               FontSize="20" LineBreakMode="WordWrap"
-                               Text="{Binding ActivityStartTime}"
-                               TextColor="White" VerticalOptions="End" />
-                        <Label Grid.Row="4"
-                               Margin="22,12"
-                               FontSize="20" LineBreakMode="WordWrap"
-                               Text="{Binding ActivityEndTime}"
-                               TextColor="White" VerticalOptions="End" />
-                        
-                    </Grid>
-                </Frame>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
         
         <!--<StackLayout Grid.Column="1" Padding="20">  
           <Grid Padding="10" Margin="20,10,0,0">
