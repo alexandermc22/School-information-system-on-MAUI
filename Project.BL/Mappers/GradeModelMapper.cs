@@ -55,16 +55,35 @@ public class GradeModelMapper :
     public override GradeEntity MapToEntity(GradeDetailModel model)
         => throw new NotImplementedException("This method is unsupported. Use the other overload.");
 
-    public GradeEntity MapToEntity(GradeDetailModel model, Guid studentId)
+    public GradeEntity MapToEntity(GradeDetailModel model, Guid activityId)
         => new()
         {
             Id = model.Id,
             GradeValue = model.GradeValue,
             Description = model.Description,
             GradeDate = model.GradeDate,
-            ActivityId = model.ActivityId,
-            StudentId = studentId,
+            ActivityId = activityId,
+            StudentId = model.StudentId,
             Activity = null!,
             Student = null!,
         };
+    
+    public GradeEntity MapToEntity(GradeListModel model, Guid activityId)
+        => new()
+        {
+            Id = model.Id,
+            GradeValue = model.GradeValue,
+            GradeDate = model.GradeDate,
+            ActivityId = activityId,
+            StudentId = model.StudentId,
+            Activity = null!,
+            Student = null!,
+        };
+    
+    public void MapToExistingDetailModel(GradeDetailModel existingDetailModel,
+        StudentListModel student)
+    {
+        existingDetailModel.StudentId = student.Id;
+        existingDetailModel.StudentName = $"{student.LastName} {student.FirstName}";
+    }
 }

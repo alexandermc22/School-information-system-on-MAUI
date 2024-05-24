@@ -37,12 +37,25 @@ public class GradeFacade(
             : ALM;
     }
     
-    
-    
-    
-    public async Task SaveAsync(GradeDetailModel model, Guid studentId)
+    public async Task SaveAsync(GradeListModel model, Guid activityId)
     {
-        GradeEntity entity = gradeModelMapper.MapToEntity(model, studentId);
+        GradeEntity entity = gradeModelMapper.MapToEntity(model, activityId);
+
+        await using IUnitOfWork uow = UnitOfWorkFactory.Create();
+        IRepository<GradeEntity> repository =
+            uow.GetRepository<GradeEntity, GradeEntityMapper>();
+
+        if (await repository.ExistsAsync(entity))
+        {
+            await repository.UpdateAsync(entity);
+            await uow.CommitAsync();
+        }
+    }
+    
+    
+    public async Task SaveAsync(GradeDetailModel model, Guid activityId)
+    {
+        GradeEntity entity = gradeModelMapper.MapToEntity(model, activityId);
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
         IRepository<GradeEntity> repository =
             uow.GetRepository<GradeEntity, GradeEntityMapper>();
