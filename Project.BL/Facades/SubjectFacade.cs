@@ -28,11 +28,9 @@ public class SubjectFacade(
 
         // Формирование условий фильтрации
         IQueryable<SubjectEntity> filteredSubjects = query;
-        if (!string.IsNullOrEmpty(code))
-        {
-            filteredSubjects = filteredSubjects.Where(s => s.Code == code || s.Name== code);
-        }
 
+        filteredSubjects = filteredSubjects.Where(s => s.Code == code || s.Name== code);
+        
         // Преобразование отфильтрованных студентов в модели списка
         List<SubjectListModel> SLM = await filteredSubjects
             .OrderBy(s => s.Code)

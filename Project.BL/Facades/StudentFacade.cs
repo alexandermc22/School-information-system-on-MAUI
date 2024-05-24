@@ -11,17 +11,23 @@ public class StudentFacade(
     IUnitOfWorkFactory unitOfWorkFactory,
     IStudentModelMapper modelMapper)
     :
-        FacadeBase<StudentEntity,StudentDetailModel, StudentListModel, StudentEntityMapper>(unitOfWorkFactory,
+        FacadeBase<StudentEntity, StudentDetailModel, StudentListModel, StudentEntityMapper>(unitOfWorkFactory,
             modelMapper), IStudentFacade
 {
-    public async Task<IEnumerable<StudentListModel>?> GetByNameAsync(string lastName, string firstName)
+    public async Task<IEnumerable<StudentListModel>?> GetByNameAsync(string firstName)
     {
         // Проверка на пустые строки
-        if (string.IsNullOrEmpty(lastName) && string.IsNullOrEmpty(firstName))
+        if (string.IsNullOrEmpty(firstName))
         {
             // Если оба параметра пустые, вернуть пустой список
-            return new List<StudentListModel>();
+            return await base.GetAsync();
         }
+
+        string[] names = firstName.Split(" ");
+        if (names.Length > 2)
+            return new List<StudentListModel>();
+
+
 
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
 
@@ -29,15 +35,9 @@ public class StudentFacade(
 
         // Формирование условий фильтрации
         IQueryable<StudentEntity> filteredStudents = query;
-        if (!string.IsNullOrEmpty(lastName))
-        {
-            filteredStudents = filteredStudents.Where(s => s.LastName == lastName);
-        }
-        if (!string.IsNullOrEmpty(firstName))
-        {
-            filteredStudents = filteredStudents.Where(s => s.FirstName == firstName);
-        }
 
+        filteredStudents = filteredStudents.Where(s => s.LastName == names[0] ||  s.LastName == names[1] || s.FirstName ==  names[0] ||  s.FirstName == names[1]);
+        
         // Преобразование отфильтрованных студентов в модели списка
         List<StudentListModel> SLM = await filteredStudents
             .OrderBy(s => s.LastName)
