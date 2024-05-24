@@ -6,7 +6,7 @@
                        xmlns:vm="clr-namespace:Project.App.ViewModels"
                        xmlns:models="clr-namespace:Project.BL.Models;assembly=Project.BL"
                        x:Class="Project.App.Views.Student.StudentEditView"
-                       Title="text1"
+                       Title="Student Edit"
                        Style="{StaticResource ContentPageStyle}"
                        x:Name="StudentEditViewRoot"
                        x:DataType="vm:StudentEditViewModel">
@@ -19,8 +19,10 @@
 
             <Button Grid.Column="1"
                     VerticalOptions="Start"
-                    HeightRequest="30"
-                    Text="save"
+                    Text="Save"
+                    TextColor="White"
+                    WidthRequest="100"
+                    HeightRequest="50"
                     CornerRadius="5"
                     BackgroundColor="{StaticResource PrimaryColor}"
                     Command="{Binding SaveCommand}" />
@@ -33,7 +35,7 @@
                    HorizontalOptions="Center"
                    Style="{StaticResource ImageFrameStyle}">
                 <Grid>
-                    <Image Source="{Binding Student.Photo, TargetNullValue='ingredient_placeholder.jpg'}"
+                    <Image Source="{Binding Student.Photo, TargetNullValue='timur_icon.jpg'}"
                            WidthRequest="170" HeightRequest="170"
                            Aspect="AspectFill" />
                 </Grid>
@@ -42,19 +44,55 @@
             <VerticalStackLayout Grid.Row="0" Grid.RowSpan="2"
                                  Grid.Column="1"
                                  HorizontalOptions="Fill"
-                                 Spacing="10">
-                <Label Text="lastname"
+                                 Spacing="10"
+                                 Margin="0,0,0,0">
+                <Label Text="Last name:"
+                       FontSize="20"
                        TextColor="{StaticResource PrimaryLabelTextColor}" />
                 <Entry HorizontalOptions="Fill"
                        Text="{Binding Student.LastName}" />
-                <Label Text="first"
+                <Label Text="First name:"
+                       FontSize="20"
                        TextColor="{StaticResource PrimaryLabelTextColor}" />
                 <Entry HorizontalOptions="Fill"
                        Text="{Binding Student.FirstName}" />
-                <Label Text="image"
+                <Label Text="Image:"
+                       FontSize="20"
                        TextColor="{StaticResource PrimaryLabelTextColor}" />
                 <Entry HorizontalOptions="Fill"
                        Text="{Binding Student.Photo}" />
+                
+                <!-- <Button Text="editsubjects" -->
+                <!--         Command="{Binding GoToStudentSubjectsEditCommand}" -->
+                <!--         IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleInvertedConverter}}" -->
+                <!--         Style="{StaticResource PrimaryButtonStyle}" /> -->
+                <!-- <Label Text="error unsaved" -->
+                <!--        HorizontalOptions="End" -->
+                <!--        IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleConverter}}" /> -->
+                
+                <!-- <CollectionView ItemsSource="{Binding Student.StudentSubjects}" -->
+                <!--                 HorizontalOptions="End"> -->
+                <!--        <CollectionView.ItemTemplate> -->
+                <!--               <DataTemplate x:DataType="models:StudentSubjectsDetailModel"> -->
+                <!--                      <HorizontalStackLayout> -->
+                <!--                             <Frame Margin="5, 5, 20, 5" -->
+                <!--                                    Style="{StaticResource ImageFrameStyle}"> -->
+                <!--                                    <Image Source="{Binding SubjectImageUrl, TargetNullValue='ingredient_placeholder.jpg'}" -->
+                <!--                                           WidthRequest="60" HeightRequest="60" -->
+                <!--                                           Aspect="AspectFill" /> -->
+                <!--                             </Frame> -->
+                <!-- -->
+                <!--                             <Label VerticalOptions="Center"> -->
+                <!--                                    <Label.FormattedText> -->
+                <!--                                           <FormattedString> -->
+                <!--                                                  <Span Text="{Binding SubjectName}" /> -->
+                <!--                                           </FormattedString> -->
+                <!--                                    </Label.FormattedText> -->
+                <!--                             </Label> -->
+                <!--                      </HorizontalStackLayout> -->
+                <!--               </DataTemplate> -->
+                <!--        </CollectionView.ItemTemplate> -->
+                <!-- </CollectionView> -->
 
                 <!-- <Label Text="description" -->
                 <!--        TextColor="{StaticResource PrimaryLabelTextColor}" /> -->
@@ -65,35 +103,59 @@
                 <!--         Text="{Binding Student.LastName}" /> -->
             </VerticalStackLayout>
                
-               <VerticalStackLayout Grid.Row="8" Grid.Column="4"
-                                 Spacing="30">
-                <Button Text="editsubjects"
+            <VerticalStackLayout Grid.Row="8" >
+                
+                <Button Text="Edit New Subject"
+                        WidthRequest="150"
+                        HeightRequest="50"
                         Command="{Binding GoToStudentSubjectsEditCommand}"
                         IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleInvertedConverter}}"
                         Style="{StaticResource PrimaryButtonStyle}" />
-                <Label Text="error unsaved"
+                <Label Text="Error Unsaved"
                        HorizontalOptions="End"
                        IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleConverter}}" />
+            </VerticalStackLayout>    
 
-                <Label Text="error"
-                       HorizontalOptions="End"/>
-
+                <!-- <Label Text="error" -->
+                <!--        HorizontalOptions="End"/> -->
+            
+            <VerticalStackLayout Grid.Row="9" Grid.Column="4" >
+                <Label Text="Student Subjects"
+                       FontSize="20"
+                       TextColor="{StaticResource PrimaryLabelTextColor}"
+                       Margin="0, 65, 0, 10"
+                       HorizontalOptions="Start" />
+                
                 <CollectionView ItemsSource="{Binding Student.StudentSubjects}"
                                 HorizontalOptions="End">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:StudentSubjectsDetailModel">
-                            <HorizontalStackLayout>
-                                <Frame Margin="5, 5, 20, 5"
+                            <HorizontalStackLayout
+                                Margin="0, 65, 20, 0">
+                                
+                                <!-- <Label VerticalOptions="Center"> -->
+                                <!--     <Label.FormattedText> -->
+                                <!--         <FormattedString> -->
+                                <!--             <Span Text="Student Subjects: " -->
+                                <!--                   FontSize="20"/> -->
+                                <!--             <Span Text="{Binding SubjectName}" /> -->
+                                <!--         </FormattedString> -->
+                                <!--     </Label.FormattedText> -->
+                                <!-- </Label> -->
+                               
+                                <Frame 
                                        Style="{StaticResource ImageFrameStyle}">
                                     <Image Source="{Binding SubjectImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
                                            WidthRequest="60" HeightRequest="60"
                                            Aspect="AspectFill" />
                                 </Frame>
-
-                                <Label VerticalOptions="Center">
+                
+                                <Label VerticalOptions="Center"
+                                       Margin="15,10,0,0">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding SubjectName}" />
+                                            <Span Text="{Binding SubjectCode}" 
+                                                  FontSize="19"/>
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
