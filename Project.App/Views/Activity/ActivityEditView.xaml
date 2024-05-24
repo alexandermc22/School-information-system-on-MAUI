@@ -74,9 +74,9 @@
                
                <VerticalStackLayout Grid.Row="8" Grid.Column="4"
                                  Spacing="30">
-                <Button Text="Edit Activity"
+                <!--<Button Text="Edit Activity"
                         Command="{Binding GoToRecipeIngredientEditCommand}"
-                        Style="{StaticResource PrimaryButtonStyle}" />
+                        Style="{StaticResource PrimaryButtonStyle}" />-->
                 <Label Text="error"
                        HorizontalOptions="End"/>
 

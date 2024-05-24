@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Project.App.Messages;
 using Project.App.Services;
 using Project.BL.Facades;
@@ -10,7 +11,7 @@ public partial class ActivityEditViewModel(
     IActivityFacade activityFacade,
     INavigationService navigationService,
     IMessengerService messengerService)
-    : ViewModelBase(messengerService)
+    : ViewModelBase(messengerService), IRecipient<ActivityEditMessage>, IRecipient<ActivityDeleteMessage>
 {
     public ActivityDetailModel Activity { get; set; } = ActivityDetailModel.Empty;
 
@@ -23,5 +24,22 @@ public partial class ActivityEditViewModel(
 
         navigationService.SendBackButtonPressed();
     }
+    
+    public async void Receive(ActivityEditMessage message)
+    {
+        await ReloadDataAsync();
+    }
+
+    public async void Receive(ActivityDeleteMessage message)
+    {
+        await ReloadDataAsync();
+    }
+    
+    private async Task ReloadDataAsync()
+    {
+        Activity = await activityFacade.GetAsync(Activity.Id)
+                  ?? ActivityDetailModel.Empty;
+    }
+    
     
 }
