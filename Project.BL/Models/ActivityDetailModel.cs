@@ -14,7 +14,7 @@ public record class ActivityDetailModel: ModelBase
     public required DateTime ActivityEndTime { get; set; }
     public required string ActivityType { get; set; }
     public DayOfWeek ActivityWeekDay { get; set; }
-    public LectureRoom ActivityRoom { get; set; }
+    public required string ActivityRoom { get; set; }
     
     public ObservableCollection<GradeListModel> Grades { get; set; } = new();
 
@@ -28,7 +28,7 @@ public record class ActivityDetailModel: ModelBase
         Description = string.Empty,
         ActivityStartTime = DateTime.MinValue,
         ActivityEndTime = DateTime.MinValue,
-        
+        ActivityRoom = string.Empty
 
     };
 

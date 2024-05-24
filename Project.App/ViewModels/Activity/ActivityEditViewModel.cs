@@ -25,14 +25,19 @@ public partial class ActivityEditViewModel(
     [RelayCommand]
     private async Task SaveAsync()
     {
-        if (Activity.ActivityType == string.Empty)
+        Activity.ActivityStartTime = DateStartSelected.Date + TimeStartSelected;
+        Activity.ActivityEndTime = DateEndSelected.Date + TimeEndSelected;
+        if (Activity.ActivityType == string.Empty || Activity.ActivityRoom==string.Empty)
         {
-            alertService.DisplayAsync("Error", "You must enter activity type");
+            alertService.DisplayAsync("Error", "You must enter activity type and room");
+        }
+        else if(Activity.ActivityStartTime >= Activity.ActivityEndTime )
+        {
+            alertService.DisplayAsync("Error", "Wrong Date");
         }
         else
         {
-            Activity.ActivityStartTime = DateStartSelected.Date + TimeStartSelected;
-            Activity.ActivityEndTime = DateEndSelected.Date + TimeEndSelected;
+            
             Activity.Duration = Activity.ActivityEndTime - Activity.ActivityStartTime;
             await activityFacade.SaveAsync(Activity,Subject.Id);
 
@@ -58,18 +63,6 @@ public partial class ActivityEditViewModel(
                   ?? ActivityDetailModel.Empty;
     }
     
-    public DateTime DateTimeStartSelected
-    {
-        get => Activity.ActivityStartTime;
-        set
-        {
-            if (Activity.ActivityStartTime != value)
-            {
-                Activity.ActivityStartTime = value;
-                // OnPropertyChanged(); // Вызов PropertyChanged для уведомления об изменении
-            }
-        }
-    }
     
     public DateTime DateEndSelected { get; set; }
     

@@ -11,7 +11,7 @@ public record class ActivityListModel: ModelBase
     public required DateTime ActivityEndTime { get; set; }
     public required string ActivityType { get; set; }
     public DayOfWeek ActivityWeekDay { get; set; }
-    public LectureRoom ActivityRoom { get; set; }
+    public required string ActivityRoom { get; set; }
 
     public static ActivityListModel Empty => new()
     {
@@ -22,7 +22,7 @@ public record class ActivityListModel: ModelBase
         Duration = TimeSpan.Zero,
         ActivityStartTime = DateTime.MinValue,
         ActivityEndTime = DateTime.MinValue,
-
+        ActivityRoom = string.Empty
 
     };
 
