@@ -5,9 +5,8 @@
                        xmlns:views="clr-namespace:Project.App.Views"
                        x:Class="Project.App.Views.Activity.ActivityListView"
                        xmlns:m="clr-namespace:Project.BL.Models;assembly=Project.BL"
-                       xmlns:vm="clr-namespace:Project.App.ViewModels"
-                       xmlns:activity="clr-namespace:Project.App.ViewModels.Activity"
-                       x:DataType="activity:ActivityListViewModel">
+                       xmlns:vm="clr-namespace:Project.App.ViewModels.Activity"
+                       x:DataType="vm:ActivityListViewModel">
     
     <Grid HorizontalOptions="FillAndExpand" RowDefinitions="Auto, *"
           RowSpacing="20">
@@ -28,7 +27,7 @@
         
         
         <CollectionView Grid.Row="1"
-                        ItemsSource="{Binding Subject}">
+                        ItemsSource="{Binding Activity}">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Horizontal"
                                  HorizontalItemSpacing="10" VerticalItemSpacing="10"
@@ -42,22 +41,27 @@
                         <TapGestureRecognizer Command="{Binding Source={x:Reference ActivityListViewRoot}, Path=BindingContext.GoToDetailCommand}"
                                               CommandParameter="{Binding Id}" />
                     </Frame.GestureRecognizers>
-                    <Grid RowDefinitions="*, *">
+                    <Grid RowDefinitions="*, *, *, *">
 
                         <Label Grid.Row="1"
                                Margin="22,12"
                                FontSize="20" LineBreakMode="WordWrap"
                                Text="{Binding SubjectName}"
                                TextColor="White" VerticalOptions="End" />
-                        <Label Grid.Row="1"
+                        <Label Grid.Row="2"
                                Margin="22,12"
                                FontSize="20" LineBreakMode="WordWrap"
                                Text="{Binding Code}"
                                TextColor="White" VerticalOptions="End" />
-                        <Label Grid.Row="1"
+                        <Label Grid.Row="3"
                                Margin="22,12"
                                FontSize="20" LineBreakMode="WordWrap"
                                Text="{Binding ActivityStartTime}"
+                               TextColor="White" VerticalOptions="End" />
+                        <Label Grid.Row="4"
+                               Margin="22,12"
+                               FontSize="20" LineBreakMode="WordWrap"
+                               Text="{Binding ActivityEndTime}"
                                TextColor="White" VerticalOptions="End" />
                         
                     </Grid>
