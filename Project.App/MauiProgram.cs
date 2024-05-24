@@ -32,42 +32,9 @@ public static class MauiProgram
             .AddDALServices(GetDALOptions(builder.Configuration))
             .AddAppServices()
             .AddBLServices();
-        
-        
-
-        
         var app = builder.Build();
-        
-        // // Проверка всех зарегистрированных зависимостей
-        // using (var scope = app.Services.CreateScope())
-        // {
-        //     var services = scope.ServiceProvider;
-        //     try
-        //     {
-        //         // Попытка получения каждого зарегистрированного сервиса
-        //         services.GetRequiredService<INavigationService>();
-        //         services.GetRequiredService<IMessengerService>();
-        //         services.GetRequiredService<IStudentFacade>();
-        //         var t = services.GetRequiredService<StudentEditViewModel>();
-        //         
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         throw new ArgumentException();
-        //     }
-        // }
-        
         MigrateDb(app.Services.GetRequiredService<IDbMigrator>());
         RegisterRouting(app.Services.GetRequiredService<INavigationService>());
-
-        // StudentDetailModel s = new StudentDetailModel()
-        // {
-        //     FirstName = "fff",
-        //     LastName = "fsdfsd",
-        //     Photo = null,
-        // };
-        // var p = app.Services.GetRequiredService<IStudentFacade>();
-        // p.SaveAsync(s);
         return app;
     }
     private static void MigrateDb(IDbMigrator migrator) => migrator.Migrate();
