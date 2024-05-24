@@ -29,54 +29,51 @@
               HorizontalOptions="Fill" VerticalOptions="Start"
               RowDefinitions="*" ColumnDefinitions=" *"
               RowSpacing="20" ColumnSpacing="20">
+              <ScrollView>
+                   <VerticalStackLayout Grid.Row="0" 
+                                        Grid.Column="0"
+                                        HorizontalOptions="Fill"
+                                        Spacing="10">
+                       <Label Text="Description"
+                              TextColor="{StaticResource PrimaryLabelTextColor}" />
+                       <Entry HorizontalOptions="Fill"
+                              Text="{Binding Activity.Description}" />
+                       <Label Text="Activity tag"
+                              TextColor="{StaticResource PrimaryLabelTextColor}" />
+                       <Entry HorizontalOptions="Fill"
+                              Text="{Binding Activity.ActivityType}" />
+                       <Label Text="Choose start time"
+                              TextColor="{StaticResource PrimaryLabelTextColor}" />
+                       <DatePicker Format="d"
+                                   Date="{Binding DateTimeStartSelected}"
+                                   MinimumDate="2022-07-10"
+                                   MaximumDate="2028-07-20" />
+                       <TimePicker Time="{Binding DateTimeStartSelected}" />
+                       <Label Text="Choose end time"
+                              TextColor="{StaticResource PrimaryLabelTextColor}" />
+                       <DatePicker Format="d"
+                                   Date="{Binding DateTimeEndSelected}"
+                                   MinimumDate="2022-07-10"
+                                   MaximumDate="2028-07-20" />
+                       <TimePicker Time="{Binding DateTimeEndSelected}" />
+                       <!--<Label Text="ActivityEndTime"
+                              TextColor="{StaticResource PrimaryLabelTextColor}" />
+                       <Entry HorizontalOptions="Fill"
+                              Text="{Binding Activity.ActivityEndTime}" />
+                       <Label Text="ActivityWeekDay"
+                              TextColor="{StaticResource PrimaryLabelTextColor}" />
+                       <Entry HorizontalOptions="Fill"
+                              Text="{Binding Activity.ActivityWeekDay}" />-->
 
-            <VerticalStackLayout Grid.Row="0" 
-                                 Grid.Column="0"
-                                 HorizontalOptions="Fill"
-                                 Spacing="10">
-                <Label Text="Code"
-                       TextColor="{StaticResource PrimaryLabelTextColor}" />
-                <Entry HorizontalOptions="Fill"
-                       Text="{Binding Activity.Code}" />
-                <Label Text="Description"
-                       TextColor="{StaticResource PrimaryLabelTextColor}" />
-                <Entry HorizontalOptions="Fill"
-                       Text="{Binding Activity.Description}" />
-                <Label Text="Duration"
-                       TextColor="{StaticResource PrimaryLabelTextColor}" />
-                <Entry HorizontalOptions="Fill"
-                       Text="{Binding Activity.Duration}" />
-                <Label Text="Choose start time"
-                       TextColor="{StaticResource PrimaryLabelTextColor}" />
-                <DatePicker Format="d"
-                            Date="{Binding DateTimeStartSelected}"
-                            MinimumDate="2022-07-10"
-                            MaximumDate="2028-07-20" />
-                <TimePicker Time="{Binding DateTimeStartSelected}" />
-                <Label Text="Choose end time"
-                       TextColor="{StaticResource PrimaryLabelTextColor}" />
-                <DatePicker Format="d"
-                            Date="{Binding DateTimeEndSelected}"
-                            MinimumDate="2022-07-10"
-                            MaximumDate="2028-07-20" />
-                <TimePicker Time="{Binding DateTimeEndSelected}" />
-                <!--<Label Text="ActivityEndTime"
-                       TextColor="{StaticResource PrimaryLabelTextColor}" />
-                <Entry HorizontalOptions="Fill"
-                       Text="{Binding Activity.ActivityEndTime}" />
-                <Label Text="ActivityWeekDay"
-                       TextColor="{StaticResource PrimaryLabelTextColor}" />
-                <Entry HorizontalOptions="Fill"
-                       Text="{Binding Activity.ActivityWeekDay}" />-->
-
-                <!-- <Label Text="description" -->
-                <!--        TextColor="{StaticResource PrimaryLabelTextColor}" /> -->
-                <!-- <Editor HorizontalOptions="Fill" -->
-                <!--         TextColor="{StaticResource FormEntryTextColor}" -->
-                <!--         AutoSize="TextChanges" -->
-                <!--         BackgroundColor="{StaticResource FormEntryBackgroundColor}" -->
-                <!--         Text="{Binding Student.LastName}" /> -->
-            </VerticalStackLayout>
+                       <!-- <Label Text="description" -->
+                       <!--        TextColor="{StaticResource PrimaryLabelTextColor}" /> -->
+                       <!-- <Editor HorizontalOptions="Fill" -->
+                       <!--         TextColor="{StaticResource FormEntryTextColor}" -->
+                       <!--         AutoSize="TextChanges" -->
+                       <!--         BackgroundColor="{StaticResource FormEntryBackgroundColor}" -->
+                       <!--         Text="{Binding Student.LastName}" /> -->
+                   </VerticalStackLayout>
+              </ScrollView>
                
                <!--<VerticalStackLayout Grid.Row="8" Grid.Column="4"
                                  Spacing="30">
