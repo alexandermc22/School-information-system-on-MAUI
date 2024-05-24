@@ -18,7 +18,12 @@
         <Label Grid.Row="0"
                FontSize="24"
                Text="Subjects" />
-
+        <SearchBar Grid.Row="0"
+                   Placeholder="Search...."
+                   WidthRequest="300"
+                   Text="{Binding SearchQuery}"
+                   SearchCommand="{Binding }"
+                   ></SearchBar>
         <!-- <Button Grid.Row="0" -->
         <!--         Padding="12, 6" -->
         <!--         HorizontalOptions="End" VerticalOptions="Start" -->
@@ -49,6 +54,7 @@
                     BackgroundColor="{StaticResource PrimaryColor}"
                     Command="{Binding SortCommand}" />
         </HorizontalStackLayout>
+       
         
         <CollectionView Grid.Row="1"
                         ItemsSource="{Binding Subjects}">
