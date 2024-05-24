@@ -4,6 +4,8 @@ using Project.App.Messages;
 using Project.App.Services;
 using Project.BL.Facades;
 using Project.BL.Models;
+using Project.Common.Enum;
+
 namespace Project.App.ViewModels.Activity;
 
 [QueryProperty(nameof(Subject), nameof(Subject))]
@@ -11,6 +13,7 @@ namespace Project.App.ViewModels.Activity;
 public partial class ActivityEditViewModel(    
     IActivityFacade activityFacade,
     INavigationService navigationService,
+    IAlertService alertService,
     IMessengerService messengerService)
     : ViewModelBase(messengerService), IRecipient<ActivityEditMessage>, IRecipient<ActivityDeleteMessage>
 {
@@ -20,11 +23,19 @@ public partial class ActivityEditViewModel(
     [RelayCommand]
     private async Task SaveAsync()
     {
-        await activityFacade.SaveAsync(Activity,Subject.Id);
+        if (Activity.ActivityType == string.Empty)
+        {
+            alertService.DisplayAsync("Error", "You must enter activity type");
+        }
+        else
+        {
+            Activity.Duration = Activity.ActivityEndTime - Activity.ActivityStartTime;
+            await activityFacade.SaveAsync(Activity,Subject.Id);
 
-        MessengerService.Send(new ActivityEditMessage { ActivityId = Activity.Id });
+            MessengerService.Send(new ActivityEditMessage { ActivityId = Activity.Id });
 
-        navigationService.SendBackButtonPressed();
+            navigationService.SendBackButtonPressed();
+        }
     }
     
     public async void Receive(ActivityEditMessage message)
