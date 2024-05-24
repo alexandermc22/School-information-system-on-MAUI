@@ -15,7 +15,6 @@ public partial class SubjectListViewModel(
 {
     public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
     public string Code { get; set; } = string.Empty;
-    public string Name { get; set; } = string.Empty;
     
     protected override async Task LoadDataAsync()
     {
@@ -35,7 +34,7 @@ public partial class SubjectListViewModel(
     {
         await base.LoadDataAsync();
     
-        Subjects = await subjectFacade.GetByNameAsync(Code, Name);
+        Subjects = await subjectFacade.GetByNameAsync(Code);
     }
     
     [RelayCommand]
