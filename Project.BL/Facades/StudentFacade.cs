@@ -35,9 +35,16 @@ public class StudentFacade(
 
         // Формирование условий фильтрации
         IQueryable<StudentEntity> filteredStudents = query;
+        if(names.Length == 2)
+        {
+            filteredStudents = filteredStudents.Where(s => s.LastName == names[0] || s.LastName == names[1] || s.FirstName == names[0] || s.FirstName == names[1]);
 
-        filteredStudents = filteredStudents.Where(s => s.LastName == names[0] ||  s.LastName == names[1] || s.FirstName ==  names[0] ||  s.FirstName == names[1]);
-        
+        }
+        if (names.Length == 1)
+        {
+            filteredStudents = filteredStudents.Where(s => s.LastName == names[0] || s.FirstName == names[0] );
+
+        }
         // Преобразование отфильтрованных студентов в модели списка
         List<StudentListModel> SLM = await filteredStudents
             .OrderBy(s => s.LastName)
