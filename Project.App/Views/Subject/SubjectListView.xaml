@@ -21,8 +21,8 @@
         <SearchBar Grid.Row="0"
                    Placeholder="Search...."
                    WidthRequest="300"
-                   Text="{Binding SearchQuery}"
-                   SearchCommand="{Binding }"
+                   Text="{Binding Code}"
+                   SearchCommand="{Binding GetFilteredCommand }"
                    ></SearchBar>
         <!-- <Button Grid.Row="0" -->
         <!--         Padding="12, 6" -->

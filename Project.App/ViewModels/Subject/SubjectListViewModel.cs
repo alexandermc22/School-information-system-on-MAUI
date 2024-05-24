@@ -14,8 +14,8 @@ public partial class SubjectListViewModel(
     : ViewModelBase(messengerService), IRecipient<SubjectEditMessage>, IRecipient<SubjectDeleteMessage>
 {
     public IEnumerable<SubjectListModel> Subjects { get; set; } = null!;
-    private string Code { get; set; } = string.Empty;
-    private string Name { get; set; } = string.Empty;
+    public string Code { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
     
     protected override async Task LoadDataAsync()
     {
