@@ -8,5 +8,6 @@ public interface IGradeFacade : IFacade<GradeEntity,GradeListModel , GradeDetail
     
     Task<IEnumerable<GradeListModel>?> GetGradeAsync(Guid id);
     Task SaveAsync(GradeDetailModel model, Guid studentId);
+    Task SaveAsync(GradeListModel model, Guid activityId);
     Task DeleteAsync(Guid id);
 }

@@ -37,7 +37,47 @@ public partial class GradeEditViewModel(
         }
     }
 
+    [RelayCommand]
+    private async Task AddNewStudentToGradeAsync()
+    {
+        if (GradeNew is not null
+            && StudentSelected is not null
+            && Activity is not null)
+        {
+            gradeModelMapper.MapToExistingDetailModel(GradeNew, StudentSelected);
+
+            await gradeFacade.SaveAsync(GradeNew, Activity.Id);
+            Activity.Grades.Add(gradeModelMapper.MapToListModel(GradeNew));
+
+            GradeNew = GetGradeNew();
+
+            // MessengerService.Send(new RecipeIngredientAddMessage());
+        }
+    }
     
+    [RelayCommand]
+    private async Task UpdateStudentAsync(GradeListModel? model)
+    {
+        if (model is not null
+            && Activity is not null)
+        {
+            await gradeFacade.SaveAsync(model, Activity.Id);
+
+            // MessengerService.Send(new RecipeIngredientEditMessage());
+        }
+    }
+
+    [RelayCommand]
+    private async Task RemoveIngredientAsync(GradeListModel model)
+    {
+        if (Activity is not null)
+        {
+            await gradeFacade.DeleteAsync(model.Id);
+            Activity.Grades.Remove(model);
+
+            // MessengerService.Send(new RecipeIngredientDeleteMessage());
+        }
+    }
     
     private GradeDetailModel GetGradeNew()
     {
