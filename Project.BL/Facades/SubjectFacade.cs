@@ -14,13 +14,12 @@ public class SubjectFacade(
         FacadeBase<SubjectEntity,SubjectDetailModel, SubjectListModel, SubjectEntityMapper>(unitOfWorkFactory,
             modelMapper), ISubjectFacade
 {
-    public async Task<IEnumerable<SubjectListModel>?> GetByNameAsync(string code, string name)
+    public async Task<IEnumerable<SubjectListModel>?> GetByNameAsync(string code)
     {
         // Проверка на пустые строки
-        if (string.IsNullOrEmpty(code) && string.IsNullOrEmpty(name))
+        if (string.IsNullOrEmpty(code))
         {
-            // Если оба параметра пустые, вернуть пустой список
-            return new List<SubjectListModel>();
+            return await base.GetAsync();
         }
 
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
@@ -29,15 +28,9 @@ public class SubjectFacade(
 
         // Формирование условий фильтрации
         IQueryable<SubjectEntity> filteredSubjects = query;
-        if (!string.IsNullOrEmpty(code))
-        {
-            filteredSubjects = filteredSubjects.Where(s => s.Code == code);
-        }
-        if (!string.IsNullOrEmpty(name))
-        {
-            filteredSubjects = filteredSubjects.Where(s => s.Name == name);
-        }
 
+        filteredSubjects = filteredSubjects.Where(s => s.Code == code || s.Name== code);
+        
         // Преобразование отфильтрованных студентов в модели списка
         List<SubjectListModel> SLM = await filteredSubjects
             .OrderBy(s => s.Code)

@@ -6,7 +6,7 @@
                        xmlns:vm="clr-namespace:Project.App.ViewModels"
                        xmlns:models="clr-namespace:Project.BL.Models;assembly=Project.BL"
                        x:Class="Project.App.Views.Student.StudentDetailView"
-                       Title="da"
+                       Title="Student Detail"
                        Style="{StaticResource ContentPageStyle}"
                        x:Name="StudentDetailViewRoot"
                        x:DataType="vm:StudentDetailViewModel">
@@ -37,18 +37,23 @@
         <!-- <HorizontalStackLayout HorizontalOptions="End" -->
         <!--                        Spacing="15" -->
         <!--                        HeightRequest="30"> -->
-        <Grid Grid.Row="0"
-              RowSpacing="15"
-              HeightRequest="30" >
-            <Button 
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
                     VerticalOptions="Start"
+                    HorizontalOptions="End"
                     WidthRequest="100"
                     HeightRequest="50"
                     Text="Delete"
                     CornerRadius="5"
                     BackgroundColor="{StaticResource ErrorColor}"
                     Command="{Binding DeleteCommand}" />
-            <Button 
+
+            <Button Grid.Column="1"
                     HorizontalOptions="End" VerticalOptions="Start"
                     WidthRequest="100"
                     HeightRequest="50"
@@ -58,7 +63,6 @@
                     Style="{StaticResource PrimaryButtonStyle}" />
         </Grid>
         
-        
 
         <Grid Grid.Row="1"
               ColumnDefinitions="*, Auto"
@@ -67,16 +71,18 @@
                 <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *"
                       RowSpacing="20">
                     <Label Grid.Row="0"
-                           Text="{Binding Student.FirstName}"
+                           Text="{Binding Student.FirstName, StringFormat='Name: {0}'}"
                            TextColor="{StaticResource PrimaryLabelTextColor}"
                            FontSize="20" />
+                    
                     <Label Grid.Row="1"
-                           Text="{Binding Student.LastName}"
+                           Text="{Binding Student.LastName, StringFormat='Lastname: {0}'}"
+                           TextColor="{StaticResource PrimaryLabelTextColor}"
                            FontSize="20" />
 
                     <Label Grid.Row="2"
-                           Text="subjects"
-                           FontSize="16" />
+                           Text="Subjects:"
+                           FontSize="23" />
 
                     <CollectionView Grid.Row="5"
                                     ItemsSource="{Binding Student.StudentSubjects}">
@@ -93,9 +99,11 @@
                                     <Label VerticalOptions="Center">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding SubjectCode}" />
-                                                <Span Text=" " />
-                                                <Span Text="{Binding SubjectName}" />
+                                                <Span Text="{Binding SubjectCode, StringFormat='ID: {0}'}"
+                                                      FontSize="21"/>
+                                                <!-- <Span Text=" " /> -->
+                                                <!-- <Span Text="{Binding SubjectName,StringFormat='Name: {0}'}" -->
+                                                <!--       FontSize="21"/> -->
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
@@ -111,8 +119,8 @@
                   RowSpacing="20">
                 <Frame Grid.Row="0"
                        Style="{StaticResource ImageFrameStyle}">
-                    <Image Source="{Binding Student.Photo, TargetNullValue='ingredient_placeholder.jpg'}"
-                           WidthRequest="320" HeightRequest="240"
+                    <Image Source="{Binding Student.Photo, TargetNullValue='timur_icon.jpg'}"
+                           WidthRequest="320" HeightRequest="400"
                            Aspect="AspectFill" />
                 </Frame>
             </Grid>

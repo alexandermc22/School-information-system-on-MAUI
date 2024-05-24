@@ -16,8 +16,7 @@ public partial class StudentListViewModel(
     public IEnumerable<StudentListModel> Students { get; set; } = null!;
 
 
-    private string FirstName { get; set; } = string.Empty;
-    private string LastName { get; set; } = string.Empty;
+    public string FirstName { get; set; } = string.Empty;
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
@@ -38,7 +37,7 @@ public partial class StudentListViewModel(
     {
         await base.LoadDataAsync();
     
-        Students = await studentFacade.GetByNameAsync(FirstName, LastName);
+        Students = await studentFacade.GetByNameAsync(FirstName);
     }
     
     [RelayCommand]
