@@ -5,8 +5,8 @@ namespace Project.BL.Models;
 
 public record class ActivityDetailModel: ModelBase
 {
-    public required string SubjectName { get; set; }
-    public required string Code { get; set; }
+    public  string SubjectName { get; set; }
+    public  string Code { get; set; }
     public required TimeSpan Duration { get; set; }
     public required DateTime ActivityStartTime { get; set; }
     
