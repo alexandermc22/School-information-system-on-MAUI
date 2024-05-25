@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Project.App.Messages;
 using Project.App.Services;
 using Project.BL.Facades;
+using Project.BL.Mappers;
 using Project.BL.Models;
 using Project.Common.Enum;
 
@@ -14,6 +15,7 @@ public partial class ActivityEditViewModel(
     IActivityFacade activityFacade,
     INavigationService navigationService,
     IAlertService alertService,
+    IActivityModelMapper activityModelMapper,
     IMessengerService messengerService)
     : ViewModelBase(messengerService), IRecipient<ActivityEditMessage>, IRecipient<ActivityDeleteMessage>
 {
@@ -37,7 +39,7 @@ public partial class ActivityEditViewModel(
         }
         else
         {
-            
+            Subject.Activities.Add(activityModelMapper.MapToListModel(Activity));
             Activity.Duration = Activity.ActivityEndTime - Activity.ActivityStartTime;
             await activityFacade.SaveAsync(Activity,Subject.Id);
 

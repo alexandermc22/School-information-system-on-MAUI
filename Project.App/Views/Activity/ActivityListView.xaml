@@ -16,29 +16,32 @@
         <HorizontalStackLayout HorizontalOptions="End"
                                Spacing="15"
                                HeightRequest="30">
+            
+            <DatePicker Format="d"
+                        Date="{Binding DateStartSelected}"
+                        MinimumDate="2022-07-10"
+                        MaximumDate="2028-07-20" />
+            <TimePicker Time="{Binding TimeStartSelected}" />
+            <Label Text="Choose end time"
+                   TextColor="{StaticResource PrimaryLabelTextColor}" />
+            <DatePicker Format="d"
+                        Date="{Binding DateEndSelected}"
+                        MinimumDate="2022-07-10"
+                        MaximumDate="2028-07-20" />
+            <TimePicker Time="{Binding TimeEndSelected}" />
+
+            <Button Text="Sort"
+                    Command="{Binding GetFilteredCommand}" />
+            
             <Button Text="create"
                     CornerRadius="5"
                     BackgroundColor="{StaticResource PrimaryColor}"
                     Command="{Binding GoToCreateCommand}" />
             
             
-            <StackLayout Padding="20" Spacing="15">
-               <!--  <DatePicker Format="d" -->
-               <!--             Date="{Binding DateTimeStartSelected}" -->
-               <!--             MinimumDate="2022-07-10" -->
-               <!--             MaximumDate="2028-07-20" /> -->
-               <!-- <TimePicker Time="{Binding DateTimeStartSelected}" /> -->
-               <!-- <Label Text="Choose end time" -->
-               <!--        TextColor="{StaticResource PrimaryLabelTextColor}" /> -->
-               <!-- <DatePicker Format="d" -->
-               <!--             Date="{Binding DateTimeEndSelected}" -->
-               <!--             MinimumDate="2022-07-10" -->
-               <!--             MaximumDate="2028-07-20" /> -->
-               <!-- <TimePicker Time="{Binding DateTimeEndSelected}" /> -->
-
-                <!-- <Button Text="Sort" -->
-                <!--         Command="{Binding SortCommand}" /> -->
-            </StackLayout>    
+            
+               
+             
 
             <!-- <Button Text="sort" -->
             <!--         CornerRadius="5" -->
