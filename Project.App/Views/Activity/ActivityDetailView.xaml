@@ -6,7 +6,7 @@
                        xmlns:vm="clr-namespace:Project.App.ViewModels.Activity"
                        xmlns:models="clr-namespace:Project.BL.Models;assembly=Project.BL"
                        x:Class="Project.App.Views.Activity.ActivityDetailView"
-                       Title="da"
+                       Title="Activities"
                        Style="{StaticResource ContentPageStyle}"
                        x:Name="ActivityDetailViewRoot"
                        x:DataType="vm:ActivityDetailViewModel">
@@ -16,7 +16,7 @@
         <Grid Grid.Row="0"
               ColumnDefinitions="*, Auto, Auto"
               ColumnSpacing="15">
-            <Button Grid.Column="1"
+            <Button Grid.Column="2"
                     VerticalOptions="Start"
                     HeightRequest="30"
                     Text="delete"
@@ -24,12 +24,20 @@
                     BackgroundColor="{StaticResource ErrorColor}"
                     Command="{Binding DeleteCommand}" />
 
-            <Button Grid.Row="0"
+            <Button Grid.Column="1"
                     HorizontalOptions="End" VerticalOptions="Start"
                     HeightRequest="30"
                     Text="edit"
                     CornerRadius="5"
                     Command="{Binding GoToEditCommand}"
+                    Style="{StaticResource PrimaryButtonStyle}" />
+            
+            <Button Grid.Column="0"
+                    HorizontalOptions="End" VerticalOptions="Start"
+                    HeightRequest="30"
+                    Text="grade"
+                    CornerRadius="5"
+                    Command="{Binding GoToGradeCommand}"
                     Style="{StaticResource PrimaryButtonStyle}" />
         </Grid>
 

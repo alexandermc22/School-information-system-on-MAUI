@@ -44,11 +44,12 @@ public partial class ActivityDetailViewModel(
     {
         if (Activity is not null)
         {
-            await navigationService.GoToAsync("/edit",
+            await navigationService.GoToAsync("/editActivity",
                 new Dictionary<string, object?> { [nameof(ActivityEditViewModel.Activity)] = Activity with { } });
         }
     }
     
+    [RelayCommand]
     private async Task GoToGradeAsync()
     {
         if (Activity is not null)
