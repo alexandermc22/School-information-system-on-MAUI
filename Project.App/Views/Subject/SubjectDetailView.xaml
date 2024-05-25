@@ -65,11 +65,17 @@
                                     <Label VerticalOptions="Center">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding ActivityRoom, StringFormat='ID: {0}'}"
+                                                <Span Text="{Binding ActivityType, StringFormat='TYPE: {0},'}"
                                                       FontSize="21"/>
-                                                <!-- <Span Text=" " /> -->
-                                                <!-- <Span Text="{Binding SubjectName,StringFormat='Name: {0}'}" -->
-                                                <!--       FontSize="21"/> -->
+                                                <Span Text="  " />
+                                                <Span Text="{Binding ActivityRoom,StringFormat='ROOM: {0},'}"
+                                                      FontSize="21"/>
+                                                <Span Text="  " />
+                                                <Span Text="{Binding ActivityStartTime,StringFormat='FROM {0}'}"
+                                                      FontSize="18"/>
+                                                <Span Text=" " />
+                                                <Span Text="{Binding ActivityEndTime,StringFormat='TO {0}.'}"
+                                                      FontSize="18"/>
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
@@ -86,7 +92,7 @@
                 <Frame Grid.Row="0"
                        Style="{StaticResource ImageFrameStyle}">
                     <Image Source="{Binding Subject.ImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
-                           WidthRequest="320" HeightRequest="400"
+                           WidthRequest="300" HeightRequest="300"
                            Aspect="AspectFill" />
                 </Frame>
             </Grid>
