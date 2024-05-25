@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:views="clr-namespace:Project.App.Views"
+                       x:Class="Project.App.Views.Grade.GradeListView"
+                       xmlns:m="clr-namespace:Project.BL.Models;assembly=Project.BL"
+                       xmlns:vm="clr-namespace:Project.App.ViewModels.Grade"
+                       x:DataType="vm:GradeListViewModel"
+                       x:Name="GradeListViewRoot">
+    
+    <Grid HorizontalOptions="FillAndExpand" 
+         RowDefinitions="Auto, *"
+         RowSpacing="20">
+        <Label Grid.Row="0"
+               FontSize="24"
+               Text="Grades" />
+        
+        <HorizontalStackLayout HorizontalOptions="End"
+                               Spacing="15"
+                               HeightRequest="30">
+            <Button Text="add"
+                    CornerRadius="5"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    Command="{Binding GoToCreateCommand}" />
+
+            
+        </HorizontalStackLayout>
+    </Grid>
+</views:ContentPageBase>
