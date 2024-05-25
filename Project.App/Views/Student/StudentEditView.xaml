@@ -10,39 +10,37 @@
                        Style="{StaticResource ContentPageStyle}"
                        x:Name="StudentEditViewRoot"
                        x:DataType="vm:StudentEditViewModel">
-       
-                       
- <Grid RowDefinitions="70, *">
-        <Grid Grid.Row="0"
-              ColumnDefinitions="*, Auto"
-              ColumnSpacing="15">
 
-            <Button Grid.Column="1"
-                    VerticalOptions="Start"
-                    Text="Save"
-                    TextColor="White"
-                    WidthRequest="100"
-                    HeightRequest="50"
-                    CornerRadius="5"
-                    BackgroundColor="{StaticResource PrimaryColor}"
-                    Command="{Binding SaveCommand}" />
-        </Grid>
-        <Grid Grid.Row="1"
+    <Grid RowDefinitions="70, *" ColumnDefinitions="*, Auto">
+        <!-- Row 0: Save Button -->
+        <Button Grid.Row="0" Grid.Column="1"
+                VerticalOptions="Start"
+                Text="Save"
+                TextColor="White"
+                WidthRequest="100"
+                HeightRequest="50"
+                CornerRadius="5"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                Command="{Binding SaveCommand}" />
+
+        <!-- Row 1: Student Details -->
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
               HorizontalOptions="Fill" VerticalOptions="Start"
-              RowDefinitions="170, *" ColumnDefinitions="Auto, *"
+              RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, *"
+              ColumnDefinitions="Auto, *"
               RowSpacing="20" ColumnSpacing="20">
+            
+            <!-- Student Photo -->
             <Frame Grid.Row="0" Grid.Column="0"
                    HorizontalOptions="Center"
                    Style="{StaticResource ImageFrameStyle}">
-                <Grid>
-                    <Image Source="{Binding Student.Photo, TargetNullValue='timur_icon.jpg'}"
-                           WidthRequest="170" HeightRequest="170"
-                           Aspect="AspectFill" />
-                </Grid>
+                <Image Source="{Binding Student.Photo, TargetNullValue='timur_icon.jpg'}"
+                       WidthRequest="170" HeightRequest="170"
+                       Aspect="AspectFill" />
             </Frame>
 
-            <VerticalStackLayout Grid.Row="0" Grid.RowSpan="2"
-                                 Grid.Column="1"
+            <!-- Student Information -->
+            <VerticalStackLayout Grid.Row="0" Grid.Column="1" Grid.RowSpan="4"
                                  HorizontalOptions="Fill"
                                  Spacing="10"
                                  Margin="0,0,0,0">
@@ -61,100 +59,47 @@
                        TextColor="{StaticResource PrimaryLabelTextColor}" />
                 <Entry HorizontalOptions="Fill"
                        Text="{Binding Student.Photo}" />
-                
-                <!-- <Button Text="editsubjects" -->
-                <!--         Command="{Binding GoToStudentSubjectsEditCommand}" -->
-                <!--         IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleInvertedConverter}}" -->
-                <!--         Style="{StaticResource PrimaryButtonStyle}" /> -->
-                <!-- <Label Text="error unsaved" -->
-                <!--        HorizontalOptions="End" -->
-                <!--        IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleConverter}}" /> -->
-                
-                <!-- <CollectionView ItemsSource="{Binding Student.StudentSubjects}" -->
-                <!--                 HorizontalOptions="End"> -->
-                <!--        <CollectionView.ItemTemplate> -->
-                <!--               <DataTemplate x:DataType="models:StudentSubjectsDetailModel"> -->
-                <!--                      <HorizontalStackLayout> -->
-                <!--                             <Frame Margin="5, 5, 20, 5" -->
-                <!--                                    Style="{StaticResource ImageFrameStyle}"> -->
-                <!--                                    <Image Source="{Binding SubjectImageUrl, TargetNullValue='ingredient_placeholder.jpg'}" -->
-                <!--                                           WidthRequest="60" HeightRequest="60" -->
-                <!--                                           Aspect="AspectFill" /> -->
-                <!--                             </Frame> -->
-                <!-- -->
-                <!--                             <Label VerticalOptions="Center"> -->
-                <!--                                    <Label.FormattedText> -->
-                <!--                                           <FormattedString> -->
-                <!--                                                  <Span Text="{Binding SubjectName}" /> -->
-                <!--                                           </FormattedString> -->
-                <!--                                    </Label.FormattedText> -->
-                <!--                             </Label> -->
-                <!--                      </HorizontalStackLayout> -->
-                <!--               </DataTemplate> -->
-                <!--        </CollectionView.ItemTemplate> -->
-                <!-- </CollectionView> -->
-
-                <!-- <Label Text="description" -->
-                <!--        TextColor="{StaticResource PrimaryLabelTextColor}" /> -->
-                <!-- <Editor HorizontalOptions="Fill" -->
-                <!--         TextColor="{StaticResource FormEntryTextColor}" -->
-                <!--         AutoSize="TextChanges" -->
-                <!--         BackgroundColor="{StaticResource FormEntryBackgroundColor}" -->
-                <!--         Text="{Binding Student.LastName}" /> -->
             </VerticalStackLayout>
-               
-            <VerticalStackLayout Grid.Row="8" >
-                
-                <Button Text="Add New Subject"
-                        WidthRequest="150"
-                        HeightRequest="50"
-                        Command="{Binding GoToStudentSubjectsEditCommand}"
-                        IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleInvertedConverter}}"
-                        Style="{StaticResource PrimaryButtonStyle}" />
-                <Label Text="Error Unsaved"
-                       HorizontalOptions="End"
-                       IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleConverter}}" />
-            </VerticalStackLayout>    
 
-                <!-- <Label Text="error" -->
-                <!--        HorizontalOptions="End"/> -->
-            
-            <VerticalStackLayout Grid.Row="9" Grid.Column="4" >
+            <!-- Add New Subject Button -->
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                    Text="Add New Subject"
+                    WidthRequest="150"
+                    HeightRequest="50"
+                    Command="{Binding GoToStudentSubjectsEditCommand}"
+                    IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleInvertedConverter}}"
+                    Style="{StaticResource PrimaryButtonStyle}" />
+            <Label Grid.Row="5" Grid.Column="1"
+                   Text="Error Unsaved"
+                   HorizontalOptions="End"
+                   IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleConverter}}" />
+
+            <!-- Student Subjects -->
+            <VerticalStackLayout Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
                 <Label Text="Student Subjects"
                        FontSize="20"
                        TextColor="{StaticResource PrimaryLabelTextColor}"
-                       Margin="0, 65, 0, 10"
+                       Margin="0, 10, 0, 10"
                        HorizontalOptions="Start" />
                 
                 <CollectionView ItemsSource="{Binding Student.StudentSubjects}"
-                                HorizontalOptions="End">
+                                HorizontalOptions="Fill">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:StudentSubjectsDetailModel">
                             <HorizontalStackLayout
-                                Margin="0, 65, 20, 0">
-                                
-                                <!-- <Label VerticalOptions="Center"> -->
-                                <!--     <Label.FormattedText> -->
-                                <!--         <FormattedString> -->
-                                <!--             <Span Text="Student Subjects: " -->
-                                <!--                   FontSize="20"/> -->
-                                <!--             <Span Text="{Binding SubjectName}" /> -->
-                                <!--         </FormattedString> -->
-                                <!--     </Label.FormattedText> -->
-                                <!-- </Label> -->
-                               
+                                Margin="0, 10, 20, 0">
                                 <Frame 
-                                       Style="{StaticResource ImageFrameStyle}">
+                                       Style="{StaticResource ImageFrameStyle}"
+                                       Margin="0,0,0,0">
                                     <Image Source="{Binding SubjectImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
                                            WidthRequest="60" HeightRequest="60"
                                            Aspect="AspectFill" />
                                 </Frame>
-                
                                 <Label VerticalOptions="Center"
-                                       Margin="15,10,0,0">
+                                       Margin="15,0,0,0">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding SubjectCode}" 
+                                            <Span Text="{Binding SubjectName}" 
                                                   FontSize="19"/>
                                         </FormattedString>
                                     </Label.FormattedText>
@@ -164,7 +109,6 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </VerticalStackLayout>
-               
         </Grid>
     </Grid>
 </views:ContentPageBase>

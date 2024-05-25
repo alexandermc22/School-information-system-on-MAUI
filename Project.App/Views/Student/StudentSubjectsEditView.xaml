@@ -1,6 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:views="clr-namespace:Project.App.Views"
                        xmlns:vm="clr-namespace:Project.App.ViewModels"
@@ -12,82 +10,84 @@
                        x:DataType="vm:StudentSubjectsEditViewModel"
                        x:Name="StudentSubjectsViewRoot">
     
- <Grid RowDefinitions="Auto, Auto, Auto, *"
-          HorizontalOptions="Start"
-          RowSpacing="25">
-        <HorizontalStackLayout Grid.Row="0"
-                               HorizontalOptions="Center"
+    <Grid RowDefinitions="Auto, Auto, Auto, *" ColumnDefinitions="*, Auto">
+        <HorizontalStackLayout Grid.Row="0" Grid.Column="0"
+                               HorizontalOptions="StartAndExpand" VerticalOptions="Start"
                                Spacing="10">
-            <!-- <Frame Style="{StaticResource ImageFrameStyle}"> -->
-            <!--     <Image Source="{Binding Student.Photo, TargetNullValue='ingredient_placeholder.jpg'}" -->
-            <!--            WidthRequest="320" HeightRequest="240" -->
-            <!--            Aspect="AspectFill" /> -->
-            <!-- </Frame> -->
-
+            <Label Text="{Binding Student.FirstName}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Start"
+                   FontSize="29"/>
             <Label Text="{Binding Student.LastName}"
-                   VerticalOptions="Center" />
+                   VerticalOptions="Center"
+                   HorizontalOptions="Start"
+                   FontSize="29"/>
         </HorizontalStackLayout>
+        <Frame Grid.Row="0" Grid.Column="1"
+               Style="{StaticResource ImageFrameStyle}"
+               HorizontalOptions="End" VerticalOptions="Start">
+            <Image Source="{Binding Student.Photo, TargetNullValue='ingredient_placeholder.jpg'}"
+                   WidthRequest="320" HeightRequest="240"
+                   Aspect="AspectFill"/>
+        </Frame>
 
-        <!-- <Label Grid.Row="1" -->
-        <!--        Text="subjects" /> -->
-
-        <Grid Grid.Row="1"
-              RowDefinitions="Auto, Auto"
-              ColumnDefinitions="Auto, Auto, Auto, Auto, *"
-              RowSpacing="10" ColumnSpacing="15">
-            <Label Grid.Row="0" Grid.Column="2"
+        
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+              RowDefinitions="Auto" ColumnDefinitions="Auto, Auto, Auto, *"
+              RowSpacing="10" ColumnSpacing="10">
+            <Label Grid.Row="0" Grid.Column="0"
                    Text="Subjects" 
-                   FontSize="20"/>
+                   FontSize="20"
+                   VerticalOptions="Center"/>
 
-            <Picker Grid.Row="1" Grid.Column="2"
+            <Picker Grid.Row="0" Grid.Column="1"
                     ItemsSource="{Binding Subjects}"
                     ItemDisplayBinding="{Binding Name}"
-                    SelectedItem="{Binding SubjectSelected}" />
-
-            <Button Grid.Row="1" Grid.Column="3"
-                    Text="Add"
+                    SelectedItem="{Binding SubjectSelected}"
                     HorizontalOptions="Start"
+                    WidthRequest="150"/>
+
+            <Button Grid.Row="0" Grid.Column="2"
+                    Text="Add"
                     Command="{Binding AddNewSubjectToStudentCommand}"
                     Style="{StaticResource PrimaryButtonStyle}"
-                    FontSize="15"/>
+                    FontSize="15"
+                    VerticalOptions="Center"/>
         </Grid>
 
-        <CollectionView Grid.Row="2"
+        
+        <CollectionView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                         ItemsSource="{Binding Student.StudentSubjects}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:StudentSubjectsDetailModel">
-                    <Grid ColumnDefinitions="Auto, Auto, Auto, Auto, *"
-                          ColumnSpacing="10">
+                    <Grid ColumnDefinitions="Auto, *, Auto"
+                          ColumnSpacing="10" VerticalOptions="Start">
                         <Frame Grid.Column="0"
-                               Margin="5, 5, 20, 5"
+                               Margin="0,20,0,0"
                                Style="{StaticResource ImageFrameStyle}">
                             <Image Source="{Binding SubjectImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
                                    WidthRequest="60" HeightRequest="60"
-                                   Aspect="AspectFill" />
+                                   Aspect="AspectFill"/>
                         </Frame>
-                        
-                        
+
                         <Entry Grid.Column="1"
                                VerticalOptions="Center"
-                               Text="{Binding  SubjectName}">
+                               Text="{Binding SubjectName}"
+                               Margin="0,20,0,0">
                             <Entry.Behaviors>
                                 <behaviors:EventToCommandBehavior EventName="Unfocused"
                                                                   Command="{Binding Source={x:Reference StudentSubjectsViewRoot}, Path=BindingContext.UpdateSubjectCommand}"
-                                                                  CommandParameter="{Binding .}" />
+                                                                  CommandParameter="{Binding .}"/>
                             </Entry.Behaviors>
                         </Entry>
-                        
-
-                        <!-- <Label Grid.Column="3" -->
-                        <!--        VerticalOptions="Center" -->
-                        <!--        Text="{Binding SubjectName}" /> -->
 
                         <Button Grid.Column="2"
-                                HorizontalOptions="Start" VerticalOptions="Center"
                                 Text="Delete"
+                                Margin="0,20,0,0"
                                 Command="{Binding Source={x:Reference StudentSubjectsViewRoot}, Path=BindingContext.RemoveSubjectCommand}"
                                 CommandParameter="{Binding .}"
-                                Style="{StaticResource ErrorButtonStyle}" />
+                                Style="{StaticResource ErrorButtonStyle}"
+                                VerticalOptions="Center"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

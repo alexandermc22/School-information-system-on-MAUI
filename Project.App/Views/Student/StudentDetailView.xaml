@@ -99,7 +99,10 @@
                                     <Label VerticalOptions="Center">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding SubjectCode, StringFormat='ID: {0}'}"
+                                                <Span Text="{Binding SubjectCode, StringFormat='Code: {0}   '}"
+                                                      FontSize="21"/>
+                                                <Span Text="    " />
+                                                <Span Text="{Binding SubjectName, StringFormat='Name: {0}'}"
                                                       FontSize="21"/>
                                                 <!-- <Span Text=" " /> -->
                                                 <!-- <Span Text="{Binding SubjectName,StringFormat='Name: {0}'}" -->
