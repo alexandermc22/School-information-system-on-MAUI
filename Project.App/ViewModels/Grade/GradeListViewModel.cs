@@ -1,5 +1,9 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.Maui.Controls;
 using Project.App.Messages;
 using Project.App.Services;
 using Project.BL.Facades;
@@ -31,7 +35,7 @@ public partial class GradeListViewModel(
     [RelayCommand]
     private async Task GoToCreateAsync()
     {
-        await navigationService.GoToAsync("/editGrade",new Dictionary<string, object?> { [nameof(GradeEditViewModel.Activity)] = Activity });
+        await navigationService.GoToAsync("/edit");
     }
 
     public async void Receive(GradeEditMessage message)

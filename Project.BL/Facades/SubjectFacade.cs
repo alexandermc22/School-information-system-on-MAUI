@@ -67,5 +67,5 @@ public class SubjectFacade(
     }
     
     protected override ICollection<string> IncludesNavigationPathDetail =>
-        new[] {$"{nameof(SubjectEntity.Activity)}"};
+        new[] {$"{nameof(SubjectEntity.StudentSubject)}.{nameof(StudentSubjectEntity.Student)}"};
 }

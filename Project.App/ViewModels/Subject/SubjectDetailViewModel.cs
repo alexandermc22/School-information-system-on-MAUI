@@ -12,7 +12,7 @@ public partial class SubjectDetailViewModel(
 ISubjectFacade subjectFacade,
     INavigationService navigationService,
 IMessengerService messengerService)
-    : ViewModelBase(messengerService), IRecipient<SubjectEditMessage>,IRecipient<SubjectAddMessage>, IRecipient<SubjectDeleteMessage>, IRecipient<ActivityDeleteMessage>
+    : ViewModelBase(messengerService), IRecipient<SubjectEditMessage>,IRecipient<SubjectAddMessage>, IRecipient<SubjectDeleteMessage>
 {
     public Guid Id { get; set; }
     public SubjectDetailModel? Subject { get; set; }

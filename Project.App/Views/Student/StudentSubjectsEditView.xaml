@@ -70,7 +70,7 @@
                                    Aspect="AspectFill"/>
                         </Frame>
 
-                        <Label Grid.Column="1"
+                        <Entry Grid.Column="1"
                                VerticalOptions="Center"
                                Text="{Binding SubjectName}"
                                Margin="0,20,0,0">
@@ -79,7 +79,7 @@
                                                                   Command="{Binding Source={x:Reference StudentSubjectsViewRoot}, Path=BindingContext.UpdateSubjectCommand}"
                                                                   CommandParameter="{Binding .}"/>
                             </Entry.Behaviors>
-                        </Label>
+                        </Entry>
 
                         <Button Grid.Column="2"
                                 Text="Delete"

@@ -22,7 +22,7 @@ public class ActivityFacade(
         IQueryable<ActivityEntity> query = uow.GetRepository<ActivityEntity, ActivityEntityMapper>().Get();
         
         var filteredActivities = query
-            .Where(a => a.SubjectId == id)
+            .Where(a => a.SubjectId >= id)
             .ToList();
         List<ActivityListModel> ALM = new List<ActivityListModel>();
         foreach (var activity in filteredActivities)

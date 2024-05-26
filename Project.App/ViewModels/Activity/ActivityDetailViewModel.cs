@@ -54,8 +54,8 @@ public partial class ActivityDetailViewModel(
     {
         if (Activity is not null)
         {
-            await navigationService.GoToAsync("/grade",
-                new Dictionary<string, object?> { [nameof(GradeListViewModel.Activity)] = Activity with { } });
+            await navigationService.GoToAsync("/grade1",
+                new Dictionary<string, object?> { [nameof(GradeListViewModel.Activity)] = Activity });
         }
     }
 

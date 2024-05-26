@@ -3,7 +3,7 @@ using Project.DAL.Entities;
 using Project.BL.Models;
 namespace Project.BL.Mappers;
 
-public class SubjectModelMapper(IActivityModelMapper subjectStudentsModelMapper)
+public class SubjectModelMapper(ISubjectStudentsModelMapper subjectStudentsModelMapper)
     : ModelMapperBase<SubjectEntity,SubjectDetailModel,SubjectListModel>, ISubjectModelMapper
 {
 
@@ -51,8 +51,8 @@ public class SubjectModelMapper(IActivityModelMapper subjectStudentsModelMapper)
                     Name = entity.Name,
                     Code = entity.Code,
                     ImageUrl = entity.ImageUrl,
-                    Activities = subjectStudentsModelMapper.MapToListModel(entity.Activity)
-                        .ToObservableCollection()
+                    // Activities = subjectStudentsModelMapper.MapToListModel(entity.Activity)
+                    //     .ToObservableCollection()
                 };
             else
                 return new SubjectDetailModel

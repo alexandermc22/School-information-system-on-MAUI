@@ -8,17 +8,17 @@ public class GradeToStringConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (value is Grade grade)
+        if (value is GradeScore grade)
         {
             return grade switch
             {
-                Grade.A => "A",
-                Grade.B => "B",
-                Grade.C => "C",
-                Grade.D => "D",
-                Grade.E => "E",
-                Grade.F => "F",
-                Grade.None => "None",
+                GradeScore.A => "A",
+                GradeScore.B => "B",
+                GradeScore.C => "C",
+                GradeScore.D => "D",
+                GradeScore.E => "E",
+                GradeScore.F => "F",
+                GradeScore.None => "None",
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
@@ -32,13 +32,13 @@ public class GradeToStringConverter : IValueConverter
         {
             return str switch
             {
-                "A" => Grade.A,
-                "B" => Grade.B,
-                "C" => Grade.C,
-                "D" => Grade.D,
-                "E" => Grade.E,
-                "F" => Grade.F,
-                "None" => Grade.None,
+                "A" => GradeScore.A,
+                "B" => GradeScore.B,
+                "C" => GradeScore.C,
+                "D" => GradeScore.D,
+                "E" => GradeScore.E,
+                "F" => GradeScore.F,
+                "None" => GradeScore.None,
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

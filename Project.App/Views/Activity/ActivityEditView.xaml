@@ -63,56 +63,8 @@
                                    MinimumDate="2022-07-10"
                                    MaximumDate="2028-07-20" />
                        <TimePicker Time="{Binding TimeEndSelected}" />
-                       <!--<Label Text="ActivityEndTime"
-                              TextColor="{StaticResource PrimaryLabelTextColor}" />
-                       <Entry HorizontalOptions="Fill"
-                              Text="{Binding Activity.ActivityEndTime}" />
-                       <Label Text="ActivityWeekDay"
-                              TextColor="{StaticResource PrimaryLabelTextColor}" />
-                       <Entry HorizontalOptions="Fill"
-                              Text="{Binding Activity.ActivityWeekDay}" />-->
-
-                       <!-- <Label Text="description" -->
-                       <!--        TextColor="{StaticResource PrimaryLabelTextColor}" /> -->
-                       <!-- <Editor HorizontalOptions="Fill" -->
-                       <!--         TextColor="{StaticResource FormEntryTextColor}" -->
-                       <!--         AutoSize="TextChanges" -->
-                       <!--         BackgroundColor="{StaticResource FormEntryBackgroundColor}" -->
-                       <!--         Text="{Binding Student.LastName}" /> -->
                    </VerticalStackLayout>
               </ScrollView>
-               
-               <!--<VerticalStackLayout Grid.Row="8" Grid.Column="4"
-                                 Spacing="30">
-                ~1~ <Button Text="Edit Activity" @1@
-                ~1~         Command="{Binding GoToRecipeIngredientEditCommand}" @1@
-                ~1~         Style="{StaticResource PrimaryButtonStyle}" /> @1@
-                <Label Text="error"
-                       HorizontalOptions="End"/>-->
-
-                <!-- <CollectionView ItemsSource="{Binding Activity.StudentSubjects}" -->
-                <!--                 HorizontalOptions="End"> -->
-                <!--     <CollectionView.ItemTemplate> -->
-                <!--         <DataTemplate x:DataType="models:StudentSubjectsDetailModel"> -->
-                <!--             <HorizontalStackLayout> -->
-                <!--                 <Frame Margin="5, 5, 20, 5" -->
-                <!--                        Style="{StaticResource ImageFrameStyle}"> -->
-                <!--                     <Image Source="{Binding SubjectImageUrl, TargetNullValue='ingredient_placeholder.jpg'}" -->
-                <!--                            WidthRequest="60" HeightRequest="60" -->
-                <!--                            Aspect="AspectFill" /> -->
-                <!--                 </Frame> -->
-                <!-- -->
-                <!--                 <Label VerticalOptions="Center"> -->
-                <!--                     <Label.FormattedText> -->
-                <!--                         <FormattedString> -->
-                <!--                             <Span Text="{Binding SubjectName}" /> -->
-                <!--                         </FormattedString> -->
-                <!--                     </Label.FormattedText> -->
-                <!--                 </Label> -->
-                <!--             </HorizontalStackLayout> -->
-                <!--         </DataTemplate> -->
-                <!--     </CollectionView.ItemTemplate> -->
-                <!-- </CollectionView> -->
           
                
         </Grid>
