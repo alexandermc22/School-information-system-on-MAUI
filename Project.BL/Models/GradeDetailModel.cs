@@ -6,7 +6,7 @@ public record class GradeDetailModel: ModelBase
 {
     public required Guid StudentId { get; set; }
     
-    public required string StudentName { get; set; }
+    public required  string StudentName { get; set; }
     public required Guid ActivityId { get; set; }
     public required Grade GradeValue { get; set; }
 	public required string? Description { get; set; }

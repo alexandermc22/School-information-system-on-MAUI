@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Project.App.Messages;
 using Project.App.Services;
 using Project.BL.Facades;
@@ -15,12 +16,13 @@ public partial class GradeEditViewModel(
     INavigationService navigationService,
     IGradeModelMapper gradeModelMapper,
     IMessengerService messengerService)
-    : ViewModelBase(messengerService)
+    : ViewModelBase(messengerService) 
 {
     public ActivityDetailModel? Activity { get; set; }
     
     public ObservableCollection<StudentListModel> Students { get; set; } = new();
     
+    public List<Common.Enum.Grade> Grades { get; set; } = new((Common.Enum.Grade[])Enum.GetValues(typeof(Common.Enum.Grade)));
     public StudentListModel? StudentSelected { get; set; }
     
     public GradeDetailModel Grade { get; private set; }
@@ -28,7 +30,6 @@ public partial class GradeEditViewModel(
     protected override async Task LoadDataAsync()
     {
         await base.LoadDataAsync();
-
         Students.Clear();
         var students = await studentFacade.GetAsync();
         foreach (var student in students)
@@ -47,12 +48,12 @@ public partial class GradeEditViewModel(
         {
             gradeModelMapper.MapToExistingDetailModel(Grade, StudentSelected);
 
-            await gradeFacade.SaveAsync(Grade, Activity.Id);
+            Grade = await gradeFacade.SaveAsync(Grade, Activity.Id);
             Activity.Grades.Add(gradeModelMapper.MapToListModel(Grade));
 
             Grade = GetGradeNew();
 
-            // MessengerService.Send(new RecipeIngredientAddMessage());
+            MessengerService.Send(new GradeEditMessage(){GradeId = Grade.Id});
         }
     }
     
@@ -64,7 +65,7 @@ public partial class GradeEditViewModel(
         {
             await gradeFacade.SaveAsync(model, Activity.Id);
 
-            // MessengerService.Send(new RecipeIngredientEditMessage());
+            MessengerService.Send(new GradeEditMessage(){GradeId = Grade.Id});
         }
     }
 
@@ -76,7 +77,7 @@ public partial class GradeEditViewModel(
             await gradeFacade.DeleteAsync(model.Id);
             Activity.Grades.Remove(model);
 
-            // MessengerService.Send(new RecipeIngredientDeleteMessage());
+            MessengerService.Send(new GradeDeleteMessage());
         }
     }
     

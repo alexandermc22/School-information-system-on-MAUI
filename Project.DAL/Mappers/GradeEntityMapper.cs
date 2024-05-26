@@ -13,5 +13,6 @@ public class GradeEntityMapper : IEntityMapper<GradeEntity>
         existingEntity.Student = newEntity.Student;
         existingEntity.StudentId = newEntity.StudentId;
         existingEntity.ActivityId = newEntity.ActivityId;
+        existingEntity.StudentName = newEntity.StudentName;
     }
 }

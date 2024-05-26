@@ -11,21 +11,26 @@ public class GradeModelMapper :
             ? GradeListModel.Empty
             : new GradeListModel
             {
+                Id = entity.Id,
                 StudentId = entity.StudentId,
                 ActivityId = entity.ActivityId,
-                StudentName = $"{entity.Student.FirstName} {entity.Student.LastName}",
+                //StudentName = $"{entity.Student.FirstName} {entity.Student.LastName}",
                 GradeValue = entity.GradeValue,
-                GradeDate = entity.GradeDate
+                GradeDate = entity.GradeDate,
+                Description = entity.Description,
+                StudentName = entity.StudentName
             };
 
     public GradeListModel MapToListModel(GradeDetailModel detail)
         => new GradeListModel
         {
+            Id = detail.Id,
             StudentId = detail.StudentId,
             ActivityId = detail.ActivityId,
             StudentName = detail.StudentName,
             GradeValue = detail.GradeValue,
-            GradeDate = detail.GradeDate
+            GradeDate = detail.GradeDate,
+            Description = detail.Description
         };
 
     // public IEnumerable<GradeListModel> MapToListModel(IEnumerable<GradeEntity> entities)
@@ -42,11 +47,12 @@ public class GradeModelMapper :
             return new GradeDetailModel
             {
                 Id = entity.Id,
-                StudentName = $"{entity.Student.FirstName} {entity.Student.LastName}",
-                StudentId = entity.Activity.SubjectId,
+                // StudentName = $"{entity.Student.FirstName} {entity.Student.LastName}",
+                StudentId = entity.StudentId,
                 ActivityId = entity.ActivityId,
                 GradeValue = entity.GradeValue,
                 GradeDate = entity.GradeDate,
+                StudentName = entity.StudentName,
                 Description = entity.Description
             };
         }
@@ -63,6 +69,7 @@ public class GradeModelMapper :
             Description = model.Description,
             GradeDate = model.GradeDate,
             ActivityId = activityId,
+            StudentName = model.StudentName,
             StudentId = model.StudentId,
             Activity = null!,
             Student = null!,
@@ -74,10 +81,12 @@ public class GradeModelMapper :
             Id = model.Id,
             GradeValue = model.GradeValue,
             GradeDate = model.GradeDate,
+            StudentName = model.StudentName,
             ActivityId = activityId,
             StudentId = model.StudentId,
             Activity = null!,
             Student = null!,
+            Description = model.Description
         };
     
     public void MapToExistingDetailModel(GradeDetailModel existingDetailModel,

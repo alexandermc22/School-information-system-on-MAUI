@@ -53,15 +53,28 @@ public class GradeFacade(
     }
     
     
-    public async Task SaveAsync(GradeDetailModel model, Guid activityId)
+    public async Task<GradeDetailModel> SaveAsync(GradeDetailModel model, Guid activityId)
     {
         GradeEntity entity = gradeModelMapper.MapToEntity(model, activityId);
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
         IRepository<GradeEntity> repository =
             uow.GetRepository<GradeEntity, GradeEntityMapper>();
         
-        await repository.UpdateAsync(entity);
-        await uow.CommitAsync();
+        GradeDetailModel result;
+        if (await repository.ExistsAsync(entity).ConfigureAwait(false))
+        {
+            GradeEntity updatedEntity = await repository.UpdateAsync(entity).ConfigureAwait(false);
+            result = ModelMapper.MapToDetailModel(updatedEntity);
+        }
+        else
+        {
+            entity.Id = Guid.NewGuid();
+            GradeEntity insertedEntity = repository.Insert(entity);
+            result = ModelMapper.MapToDetailModel(insertedEntity);
+        }
+
+        await uow.CommitAsync().ConfigureAwait(false);
+        return result;
     }
     
     public  async Task<IEnumerable<GradeListModel>?> GetSortAsync()

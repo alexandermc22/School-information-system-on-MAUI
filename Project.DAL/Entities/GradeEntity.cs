@@ -7,6 +7,7 @@ public record GradeEntity : IEntity
     public required Grade GradeValue { get; set; }
     public string? Description { get; set; }
     
+    public required string StudentName { get; set; }
     public required DateTime GradeDate { get; set; }
     
     public required Guid ActivityId { get; set; }

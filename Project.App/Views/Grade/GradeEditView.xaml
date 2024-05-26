@@ -35,7 +35,7 @@
                    Text="{Binding Grade.Description}" />
 
             <Picker Grid.Row="1" Grid.Column="1"
-                    ItemsSource="{Binding Grade.GradeValue}"
+                    ItemsSource="{Binding Grades}"
                     ItemDisplayBinding="{Binding ., Converter={StaticResource GradeToStringConverter}}"
                     SelectedItem="{Binding Grade.GradeValue}" />
 
@@ -44,7 +44,7 @@
 
             <Picker Grid.Row="1" Grid.Column="2"
                     ItemsSource="{Binding Students}"
-                    ItemDisplayBinding="{Binding Name}"
+                    ItemDisplayBinding="{Binding FirstName}"
                     SelectedItem="{Binding StudentSelected}" />
 
             <Button Grid.Row="1" Grid.Column="3"
@@ -57,7 +57,7 @@
         <CollectionView Grid.Row="3"
                         ItemsSource="{Binding Activity.Grades}">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="m:GradeDetailModel">
+                <DataTemplate x:DataType="m:GradeListModel">
                     <Grid ColumnDefinitions="Auto, Auto, Auto, Auto, *"
                           ColumnSpacing="10">
                         
@@ -74,7 +74,7 @@
 
                         <Picker Grid.Column="2"
                                 VerticalOptions="Center"
-                                ItemsSource="{Binding Source={x:Reference GradeEditViewRoot}, Path=BindingContext.Grade.GradeValue}"
+                                ItemsSource="{Binding Source={x:Reference GradeEditViewRoot}, Path=BindingContext.Grades}"
                                 ItemDisplayBinding="{Binding ., Converter={StaticResource GradeToStringConverter}}"
                                 SelectedItem="{Binding GradeValue}">
                             <Picker.Behaviors>
