@@ -12,7 +12,7 @@ public partial class SubjectDetailViewModel(
 ISubjectFacade subjectFacade,
     INavigationService navigationService,
 IMessengerService messengerService)
-    : ViewModelBase(messengerService), IRecipient<SubjectEditMessage>,IRecipient<SubjectAddMessage>, IRecipient<SubjectDeleteMessage>
+    : ViewModelBase(messengerService), IRecipient<SubjectEditMessage>,IRecipient<SubjectAddMessage>, IRecipient<SubjectDeleteMessage>, IRecipient<ActivityDeleteMessage>
 {
     public Guid Id { get; set; }
     public SubjectDetailModel? Subject { get; set; }
@@ -75,4 +75,9 @@ IMessengerService messengerService)
     {
         await LoadDataAsync();
     }
+    public async void Receive(ActivityDeleteMessage message)
+    {
+        await LoadDataAsync();
+    }
+    
 }
