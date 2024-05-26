@@ -13,6 +13,7 @@ namespace Project.App.ViewModels.Activity;
 [QueryProperty(nameof(Activity), nameof(Activity))]
 public partial class ActivityEditViewModel(    
     IActivityFacade activityFacade,
+    ISubjectFacade subjectFacade,
     INavigationService navigationService,
     IAlertService alertService,
     IActivityModelMapper activityModelMapper,

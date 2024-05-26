@@ -51,8 +51,8 @@ public class SubjectModelMapper(ISubjectStudentsModelMapper subjectStudentsModel
                     Name = entity.Name,
                     Code = entity.Code,
                     ImageUrl = entity.ImageUrl,
-                    Activities = subjectStudentsModelMapper.MapToListModel(entity.Activity)
-                        .ToObservableCollection()
+                    // Activities = subjectStudentsModelMapper.MapToListModel(entity.Activity)
+                    //     .ToObservableCollection()
                 };
             else
                 return new SubjectDetailModel
