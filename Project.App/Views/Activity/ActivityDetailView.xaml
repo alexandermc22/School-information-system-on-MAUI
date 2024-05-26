@@ -45,7 +45,7 @@
               ColumnDefinitions="*, Auto"
               ColumnSpacing="20">
             <ScrollView Orientation="Vertical">
-                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *"
+                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, *"
                       RowSpacing="20">
                        <Label Grid.Row="0"
                               Text="Activity"
@@ -58,31 +58,21 @@
                        <Label Grid.Row="2"
                               Text="{Binding Activity.Description}"
                               FontSize="20" />
-                    
                        <Label Grid.Row="3"
+                              Text="{Binding Activity.ActivityStartTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}"
+                              FontSize="20" />
+                       <Label Grid.Row="4"
                               Text="{Binding Activity.ActivityEndTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}"
                               FontSize="20" />
-                    
-                       <Label Grid.Row="4"
+                       <Label Grid.Row="5"
                               Text="{Binding Activity.ActivityRoom}"
                               FontSize="20" />
-                    
-                       <Label Grid.Row="5"
+                       <Label Grid.Row="6"
                               Text="{Binding Activity.ActivityWeekDay}"
                               FontSize="20" />
-                    
-                       <Label Grid.Row="6"
-                              Text="subjects"
-                              FontSize="16" />
-
-                    
                 </Grid>
             </ScrollView>
-
-            <Grid Grid.Column="1"
-                  RowDefinitions="Auto, *"
-                  RowSpacing="20">
-            </Grid>
+               
         </Grid>
     </Grid>
 </views:ContentPageBase>
