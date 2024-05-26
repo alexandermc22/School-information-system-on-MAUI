@@ -24,7 +24,8 @@ public class SubjectModelMapper(ISubjectStudentsModelMapper subjectStudentsModel
             Id = model.Id,
             Name = model.Name,
             Code = model.Code,
-            ImageUrl = model.ImageUrl
+            ImageUrl = model.ImageUrl,
+            Activity = null!,
         };
     
     public  SubjectEntity MapToEntity(SubjectListModel model)
@@ -34,6 +35,7 @@ public class SubjectModelMapper(ISubjectStudentsModelMapper subjectStudentsModel
             Name = model.Name,
             Code = model.Code,
             ImageUrl = model.ImageUrl,
+            Activity = null!,
         };
 
     public override SubjectDetailModel MapToDetailModel(SubjectEntity? entity)
@@ -42,14 +44,14 @@ public class SubjectModelMapper(ISubjectStudentsModelMapper subjectStudentsModel
             return SubjectDetailModel.Empty;
         else
         {
-            if (entity.StudentSubject != null)
+            if (entity.Activity != null)
                 return new SubjectDetailModel
                 {
                     Id = entity.Id,
                     Name = entity.Name,
                     Code = entity.Code,
                     ImageUrl = entity.ImageUrl,
-                    SubjectStudents = subjectStudentsModelMapper.MapToListModel(entity.StudentSubject)
+                    Activities = subjectStudentsModelMapper.MapToListModel(entity.Activity)
                         .ToObservableCollection()
                 };
             else

@@ -41,7 +41,7 @@ public partial class GradeEditViewModel(
         foreach (var student in students)
         {
             Students.Add(student);
-            GradeNew = GetGradeNew();
+            Grade = GetGradeNew();
         }
     }
     
@@ -61,16 +61,16 @@ public partial class GradeEditViewModel(
     [RelayCommand]
     private async Task AddNewStudentToGradeAsync()
     {
-        if (GradeNew is not null
+        if (Grade is not null
             && StudentSelected is not null
             && Activity is not null)
         {
-            gradeModelMapper.MapToExistingDetailModel(GradeNew, StudentSelected);
+            gradeModelMapper.MapToExistingDetailModel(Grade, StudentSelected);
 
-            await gradeFacade.SaveAsync(GradeNew, Activity.Id);
-            Activity.Grades.Add(gradeModelMapper.MapToListModel(GradeNew));
+            await gradeFacade.SaveAsync(Grade, Activity.Id);
+            Activity.Grades.Add(gradeModelMapper.MapToListModel(Grade));
 
-            GradeNew = GetGradeNew();
+            Grade = GetGradeNew();
 
             // MessengerService.Send(new RecipeIngredientAddMessage());
         }

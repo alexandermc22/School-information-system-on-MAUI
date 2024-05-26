@@ -75,4 +75,9 @@ IMessengerService messengerService)
     {
         await LoadDataAsync();
     }
+    public async void Receive(ActivityDeleteMessage message)
+    {
+        await LoadDataAsync();
+    }
+    
 }

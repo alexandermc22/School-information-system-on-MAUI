@@ -40,6 +40,7 @@ public partial class ActivityEditViewModel(
         else
         {
             Subject.Activities.Add(activityModelMapper.MapToListModel(Activity));
+            subjectFacade.SaveAsync(Subject);
             Activity.Duration = Activity.ActivityEndTime - Activity.ActivityStartTime;
             await activityFacade.SaveAsync(Activity,Subject.Id);
 
