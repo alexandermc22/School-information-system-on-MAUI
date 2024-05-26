@@ -13,6 +13,7 @@ namespace Project.App.ViewModels.Activity;
 [QueryProperty(nameof(Activity), nameof(Activity))]
 public partial class ActivityEditViewModel(    
     IActivityFacade activityFacade,
+    ISubjectFacade subjectFacade,
     INavigationService navigationService,
     IAlertService alertService,
     IActivityModelMapper activityModelMapper,
@@ -40,6 +41,7 @@ public partial class ActivityEditViewModel(
         else
         {
             Subject.Activities.Add(activityModelMapper.MapToListModel(Activity));
+            subjectFacade.SaveAsync(Subject);
             Activity.Duration = Activity.ActivityEndTime - Activity.ActivityStartTime;
             await activityFacade.SaveAsync(Activity,Subject.Id);
 

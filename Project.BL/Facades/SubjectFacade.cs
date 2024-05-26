@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 using Project.BL.Mappers;
 using Project.BL.Models;
 using Project.DAL.Entities;
@@ -66,5 +67,5 @@ public class SubjectFacade(
     }
     
     protected override ICollection<string> IncludesNavigationPathDetail =>
-        new[] {$"{nameof(SubjectEntity.StudentSubject)}.{nameof(StudentSubjectEntity.Student)}"};
+        new[] {$"{nameof(SubjectEntity.Activity)}"};
 }
