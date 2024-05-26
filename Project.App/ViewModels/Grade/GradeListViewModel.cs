@@ -31,7 +31,7 @@ public partial class GradeListViewModel(
     [RelayCommand]
     private async Task GoToCreateAsync()
     {
-        await navigationService.GoToAsync("/edit");
+        await navigationService.GoToAsync("/editGrade",new Dictionary<string, object?> { [nameof(GradeEditViewModel.Activity)] = Activity });
     }
 
     public async void Receive(GradeEditMessage message)

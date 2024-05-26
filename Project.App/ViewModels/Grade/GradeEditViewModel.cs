@@ -8,11 +8,12 @@ using Project.BL.Models;
 namespace Project.App.ViewModels.Grade;
 
 [QueryProperty(nameof(Activity), nameof(Activity))]
+[QueryProperty(nameof(Grade), nameof(Grade))]
 public partial class GradeEditViewModel(
     IGradeFacade gradeFacade,
     IStudentFacade studentFacade,
     INavigationService navigationService,
-    GradeModelMapper gradeModelMapper,
+    IGradeModelMapper gradeModelMapper,
     IMessengerService messengerService)
     : ViewModelBase(messengerService)
 {
@@ -22,7 +23,7 @@ public partial class GradeEditViewModel(
     
     public StudentListModel? StudentSelected { get; set; }
     
-    public GradeDetailModel GradeNew { get; private set; }
+    public GradeDetailModel Grade { get; private set; }
     
     protected override async Task LoadDataAsync()
     {
@@ -33,23 +34,23 @@ public partial class GradeEditViewModel(
         foreach (var student in students)
         {
             Students.Add(student);
-            GradeNew = GetGradeNew();
+            Grade = GetGradeNew();
         }
     }
 
     [RelayCommand]
     private async Task AddNewStudentToGradeAsync()
     {
-        if (GradeNew is not null
+        if (Grade is not null
             && StudentSelected is not null
             && Activity is not null)
         {
-            gradeModelMapper.MapToExistingDetailModel(GradeNew, StudentSelected);
+            gradeModelMapper.MapToExistingDetailModel(Grade, StudentSelected);
 
-            await gradeFacade.SaveAsync(GradeNew, Activity.Id);
-            Activity.Grades.Add(gradeModelMapper.MapToListModel(GradeNew));
+            await gradeFacade.SaveAsync(Grade, Activity.Id);
+            Activity.Grades.Add(gradeModelMapper.MapToListModel(Grade));
 
-            GradeNew = GetGradeNew();
+            Grade = GetGradeNew();
 
             // MessengerService.Send(new RecipeIngredientAddMessage());
         }

@@ -27,7 +27,7 @@ public class NavigationService : INavigationService
         
         new("//subjects/detail/activity/detailActivity/grade", typeof(GradeListView), typeof(GradeListViewModel)),
         // new("//subjects/detail/activity/detail/grade/detail", typeof(GradeDetailView), typeof(GradeDetailViewModel)),
-        // new("//subjects/detail/activity/detail/grade/edit", typeof(GradeEditView), typeof(GradeEditViewModel)),
+        new("//subjects/detail/activity/detailActivity/grade/editGrade", typeof(GradeEditView), typeof(GradeEditViewModel)),
         // new("//subjects/detail/activity/detail/grade/edit/edit", typeof(GradeEditView), typeof(GradeEditViewModel)),
 
         
