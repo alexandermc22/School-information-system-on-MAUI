@@ -3,6 +3,7 @@ using Project.App.ViewModels;
 using Project.App.ViewModels.Activity;
 using Project.App.ViewModels.Grade;
 using Project.App.Views.Activity;
+using Project.App.Views.Grade;
 // using FirstProject.App.Views.Ingredient;
 using Project.App.Views.Student;
 using Project.App.Views.Subject;
@@ -24,9 +25,9 @@ public class NavigationService : INavigationService
         new("//subjects/detail/activity/detailActivity/editActivity", typeof(ActivityEditView), typeof(ActivityEditViewModel)),
         
         
-        // new("//subjects/detail/activity/detail/grade", typeof(GradeListView), typeof(GradeListViewModel)),
+        new("//subjects/detail/activity/detail/grade1", typeof(GradeListView), typeof(GradeListViewModel)),
         // new("//subjects/detail/activity/detail/grade/detail", typeof(GradeDetailView), typeof(GradeDetailViewModel)),
-        // new("//subjects/detail/activity/detail/grade/edit", typeof(GradeEditView), typeof(GradeEditViewModel)),
+        new("//subjects/detail/activity/detail/grade/edit", typeof(GradeEditView), typeof(GradeEditViewModel)),
         // new("//subjects/detail/activity/detail/grade/edit/edit", typeof(GradeEditView), typeof(GradeEditViewModel)),
 
         

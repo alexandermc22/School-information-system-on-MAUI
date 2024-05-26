@@ -11,7 +11,7 @@
                        x:Name="ActivityDetailViewRoot"
                        x:DataType="vm:ActivityDetailViewModel">
                         
-    <Grid RowDefinitions="Auto, *"
+    <Grid RowDefinitions="Auto, Auto, *"
           RowSpacing="20">
         <Grid Grid.Row="0"
               ColumnDefinitions="*, Auto, Auto"
@@ -45,44 +45,111 @@
               ColumnDefinitions="*, Auto"
               ColumnSpacing="20">
             <ScrollView Orientation="Vertical">
-                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *"
+                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto,*"
                       RowSpacing="20">
                        <Label Grid.Row="0"
                               Text="Activity"
                               TextColor="{StaticResource PrimaryLabelTextColor}"
                               FontSize="40" />
+                       
                        <Label Grid.Row="1"
-                              Text="{Binding Activity.Code}"
-                              TextColor="{StaticResource PrimaryLabelTextColor}"
-                              FontSize="20" />
+                              FontSize="14">
+                              <Label.FormattedText>
+                                     <FormattedString>
+                                            <Span Text="Code: " />
+                                            <Span Text="{Binding Activity.Code}"/>
+                                     </FormattedString>
+                              </Label.FormattedText>
+                       </Label>
+
+                       
                        <Label Grid.Row="2"
-                              Text="{Binding Activity.Description}"
-                              FontSize="20" />
-                    
+                              FontSize="14">
+                              <Label.FormattedText>
+                                     <FormattedString>
+                                            <Span Text="Description: " />
+                                            <Span Text="{Binding Activity.Description}"/>
+                                     </FormattedString>
+                              </Label.FormattedText>
+                       </Label>
+                       
                        <Label Grid.Row="3"
-                              Text="{Binding Activity.ActivityEndTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}"
-                              FontSize="20" />
-                    
+                              FontSize="14">
+                              <Label.FormattedText>
+                                     <FormattedString>
+                                            <Span Text="StartTime: " />
+                                            <Span Text="{Binding Activity.ActivityStartTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}"/>
+                                     </FormattedString>
+                              </Label.FormattedText>
+                       </Label>
+                       
                        <Label Grid.Row="4"
-                              Text="{Binding Activity.ActivityRoom}"
-                              FontSize="20" />
-                    
+                              FontSize="14">
+                              <Label.FormattedText>
+                                     <FormattedString>
+                                            <Span Text="EndTime: " />
+                                            <Span Text="{Binding Activity.ActivityEndTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}"/>
+                                     </FormattedString>
+                              </Label.FormattedText>
+                       </Label>
+                       
                        <Label Grid.Row="5"
-                              Text="{Binding Activity.ActivityWeekDay}"
-                              FontSize="20" />
+                              FontSize="14">
+                              <Label.FormattedText>
+                                     <FormattedString>
+                                            <Span Text="Room: " />
+                                            <Span Text="{Binding Activity.ActivityRoom}" />
+                                     </FormattedString>
+                              </Label.FormattedText>
+                       </Label>
                     
                        <Label Grid.Row="6"
-                              Text="subjects"
-                              FontSize="16" />
+                              FontSize="14">
+                              <Label.FormattedText>
+                                     <FormattedString>
+                                            <Span Text="Weekday: " />
+                                            <Span Text="{Binding Activity.ActivityWeekDay}" />
+                                     </FormattedString>
+                              </Label.FormattedText>
+                       </Label>
 
                     
                 </Grid>
             </ScrollView>
+        </Grid>       
+               
+               
+           <Label Grid.Row="2" Text="Grades:" FontSize="18"/>
 
-            <Grid Grid.Column="1"
-                  RowDefinitions="Auto, *"
-                  RowSpacing="20">
-            </Grid>
-        </Grid>
+        <CollectionView Grid.Row="2"
+                        ItemsSource="{Binding Activity.Grades}">
+               
+               <CollectionView.ItemTemplate>
+                      
+                      <DataTemplate x:DataType="models:GradeListModel">
+                             <HorizontalStackLayout>
+                                    <!-- <Frame Margin="5, 5, 20, 5" -->
+                                    <!--        Style="{StaticResource ImageFrameStyle}"> -->
+                                    <!--        <Image Source="{Binding , TargetNullValue='ingredient_placeholder.jpg'}" -->
+                                    <!--               WidthRequest="60" HeightRequest="60" -->
+                                    <!--               Aspect="AspectFill" /> -->
+                                    <!-- </Frame> -->
+
+                                    <Label VerticalOptions="Center">
+                                           <Label.FormattedText>
+                                                  <FormattedString>
+                                                         <Span Text="{Binding GradeValue}" />
+                                                         <Span Text=" " />
+                                                         <Span Text="{Binding StudentName}" />
+                                                         <Span Text=" " />
+                                                         <Span Text="{Binding GradeDate}" />
+                                                  </FormattedString>
+                                           </Label.FormattedText>
+                                    </Label>
+                             </HorizontalStackLayout>
+                      </DataTemplate>
+               </CollectionView.ItemTemplate>
+        </CollectionView>
+        
     </Grid>
 </views:ContentPageBase>

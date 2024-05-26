@@ -8,7 +8,7 @@ public record class GradeDetailModel: ModelBase
     
     public required string StudentName { get; set; }
     public required Guid ActivityId { get; set; }
-    public required Grade GradeValue { get; set; }
+    public required GradeScore GradeValue { get; set; }
 	public required string? Description { get; set; }
     public required DateTime GradeDate { get; set; }
 
@@ -19,7 +19,7 @@ public record class GradeDetailModel: ModelBase
         StudentName = string.Empty,
         ActivityId = Guid.Empty,
         Description = string.Empty,
-        GradeValue = Grade.None,
+        GradeValue = GradeScore.None,
         GradeDate = DateTime.MinValue
     };
 

@@ -1,6 +1,6 @@
 namespace Project.Common.Enum;
 
-public enum Grade
+public enum GradeScore
 {
     A = 1,
     B = 2,

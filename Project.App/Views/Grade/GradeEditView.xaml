@@ -3,15 +3,11 @@
 <views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:views="clr-namespace:Project.App.Views"
-                       xmlns:vm="clr-namespace:Project.App.ViewModels.Activity"
-                       xmlns:models="clr-namespace:Project.BL.Models;assembly=Project.BL"
-                       xmlns:picker="clr-namespace:Syncfusion.Maui.Picker"
-                       xmlns:picker1="http://schemas.syncfusion.com/maui"
-                       x:Class="Project.App.Views.Activity.ActivityEditView"
-                       Title="text1"
+                       xmlns:grade="clr-namespace:Project.App.ViewModels.Grade"
+                       x:Class="Project.App.Views.Grade.GradeEditView"
                        Style="{StaticResource ContentPageStyle}"
-                       x:Name="ActivityEditViewRoot"
-                       x:DataType="vm:ActivityEditViewModel">
+                       x:Name="GradeEdittViewRoot"
+                       x:DataType="grade:GradeEditViewModel">
        
                        
  <Grid RowDefinitions="70, *">
@@ -39,30 +35,28 @@
                        <Label Text="Description"
                               TextColor="{StaticResource PrimaryLabelTextColor}" />
                        <Entry HorizontalOptions="Fill"
-                              Text="{Binding Activity.Description}" />
-                       <Label Text="Activity tag"
+                              Text="{Binding GradeNew.Description}" />
+                       <Label Text="Value"
                               TextColor="{StaticResource PrimaryLabelTextColor}" />
                        <Entry HorizontalOptions="Fill"
-                              Text="{Binding Activity.ActivityType}" />
-                       <Label Text="Activity room"
+                              Text="{Binding GradeNew.GradeValue}" />
+                       <Label Text="Student"
                               TextColor="{StaticResource PrimaryLabelTextColor}" />
                        <Entry HorizontalOptions="Fill"
-                              Text="{Binding Activity.ActivityRoom}" />
-                       <Label Text="Choose start time"
+                              Text="{Binding GradeNew.StudentId}" />
+                       <Label Text="Choose grade time"
                               TextColor="{StaticResource PrimaryLabelTextColor}" />
-                       
+                       <Label Text="Grade Value"
+                              TextColor="{StaticResource PrimaryLabelTextColor}" />
+                       <Picker ItemsSource="{Binding GradeValues}"
+                               SelectedItem="{Binding GradeNew.GradeValue}"
+                               Title="Select Grade" />
                        <DatePicker Format="d"
                                    Date="{Binding DateStartSelected}"
                                    MinimumDate="2022-07-10"
                                    MaximumDate="2028-07-20" />
                        <TimePicker Time="{Binding TimeStartSelected}" />
-                       <Label Text="Choose end time"
-                              TextColor="{StaticResource PrimaryLabelTextColor}" />
-                       <DatePicker Format="d"
-                                   Date="{Binding DateEndSelected}"
-                                   MinimumDate="2022-07-10"
-                                   MaximumDate="2028-07-20" />
-                       <TimePicker Time="{Binding TimeEndSelected}" />
+                       
                    </VerticalStackLayout>
               </ScrollView>
           

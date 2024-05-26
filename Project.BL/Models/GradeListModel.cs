@@ -2,7 +2,7 @@ using Project.Common.Enum;
 namespace Project.BL.Models;
 public record class GradeListModel : ModelBase
 {
-    public required Grade GradeValue { get; set; }
+    public required GradeScore GradeValue { get; set; }
     
     public required Guid ActivityId { get; set; }
     
@@ -15,7 +15,7 @@ public record class GradeListModel : ModelBase
         ActivityId = Guid.Empty,
         StudentId = Guid.Empty,
         Id = Guid.NewGuid(),
-        GradeValue = Grade.None,
+        GradeValue = GradeScore.None,
         GradeDate = new DateTime(),
         StudentName = string.Empty
     };
