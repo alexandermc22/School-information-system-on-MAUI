@@ -14,6 +14,7 @@ public partial class GradeEditViewModel(
     IGradeFacade gradeFacade,
     IStudentFacade studentFacade,
     INavigationService navigationService,
+    IAlertService alertService,
     IGradeModelMapper gradeModelMapper,
     IMessengerService messengerService)
     : ViewModelBase(messengerService) 
@@ -46,6 +47,14 @@ public partial class GradeEditViewModel(
             && StudentSelected is not null
             && Activity is not null)
         {
+            foreach (var grade in Activity.Grades)
+            {
+                if (grade.StudentId == StudentSelected.Id)
+                {
+                    await alertService.DisplayAsync("Error", "Cannot add Student, because its already added");
+                    return;
+                }
+            }
             gradeModelMapper.MapToExistingDetailModel(Grade, StudentSelected);
 
             Grade = await gradeFacade.SaveAsync(Grade, Activity.Id);
