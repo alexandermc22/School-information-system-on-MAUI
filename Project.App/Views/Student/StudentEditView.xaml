@@ -70,13 +70,13 @@
                     IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleInvertedConverter}}"
                     Style="{StaticResource PrimaryButtonStyle}" />
             <Label Grid.Row="5" Grid.Column="1"
-                   Text="Error Unsaved"
+                   Text="Create student for edit subjects"
                    HorizontalOptions="End"
                    IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleConverter}}" />
 
             <!-- Student Subjects -->
             <VerticalStackLayout Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
-                <Label Text="Student Subjects"
+                <Label Text="Subjects"
                        FontSize="20"
                        TextColor="{StaticResource PrimaryLabelTextColor}"
                        Margin="0, 10, 0, 10"
