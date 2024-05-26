@@ -33,6 +33,15 @@ public partial class GradeListViewModel(
     {
         await navigationService.GoToAsync("/editGrade",new Dictionary<string, object?> { [nameof(GradeEditViewModel.Activity)] = Activity });
     }
+    
+    [RelayCommand]
+    private async Task GetSortAsync()
+    {
+        
+        await base.LoadDataAsync();
+        
+        Grade = await gradeFacade.GetSortAsync();
+    }
 
     public async void Receive(GradeEditMessage message)
     {

@@ -84,7 +84,7 @@ public class GradeFacade(
 
         IQueryable<GradeEntity> query = uow.GetRepository<GradeEntity, GradeEntityMapper>().Get();
         
-        IQueryable<GradeEntity> sortedGrades = query.OrderBy(s => s.Activity.Subject.Name); // TODO check if subj != null
+        IQueryable<GradeEntity> sortedGrades = query.OrderBy(s => s.StudentName); // TODO check if subj != null
         List<GradeListModel> GLM = new List<GradeListModel>();
 
         foreach (var grade  in sortedGrades)
