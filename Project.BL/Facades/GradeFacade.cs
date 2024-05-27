@@ -25,7 +25,7 @@ public class GradeFacade(
         IQueryable<GradeEntity> query = uow.GetRepository<GradeEntity, GradeEntityMapper>().Get();
         
         var filteredGrades = query
-            .Where(a => a.ActivityId >= id)
+            .Where(a => a.ActivityId == id)
             .ToList();
         List<GradeListModel> ALM = new List<GradeListModel>();
         foreach (var grade in filteredGrades)

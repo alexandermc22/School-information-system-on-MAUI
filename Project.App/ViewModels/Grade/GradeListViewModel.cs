@@ -7,6 +7,7 @@ using Project.BL.Models;
 namespace Project.App.ViewModels.Grade;
 
 [QueryProperty(nameof(Activity), nameof(Activity))]
+[QueryProperty(nameof(Subject), nameof(Subject))]
 public partial class GradeListViewModel( 
     IGradeFacade gradeFacade,
     INavigationService navigationService,
@@ -15,6 +16,8 @@ public partial class GradeListViewModel(
 {
     public ActivityDetailModel Activity { get; set; } = ActivityDetailModel.Empty;
     public IEnumerable<GradeListModel> Grade { get; set; } = null!;
+    
+    public SubjectDetailModel? Subject { get; set; }
     
     protected override async Task LoadDataAsync()
     {
@@ -31,7 +34,7 @@ public partial class GradeListViewModel(
     [RelayCommand]
     private async Task GoToCreateAsync()
     {
-        await navigationService.GoToAsync("/editGrade",new Dictionary<string, object?> { [nameof(GradeEditViewModel.Activity)] = Activity });
+        await navigationService.GoToAsync("/editGrade",new Dictionary<string, object?> { [nameof(GradeEditViewModel.Activity)] = Activity, [nameof(GradeEditViewModel.Subject)] = Subject});
     }
     
     [RelayCommand]

@@ -49,14 +49,14 @@ public partial class ActivityListViewModel(
     
     [RelayCommand]
     private async Task GoToDetailAsync(Guid id)
-        => await navigationService.GoToAsync<ActivityDetailViewModel>(
-            new Dictionary<string, object?> { [nameof(ActivityDetailViewModel.Id)] = id });
+        => await navigationService.GoToAsync("/detailActivity",
+            new Dictionary<string, object?> { [nameof(ActivityDetailViewModel.Id)] = id , [nameof(ActivityDetailViewModel.Subject)] = Subject});
 
     [RelayCommand]
     private async Task GoToCreateAsync()
     {
         await navigationService.GoToAsync("/editActivity",
-            new Dictionary<string, object?> { [nameof(ActivityEditViewModel.Subject)] = Subject });
+            new Dictionary<string, object?> { [nameof(ActivityEditViewModel.Subject)] = Subject, });
     }
 
     // private async Task GoToCreateAsync<ActivityEditViewModel>()
