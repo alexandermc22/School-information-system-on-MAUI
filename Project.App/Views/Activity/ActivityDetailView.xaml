@@ -98,6 +98,8 @@
                                                 <Span Text="{Binding StudentName}" />
                                                 <Span Text=" " />
                                                 <Span Text="{Binding GradeDate, StringFormat='{0:MM/dd/yyyy HH:mm}'}" />
+                                                <Span Text=" " />
+                                                <Span Text="{Binding Description}" />
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
