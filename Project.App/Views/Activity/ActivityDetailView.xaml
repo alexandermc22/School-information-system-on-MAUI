@@ -22,23 +22,23 @@
             <Button Grid.Column="2"
                     VerticalOptions="Start"
                     HeightRequest="30"
-                    Text="delete"
+                    Text="Delete"
                     CornerRadius="5"
                     BackgroundColor="{StaticResource ErrorColor}"
                     Command="{Binding DeleteCommand}" />
 
-            <Button Grid.Column="1"
+            <Button Grid.Column="0"
                     HorizontalOptions="End" VerticalOptions="Start"
                     HeightRequest="30"
-                    Text="edit"
+                    Text="Edit"
                     CornerRadius="5"
                     Command="{Binding GoToEditCommand}"
                     Style="{StaticResource PrimaryButtonStyle}" />
 
-            <Button Grid.Column="0"
+            <Button Grid.Column="1"
                     HorizontalOptions="End" VerticalOptions="Start"
                     HeightRequest="30"
-                    Text="grade"
+                    Text="Grade"
                     CornerRadius="5"
                     Command="{Binding GoToGradeCommand}"
                     Style="{StaticResource PrimaryButtonStyle}" />

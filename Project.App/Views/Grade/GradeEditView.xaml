@@ -90,8 +90,8 @@
 
                         <Button Grid.Column="4"
                                 HorizontalOptions="Start" VerticalOptions="Center"
-                                Text="remove"
-                                Command="{Binding Source={x:Reference GradeEditViewRoot}, Path=BindingContext.RemoveIngredientCommand}"
+                                Text="Remove"
+                                Command="{Binding Source={x:Reference GradeEditViewRoot}, Path=BindingContext.RemoveGradeCommand}"
                                 CommandParameter="{Binding .}"
                                 Style="{StaticResource ErrorButtonStyle}" />
                     </Grid>

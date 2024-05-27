@@ -15,19 +15,18 @@
         <HorizontalStackLayout HorizontalOptions="End"
                                Spacing="15"
                                HeightRequest="30">
-            <Button Text="delete"
-                    CornerRadius="5"
-                    BackgroundColor="{StaticResource ErrorColor}"
-                    Command="{Binding DeleteCommand}" />
-
-            <Button Text="edit"
+            <Button Text="Edit"
                     CornerRadius="5"
                     BackgroundColor="{StaticResource PrimaryColor}"
                     Command="{Binding GoToEditCommand}" />
-            <Button Text="activity"
+            <Button Text="Activity"
                     CornerRadius="5"
                     BackgroundColor="{StaticResource PrimaryColor}"
                     Command="{Binding GoToActivityCommand}" />
+            <Button Text="Delete"
+                    CornerRadius="5"
+                    BackgroundColor="{StaticResource ErrorColor}"
+                    Command="{Binding DeleteCommand}" />
         </HorizontalStackLayout>
 
        <Grid Grid.Row="1"

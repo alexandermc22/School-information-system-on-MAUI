@@ -8,7 +8,7 @@
                        xmlns:picker="clr-namespace:Syncfusion.Maui.Picker"
                        xmlns:picker1="http://schemas.syncfusion.com/maui"
                        x:Class="Project.App.Views.Activity.ActivityEditView"
-                       Title="text1"
+                       Title="Activity"
                        Style="{StaticResource ContentPageStyle}"
                        x:Name="ActivityEditViewRoot"
                        x:DataType="vm:ActivityEditViewModel">
@@ -22,7 +22,7 @@
             <Button Grid.Column="1"
                     VerticalOptions="Start"
                     HeightRequest="30"
-                    Text="save"
+                    Text="Save"
                     CornerRadius="5"
                     BackgroundColor="{StaticResource PrimaryColor}"
                     Command="{Binding SaveCommand}" />

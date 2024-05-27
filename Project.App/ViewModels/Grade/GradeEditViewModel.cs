@@ -92,7 +92,7 @@ public partial class GradeEditViewModel(
     }
 
     [RelayCommand]
-    private async Task RemoveIngredientAsync(GradeListModel model)
+    private async Task RemoveGradeAsync(GradeListModel model)
     {
         if (Activity is not null)
         {
