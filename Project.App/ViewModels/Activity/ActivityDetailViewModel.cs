@@ -8,6 +8,7 @@ using Project.BL.Models;
 namespace Project.App.ViewModels.Activity;
 
 [QueryProperty(nameof(Id), nameof(Id))]
+[QueryProperty(nameof(Subject), nameof(Subject))]
 public partial class ActivityDetailViewModel(
     IActivityFacade activityFacade,
     INavigationService navigationService,
@@ -17,6 +18,8 @@ public partial class ActivityDetailViewModel(
 {
     public Guid Id { get; set; }
     public ActivityDetailModel? Activity { get; set; }
+    
+    public SubjectDetailModel? Subject { get; set; }
 
     protected override async Task LoadDataAsync()
     {
@@ -55,7 +58,7 @@ public partial class ActivityDetailViewModel(
         if (Activity is not null)
         {
             await navigationService.GoToAsync("/grade",
-                new Dictionary<string, object?> { [nameof(GradeListViewModel.Activity)] = Activity with { } });
+                new Dictionary<string, object?> { [nameof(GradeListViewModel.Activity)] = Activity ,[nameof(GradeListViewModel.Subject)] = Subject});
         }
     }
 

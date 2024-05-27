@@ -10,6 +10,8 @@ namespace Project.App.ViewModels.Grade;
 
 [QueryProperty(nameof(Activity), nameof(Activity))]
 [QueryProperty(nameof(Grade), nameof(Grade))]
+[QueryProperty(nameof(Subject), nameof(Subject))]
+
 public partial class GradeEditViewModel(
     IGradeFacade gradeFacade,
     IStudentFacade studentFacade,
@@ -21,6 +23,8 @@ public partial class GradeEditViewModel(
 {
     public ActivityDetailModel? Activity { get; set; }
     
+    public SubjectDetailModel? Subject { get; set; }
+
     public ObservableCollection<StudentListModel> Students { get; set; } = new();
     
     public List<Common.Enum.Grade> Grades { get; set; } = new((Common.Enum.Grade[])Enum.GetValues(typeof(Common.Enum.Grade)));
@@ -35,8 +39,17 @@ public partial class GradeEditViewModel(
         var students = await studentFacade.GetAsync();
         foreach (var student in students)
         {
-            Students.Add(student);
-            Grade = GetGradeNew();
+            var studentDetail = await studentFacade.GetAsync(student.Id);
+            foreach (var subject in studentDetail.StudentSubjects)
+            {
+                if (subject.SubjectId == Subject.Id)
+                {
+                    Students.Add(student);
+                    Grade = GetGradeNew();
+                    break;
+                }
+            }
+            
         }
     }
 
