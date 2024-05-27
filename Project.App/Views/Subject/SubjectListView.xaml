@@ -44,14 +44,14 @@
         <HorizontalStackLayout HorizontalOptions="End"
                                Spacing="15"
                                HeightRequest="30">
-            <Button Text="create"
+            <Button Text="Create"
                     CornerRadius="5"
                     BackgroundColor="{StaticResource PrimaryColor}"
                     Command="{Binding GoToCreateCommand}" />
 
-            <Button Text="sort"
+            <Button Text="Sort"
                     CornerRadius="5"
-                    BackgroundColor="{StaticResource PrimaryColor}"
+                    BackgroundColor="{StaticResource PrimaryButtonSortColor}"
                     Command="{Binding SortCommand}" />
         </HorizontalStackLayout>
        
