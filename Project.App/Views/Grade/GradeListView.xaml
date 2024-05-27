@@ -12,9 +12,6 @@
       <Grid HorizontalOptions="FillAndExpand" 
          RowDefinitions="Auto, *"
          RowSpacing="20">
-        <Label Grid.Row="0"
-               FontSize="24"
-               Text="Subjects" />
         <!-- <SearchBar Grid.Row="0" -->
         <!--            Placeholder="Search...." -->
         <!--            WidthRequest="300" -->
@@ -41,13 +38,11 @@
         <HorizontalStackLayout HorizontalOptions="End"
                                Spacing="15"
                                HeightRequest="30">
-            <Button Text="create"
+            <Button Text="Create"
                     CornerRadius="5"
                     BackgroundColor="{StaticResource PrimaryColor}"
                     Command="{Binding GoToCreateCommand}" />
             <Button Text="Sort"
-                    WidthRequest="100"
-                    HeightRequest="50"
                     CornerRadius="5"
                     BackgroundColor="{StaticResource PrimaryButtonSortColor}"
                     Command="{Binding GetSortCommand}" />
@@ -79,22 +74,22 @@
                         <Grid ColumnDefinitions="Auto, *"
                               RowDefinitions="Auto, Auto"
                               ColumnSpacing="20">
-                            <Label Grid.Column="1" Grid.Row="0"
+                            <Label Grid.Column="0" Grid.Row="0"
                                    FontSize="20"
                                    FontAttributes="Bold"
                                    TextTransform="Uppercase"
                                    Text="{Binding StudentName}"
                                    TextColor="Black"
                                    VerticalOptions="Center" />
-                            <Label Grid.Column="2" Grid.Row="2"
-                                   FontSize="20"
+                            <Label Grid.Column="0" Grid.Row="1"
+                                   FontSize="30"
                                    FontAttributes="Bold"
                                    TextTransform="Uppercase"
                                    Text="{Binding GradeValue}"
                                    TextColor="Black"
                                    VerticalOptions="Center" />
-                            <Label Grid.Column="3" Grid.Row="3"
-                                   FontSize="20"
+                            <Label Grid.Column="1" Grid.Row="1"
+                                   FontSize="15"
                                    FontAttributes="Bold"
                                    TextTransform="Uppercase"
                                    Text="{Binding Description}"
