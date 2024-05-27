@@ -10,9 +10,12 @@
                        Style="{StaticResource ContentPageStyle}"
                        x:Name="ActivityDetailViewRoot"
                        x:DataType="vm:ActivityDetailViewModel">
-                        
-    <Grid RowDefinitions="Auto, *"
+
+    <Grid RowDefinitions="Auto, Auto, Auto, *, Auto, *"
           RowSpacing="20">
+        <Label Grid.Row="0"
+               FontSize="24"
+               Text="Activity" />
         <Grid Grid.Row="0"
               ColumnDefinitions="*, Auto, Auto"
               ColumnSpacing="15">
@@ -31,7 +34,7 @@
                     CornerRadius="5"
                     Command="{Binding GoToEditCommand}"
                     Style="{StaticResource PrimaryButtonStyle}" />
-            
+
             <Button Grid.Column="0"
                     HorizontalOptions="End" VerticalOptions="Start"
                     HeightRequest="30"
@@ -45,44 +48,65 @@
               ColumnDefinitions="*, Auto"
               ColumnSpacing="20">
             <ScrollView Orientation="Vertical">
-                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *"
+                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, *"
                       RowSpacing="20">
-                       <Label Grid.Row="0"
-                              Text="Activity"
-                              TextColor="{StaticResource PrimaryLabelTextColor}"
-                              FontSize="40" />
-                       <Label Grid.Row="1"
-                              Text="{Binding Activity.Code}"
-                              TextColor="{StaticResource PrimaryLabelTextColor}"
-                              FontSize="20" />
-                       <Label Grid.Row="2"
-                              Text="{Binding Activity.Description}"
-                              FontSize="20" />
-                    
-                       <Label Grid.Row="3"
-                              Text="{Binding Activity.ActivityEndTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}"
-                              FontSize="20" />
-                    
-                       <Label Grid.Row="4"
-                              Text="{Binding Activity.ActivityRoom}"
-                              FontSize="20" />
-                    
-                       <Label Grid.Row="5"
-                              Text="{Binding Activity.ActivityWeekDay}"
-                              FontSize="20" />
-                    
-                       <Label Grid.Row="6"
-                              Text="subjects"
-                              FontSize="16" />
 
+                    <Label Grid.Row="0"
+                           Text="{Binding Activity.ActivityType, StringFormat='Code: {0}'}"
+                           TextColor="{StaticResource PrimaryLabelTextColor}"
+                           FontSize="15" />
+
+                    <Label Grid.Row="1"
+                           Text="{Binding Activity.Description, StringFormat='Description: {0}'}"
+                           TextColor="{StaticResource PrimaryLabelTextColor}"
+                           FontSize="15" />
                     
+                    <Label Grid.Row="2"
+                           Text="{Binding Activity.ActivityStartTime, StringFormat='StartTime: {0:MM/dd/yyyy HH:mm}'}"
+                           TextColor="{StaticResource PrimaryLabelTextColor}"
+                           FontSize="15" />
+                    
+                    <Label Grid.Row="3"
+                           Text="{Binding Activity.ActivityEndTime, StringFormat='EndTime: {0:MM/dd/yyyy HH:mm}'}"
+                           TextColor="{StaticResource PrimaryLabelTextColor}"
+                           FontSize="15" />
+                    
+                    <Label Grid.Row="4"
+                           Text="{Binding Activity.ActivityRoom, StringFormat='Room: {0}'}"
+                           TextColor="{StaticResource PrimaryLabelTextColor}"
+                           FontSize="15" />
+
+                    <Label Grid.Row="5"
+                           Text="{Binding Activity.ActivityWeekDay, StringFormat='Weekday: {0}'}"
+                           TextColor="{StaticResource PrimaryLabelTextColor}"
+                           FontSize="15" />
+                    
+                    <Label Grid.Row="6" 
+                           Text="Grades:" 
+                           FontSize="18" />
+                    
+                    <CollectionView Grid.Row="7"
+                                    ItemsSource="{Binding Activity.Grades}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:GradeListModel">
+                                <HorizontalStackLayout>
+                                    <Label VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding GradeValue}" />
+                                                <Span Text=" " />
+                                                <Span Text="{Binding StudentName}" />
+                                                <Span Text=" " />
+                                                <Span Text="{Binding GradeDate, StringFormat='{0:MM/dd/yyyy HH:mm}'}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </HorizontalStackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </Grid>
             </ScrollView>
-
-            <Grid Grid.Column="1"
-                  RowDefinitions="Auto, *"
-                  RowSpacing="20">
-            </Grid>
         </Grid>
     </Grid>
 </views:ContentPageBase>
