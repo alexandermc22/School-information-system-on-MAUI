@@ -54,11 +54,15 @@
                                HeightRequest="30">
             <Button Text="Сreate"
                     CornerRadius="5"
+                    WidthRequest="100"
+                    HeightRequest="50"
                     BackgroundColor="{StaticResource PrimaryColor}"
                     Command="{Binding GoToCreateCommand}" />
 
             <Button Text="Sort"
                     CornerRadius="5"
+                    WidthRequest="100"
+                    HeightRequest="50"
                     BackgroundColor="{StaticResource PrimaryButtonSortColor}"
                     Command="{Binding SortCommand}" />
         </HorizontalStackLayout>

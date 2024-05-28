@@ -34,7 +34,7 @@
             <Frame Grid.Row="0" Grid.Column="0"
                    HorizontalOptions="Center"
                    Style="{StaticResource ImageFrameStyle}">
-                <Image Source="{Binding Student.Photo, TargetNullValue='timur_icon.jpg'}"
+                <Image Source="{Binding Student.Photo, TargetNullValue='user_icon.png'}"
                        WidthRequest="170" HeightRequest="170"
                        Aspect="AspectFill" />
             </Frame>
@@ -69,10 +69,10 @@
                     Command="{Binding GoToStudentSubjectsEditCommand}"
                     IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleInvertedConverter}}"
                     Style="{StaticResource PrimaryButtonStyle}" />
-            <Label Grid.Row="5" Grid.Column="1"
-                   Text="Create student for edit subjects"
-                   HorizontalOptions="End"
-                   IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleConverter}}" />
+            <!-- <Label Grid.Row="5" Grid.Column="1" -->
+            <!--        Text="Create student for edit subjects" -->
+            <!--        HorizontalOptions="End" -->
+            <!--        IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleConverter}}" /> -->
 
             <!-- Student Subjects -->
             <VerticalStackLayout Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
@@ -91,7 +91,7 @@
                                 <Frame 
                                        Style="{StaticResource ImageFrameStyle}"
                                        Margin="0,0,0,0">
-                                    <Image Source="{Binding SubjectImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
+                                    <Image Source="{Binding SubjectImageUrl, TargetNullValue='book.png'}"
                                            WidthRequest="60" HeightRequest="60"
                                            Aspect="AspectFill" />
                                 </Frame>

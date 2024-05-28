@@ -86,7 +86,7 @@
                   RowSpacing="20">
                 <Frame Grid.Row="0"
                        Style="{StaticResource ImageFrameStyle}">
-                    <Image Source="{Binding Subject.ImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
+                    <Image Source="{Binding Subject.ImageUrl, TargetNullValue='book.png'}"
                            WidthRequest="300" HeightRequest="300"
                            Aspect="AspectFill" />
                 </Frame>
