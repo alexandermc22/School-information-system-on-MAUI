@@ -32,7 +32,7 @@
                    HorizontalOptions="Center"
                    Style="{StaticResource ImageFrameStyle}">
                 <Grid>
-                    <Image Source="{Binding Subject.ImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
+                    <Image Source="{Binding Subject.ImageUrl, TargetNullValue='book.png'}"
                            WidthRequest="170" HeightRequest="170"
                            Aspect="AspectFill" />
                 </Grid>

@@ -28,10 +28,11 @@
               ColumnDefinitions="Auto, *"
               RowSpacing="20" ColumnSpacing="20">
             
+            <!-- Student Photo -->
             <Frame Grid.Row="0" Grid.Column="0"
                    HorizontalOptions="Center"
                    Style="{StaticResource ImageFrameStyle}">
-                <Image Source="{Binding Student.Photo, TargetNullValue='timur_icon.jpg'}"
+                <Image Source="{Binding Student.Photo, TargetNullValue='user_icon.png'}"
                        WidthRequest="170" HeightRequest="170"
                        Aspect="AspectFill" />
             </Frame>

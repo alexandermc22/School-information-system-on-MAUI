@@ -62,7 +62,7 @@
                                 <HorizontalStackLayout>
                                     <Frame Margin="5, 5, 20, 5"
                                            Style="{StaticResource ImageFrameStyle}">
-                                        <Image Source="{Binding SubjectImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
+                                        <Image Source="{Binding SubjectImageUrl, TargetNullValue='book.png'}"
                                                WidthRequest="60" HeightRequest="60"
                                                Aspect="AspectFill" />
                                     </Frame>
@@ -90,8 +90,8 @@
                   RowSpacing="20">
                 <Frame Grid.Row="0"
                        Style="{StaticResource ImageFrameStyle}">
-                    <Image Source="{Binding Student.Photo, TargetNullValue='timur_icon.jpg'}"
-                           WidthRequest="320" HeightRequest="400"
+                    <Image Source="{Binding Student.Photo, TargetNullValue='user_icon.png'}"
+                           WidthRequest="400" HeightRequest="400"
                            Aspect="AspectFill" />
                 </Frame>
             </Grid>

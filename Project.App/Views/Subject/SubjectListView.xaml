@@ -67,7 +67,7 @@
                             <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"
                                    Aspect="AspectFill"
                                    WidthRequest="100" HeightRequest="100"
-                                   Source="{Binding ImageUrl, TargetNullValue='ingredient_placeholder.jpg'}"
+                                   Source="{Binding ImageUrl, TargetNullValue='book.png'}"
                                    Margin="0,0,10,0" />
                             <Label Grid.Column="1" Grid.Row="0"
                                    FontSize="20"
