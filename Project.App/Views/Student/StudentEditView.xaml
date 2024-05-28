@@ -12,7 +12,7 @@
                        x:DataType="vm:StudentEditViewModel">
 
     <Grid RowDefinitions="70, *" ColumnDefinitions="*, Auto">
-   
+        <!-- Row 0: Save Button -->
         <Button Grid.Row="0" Grid.Column="1"
                 VerticalOptions="Start"
                 Text="Save"
@@ -23,12 +23,14 @@
                 BackgroundColor="{StaticResource PrimaryColor}"
                 Command="{Binding SaveCommand}" />
 
+        <!-- Row 1: Student Details -->
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
               HorizontalOptions="Fill" VerticalOptions="Start"
               RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, *"
               ColumnDefinitions="Auto, *"
               RowSpacing="20" ColumnSpacing="20">
             
+            <!-- Student Photo -->
             <Frame Grid.Row="0" Grid.Column="0"
                    HorizontalOptions="Center"
                    Style="{StaticResource ImageFrameStyle}">
@@ -37,6 +39,7 @@
                        Aspect="AspectFill" />
             </Frame>
 
+            <!-- Student Information -->
             <VerticalStackLayout Grid.Row="0" Grid.Column="1" Grid.RowSpan="4"
                                  HorizontalOptions="Fill"
                                  Spacing="10"
@@ -58,6 +61,7 @@
                        Text="{Binding Student.Photo}" />
             </VerticalStackLayout>
 
+            <!-- Add New Subject Button -->
             <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
                     Text="Add New Subject"
                     WidthRequest="150"
@@ -65,7 +69,12 @@
                     Command="{Binding GoToStudentSubjectsEditCommand}"
                     IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleInvertedConverter}}"
                     Style="{StaticResource PrimaryButtonStyle}" />
-            
+            <!-- <Label Grid.Row="5" Grid.Column="1" -->
+            <!--        Text="Create student for edit subjects" -->
+            <!--        HorizontalOptions="End" -->
+            <!--        IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleConverter}}" /> -->
+
+            <!-- Student Subjects -->
             <VerticalStackLayout Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
                 <Label Text="Subjects"
                        FontSize="20"

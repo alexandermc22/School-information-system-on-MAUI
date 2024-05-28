@@ -21,7 +21,8 @@
               ColumnSpacing="15">
             <Button Grid.Column="2"
                     VerticalOptions="Start"
-                    HeightRequest="30"
+                    WidthRequest="70"
+                    HeightRequest="35"
                     Text="Delete"
                     CornerRadius="5"
                     BackgroundColor="{StaticResource ErrorColor}"
@@ -29,7 +30,8 @@
 
             <Button Grid.Column="0"
                     HorizontalOptions="End" VerticalOptions="Start"
-                    HeightRequest="30"
+                    WidthRequest="70"
+                    HeightRequest="35"
                     Text="Edit"
                     CornerRadius="5"
                     Command="{Binding GoToEditCommand}"
@@ -37,7 +39,8 @@
 
             <Button Grid.Column="1"
                     HorizontalOptions="End" VerticalOptions="Start"
-                    HeightRequest="30"
+                    WidthRequest="70"
+                    HeightRequest="35"
                     Text="Grade"
                     CornerRadius="5"
                     Command="{Binding GoToGradeCommand}"

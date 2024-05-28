@@ -26,6 +26,27 @@
                  SearchCommand="{Binding GetFilteredCommand }"
       ></SearchBar>
       
+      <!-- <Label Grid.Row="0" -->
+        <!--        FontSize="24" -->
+        <!--        Text="Text1" /> -->
+
+        <!-- <Button Grid.Row="0" -->
+        <!--         Padding="12, 6" -->
+        <!--         HorizontalOptions="End" VerticalOptions="Start" -->
+        <!--         Text="Button" -->
+        <!--         Command="{Binding GoToCreateCommand}" -->
+        <!--         CornerRadius="5" FontFamily="MontserratMedium" -->
+        <!--         FontSize="14" -->
+        <!--         Style="{StaticResource PrimaryButtonStyle}" /> -->
+        <!-- -->
+        <!-- <Button Grid.Row="1" -->
+        <!--         Padding="12, 6" -->
+        <!--         HorizontalOptions="End" VerticalOptions="Start" -->
+        <!--         Text="sort" -->
+        <!--         Command="{Binding SortCommand}" -->
+        <!--         CornerRadius="5" FontFamily="MontserratMedium" -->
+        <!--         FontSize="14" -->
+        <!--         Style="{StaticResource PrimaryButtonStyle}" /> -->
         
         
         <HorizontalStackLayout HorizontalOptions="End"

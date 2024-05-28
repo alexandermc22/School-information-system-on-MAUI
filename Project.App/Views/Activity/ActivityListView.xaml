@@ -15,29 +15,44 @@
         
         <HorizontalStackLayout HorizontalOptions="End"
                                Spacing="15"
-                               HeightRequest="30">
-            
+                               Margin="0, 10, 5 ,0"
+                               HeightRequest="35">
+            <Label Text="Start time"
+                   TextColor="{StaticResource PrimaryLabelTextColor}" />
             <DatePicker Format="d"
+                        HeightRequest="35"
                         Date="{Binding DateStartSelected}"
                         MinimumDate="2022-07-10"
                         MaximumDate="2028-07-20" />
-            <TimePicker Time="{Binding TimeStartSelected}" />
-            <Label Text="Choose end time"
+            <TimePicker  HeightRequest="35"
+                         Time="{Binding TimeStartSelected}" />
+            <Label Text="End time"
                    TextColor="{StaticResource PrimaryLabelTextColor}" />
             <DatePicker Format="d"
+                        HeightRequest="35"
                         Date="{Binding DateEndSelected}"
                         MinimumDate="2022-07-10"
                         MaximumDate="2028-07-20" />
-            <TimePicker Time="{Binding TimeEndSelected}" />
+            <TimePicker  HeightRequest="35"
+                         Time="{Binding TimeEndSelected}" />
+            
+            <Button Text="Sort"
+                    WidthRequest="70"
+                    HeightRequest="35"
+                    CornerRadius="5"
+                    Margin="0,0,5,0"
+                    BackgroundColor="{StaticResource PrimaryButtonSortColor}"
+                    Command="{Binding GetFilteredCommand}" />
+            
 
             <Button Text="Create"
+                    WidthRequest="70"
+                    HeightRequest="35"
                     CornerRadius="5"
+                    Margin="0,0,5,0"
                     BackgroundColor="{StaticResource PrimaryColor}"
                     Command="{Binding GoToCreateCommand}" />
             
-            <Button Text="Sort"
-                    BackgroundColor="{StaticResource PrimaryButtonSortColor}"
-                    Command="{Binding GetFilteredCommand}" />
             
         </HorizontalStackLayout>
         
@@ -52,30 +67,35 @@
         
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:ActivityListModel">
-                    <Frame Style="{StaticResource ImageFrameStyle}" BackgroundColor="Yellow">
+                    <Frame
+                        Style="{StaticResource ImageFrameStyle}" BackgroundColor="Yellow">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={x:Reference ActivityListViewRoot}, Path=BindingContext.GoToDetailCommand}"
                                                   CommandParameter="{Binding Id}" />
                         </Frame.GestureRecognizers>
-                        <Grid RowDefinitions="*, *, *, *, *">
+                        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto">
                             <Label Grid.Row="0"
-                                   Margin="22,12"
-                                   FontSize="20"
+                                   HeightRequest="20"
+                                   Margin="0,10,0,0"
+                                   FontSize="18"
                                    Text="{Binding ActivityType}"
                                    TextColor="Black" VerticalOptions="End" />
                             <Label Grid.Row="1"
-                                   Margin="22,12"
-                                   FontSize="20"
+                                   HeightRequest="20"
+                                   Margin="0,10,0,0"
+                                   FontSize="18"
                                    Text="{Binding ActivityRoom}"
                                    TextColor="Black" VerticalOptions="End" />
                             <Label Grid.Row="2"
-                                   Margin="22,12"
-                                   FontSize="20"
+                                   HeightRequest="20"
+                                   Margin="0,10,0,0"
+                                   FontSize="18"
                                    Text="{Binding ActivityStartTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}"
                                    TextColor="Black" VerticalOptions="End" />
                             <Label Grid.Row="3"
-                                   Margin="22,12"
-                                   FontSize="20"
+                                   HeightRequest="20"
+                                   Margin="0,10,0,0"
+                                   FontSize="18"
                                    Text="{Binding ActivityEndTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}"
                                    TextColor="Black" VerticalOptions="End" />
                         </Grid>
