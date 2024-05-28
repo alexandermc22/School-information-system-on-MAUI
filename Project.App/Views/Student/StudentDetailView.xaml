@@ -13,30 +13,7 @@
                         
     <Grid RowDefinitions="Auto, *"
           RowSpacing="20">
-        <!-- <Grid Grid.Row="0" -->
-        <!--       ColumnDefinitions="*, Auto, Auto" -->
-        <!--       ColumnSpacing="15"> -->
-        <!--     <Button Grid.Column="1" -->
-        <!--             VerticalOptions="Start" -->
-        <!--             HeightRequest="30" -->
-        <!--             Text="delete" -->
-        <!--             CornerRadius="5" -->
-        <!--             BackgroundColor="{StaticResource ErrorColor}" -->
-        <!--             Command="{Binding DeleteCommand}" /> -->
-        <!-- -->
-        <!--     <Button Grid.Row="0" -->
-        <!--             HorizontalOptions="End" VerticalOptions="Start" -->
-        <!--             HeightRequest="30" -->
-        <!--             Text="edit" -->
-        <!--             CornerRadius="5" -->
-        <!--             Command="{Binding GoToEditCommand}" -->
-        <!--             Style="{StaticResource PrimaryButtonStyle}" /> -->
-        <!-- </Grid> -->
         
-        
-        <!-- <HorizontalStackLayout HorizontalOptions="End" -->
-        <!--                        Spacing="15" -->
-        <!--                        HeightRequest="30"> -->
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -104,9 +81,6 @@
                                                 <Span Text="    " />
                                                 <Span Text="{Binding SubjectName, StringFormat='Name: {0}'}"
                                                       FontSize="21"/>
-                                                <!-- <Span Text=" " /> -->
-                                                <!-- <Span Text="{Binding SubjectName,StringFormat='Name: {0}'}" -->
-                                                <!--       FontSize="21"/> -->
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
