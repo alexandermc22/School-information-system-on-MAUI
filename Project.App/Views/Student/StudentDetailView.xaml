@@ -13,55 +13,26 @@
                         
     <Grid RowDefinitions="Auto, *"
           RowSpacing="20">
-        <!-- <Grid Grid.Row="0" -->
-        <!--       ColumnDefinitions="*, Auto, Auto" -->
-        <!--       ColumnSpacing="15"> -->
-        <!--     <Button Grid.Column="1" -->
-        <!--             VerticalOptions="Start" -->
-        <!--             HeightRequest="30" -->
-        <!--             Text="delete" -->
-        <!--             CornerRadius="5" -->
-        <!--             BackgroundColor="{StaticResource ErrorColor}" -->
-        <!--             Command="{Binding DeleteCommand}" /> -->
-        <!-- -->
-        <!--     <Button Grid.Row="0" -->
-        <!--             HorizontalOptions="End" VerticalOptions="Start" -->
-        <!--             HeightRequest="30" -->
-        <!--             Text="edit" -->
-        <!--             CornerRadius="5" -->
-        <!--             Command="{Binding GoToEditCommand}" -->
-        <!--             Style="{StaticResource PrimaryButtonStyle}" /> -->
-        <!-- </Grid> -->
         
-        
-        <!-- <HorizontalStackLayout HorizontalOptions="End" -->
-        <!--                        Spacing="15" -->
-        <!--                        HeightRequest="30"> -->
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-
-            <Button Grid.Column="0"
-                    VerticalOptions="Start"
-                    HorizontalOptions="End"
-                    WidthRequest="100"
-                    HeightRequest="50"
-                    Text="Delete"
+        <HorizontalStackLayout Grid.Row="0"
+                               HorizontalOptions="Start"
+                               Spacing="15"
+                               HeightRequest="30">
+            <Button Text="Delete"
                     CornerRadius="5"
-                    BackgroundColor="{StaticResource ErrorColor}"
+                    TextColor="White"
+                    WidthRequest="70"
+                    HeightRequest="35"
+                    BackgroundColor="{StaticResource PrimaryColor}"
                     Command="{Binding DeleteCommand}" />
-
-            <Button Grid.Column="1"
-                    HorizontalOptions="End" VerticalOptions="Start"
-                    WidthRequest="100"
-                    HeightRequest="50"
-                    Text="Edit"
+            <Button Text="Edit"
                     CornerRadius="5"
-                    Command="{Binding GoToEditCommand}"
-                    Style="{StaticResource PrimaryButtonStyle}" />
-        </Grid>
+                    TextColor="White"
+                    WidthRequest="70"
+                    HeightRequest="35"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    Command="{Binding GoToEditCommand}" />
+        </HorizontalStackLayout>
         
 
         <Grid Grid.Row="1"
@@ -104,9 +75,6 @@
                                                 <Span Text="    " />
                                                 <Span Text="{Binding SubjectName, StringFormat='Name: {0}'}"
                                                       FontSize="21"/>
-                                                <!-- <Span Text=" " /> -->
-                                                <!-- <Span Text="{Binding SubjectName,StringFormat='Name: {0}'}" -->
-                                                <!--       FontSize="21"/> -->
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
