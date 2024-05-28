@@ -10,5 +10,5 @@ public interface IGradeFacade : IFacade<GradeEntity,GradeListModel , GradeDetail
     Task<GradeDetailModel> SaveAsync(GradeDetailModel model, Guid studentId);
     Task SaveAsync(GradeListModel model, Guid activityId);
     Task DeleteAsync(Guid id);
-    Task<IEnumerable<GradeListModel>?> GetSortAsync();
+    Task<IEnumerable<GradeListModel>?> GetSortAsync( Guid activityId);
 }

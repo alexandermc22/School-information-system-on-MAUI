@@ -43,7 +43,7 @@ public partial class GradeListViewModel(
         
         await base.LoadDataAsync();
         
-        Grade = await gradeFacade.GetSortAsync();
+        Grade = await gradeFacade.GetSortAsync(Activity.Id);
     }
 
     public async void Receive(GradeEditMessage message)
