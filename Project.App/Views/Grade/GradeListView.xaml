@@ -67,13 +67,6 @@
                                    Text="{Binding GradeValue}"
                                    TextColor="Black"
                                    VerticalOptions="Center" />
-                            <Label Grid.Column="1" Grid.Row="1"
-                                   FontSize="15"
-                                   FontAttributes="Bold"
-                                   TextTransform="Uppercase"
-                                   Text="{Binding Description}"
-                                   TextColor="Black"
-                                   VerticalOptions="Center" />
                         </Grid>
                     </Frame>
                 </DataTemplate>

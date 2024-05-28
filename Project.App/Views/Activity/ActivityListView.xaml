@@ -60,15 +60,16 @@
         <CollectionView Grid.Row="1"
                         ItemsSource="{Binding Activity}">
             <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Horizontal"
-                                 HorizontalItemSpacing="10" VerticalItemSpacing="10"
-                                 Span="2" />
+                <LinearItemsLayout Orientation="Vertical" 
+                                   ItemSpacing="10" />
             </CollectionView.ItemsLayout>
         
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="m:ActivityListModel">
                     <Frame
-                        Style="{StaticResource ImageFrameStyle}" BackgroundColor="Yellow">
+                        Style="{StaticResource ImageFrameStyle}"
+                        BackgroundColor="Yellow"
+                        WidthRequest="1000">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={x:Reference ActivityListViewRoot}, Path=BindingContext.GoToDetailCommand}"
                                                   CommandParameter="{Binding Id}" />
@@ -78,25 +79,27 @@
                                    HeightRequest="20"
                                    Margin="0,10,0,0"
                                    FontSize="18"
-                                   Text="{Binding ActivityType}"
+                                   Text="{Binding ActivityType, StringFormat='TYPE: {0}'}"
+                                   FontAttributes="Bold"
+                                   TextTransform="Uppercase"
                                    TextColor="Black" VerticalOptions="End" />
                             <Label Grid.Row="1"
                                    HeightRequest="20"
                                    Margin="0,10,0,0"
                                    FontSize="18"
-                                   Text="{Binding ActivityRoom}"
+                                   Text="{Binding ActivityRoom, StringFormat='ROOM: {0}'}"
                                    TextColor="Black" VerticalOptions="End" />
                             <Label Grid.Row="2"
                                    HeightRequest="20"
                                    Margin="0,10,0,0"
                                    FontSize="18"
-                                   Text="{Binding ActivityStartTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}"
+                                   Text="{Binding ActivityStartTime, StringFormat='FROM: {0:MM/dd/yyyy HH:mm}'}"
                                    TextColor="Black" VerticalOptions="End" />
                             <Label Grid.Row="3"
                                    HeightRequest="20"
                                    Margin="0,10,0,0"
                                    FontSize="18"
-                                   Text="{Binding ActivityEndTime, StringFormat='{0:MM/dd/yyyy HH:mm}'}"
+                                   Text="{Binding ActivityEndTime, StringFormat='TO: {0:MM/dd/yyyy HH:mm}'}"
                                    TextColor="Black" VerticalOptions="End" />
                         </Grid>
                     </Frame>
