@@ -57,7 +57,7 @@
         <CollectionView Grid.Row="3"
                         ItemsSource="{Binding Activity.Grades}">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="m:GradeListModel">
+                <DataTemplate x:DataType="m:GradeDetailModel">
                     <Grid ColumnDefinitions="Auto, Auto, Auto, Auto, *"
                           ColumnSpacing="10">
                         
@@ -74,7 +74,7 @@
 
                         <Picker Grid.Column="2"
                                 VerticalOptions="Center"
-                                ItemsSource="{Binding Source={x:Reference GradeEditViewRoot}, Path=BindingContext.Grades}"
+                                ItemsSource="{Binding Source={x:Reference GradeEditViewRoot}, Path=BindingContext.Grade.GradeValue}"
                                 ItemDisplayBinding="{Binding ., Converter={StaticResource GradeToStringConverter}}"
                                 SelectedItem="{Binding GradeValue}">
                             <Picker.Behaviors>
