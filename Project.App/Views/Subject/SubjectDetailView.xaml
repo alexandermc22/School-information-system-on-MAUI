@@ -32,7 +32,7 @@
        <Grid Grid.Row="1"
               ColumnDefinitions="*, Auto"
               ColumnSpacing="20">
-            <ScrollView Orientation="Vertical">
+           <ScrollView Orientation="Vertical">
                 <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *"
                       RowSpacing="20">
                     <Label Grid.Row="0"
@@ -64,17 +64,13 @@
                                     <Label VerticalOptions="Center">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding ActivityType, StringFormat='TYPE: {0},'}"
-                                                      FontSize="21"/>
+                                                <Span Text="{Binding ActivityType, StringFormat='TYPE: {0},'}"/>
                                                 <Span Text="  " />
-                                                <Span Text="{Binding ActivityRoom,StringFormat='ROOM: {0},'}"
-                                                      FontSize="21"/>
+                                                <Span Text="{Binding ActivityRoom,StringFormat='ROOM: {0},'}"/>
                                                 <Span Text="  " />
-                                                <Span Text="{Binding ActivityStartTime,StringFormat='FROM {0}'}"
-                                                      FontSize="18"/>
+                                                <Span Text="{Binding ActivityStartTime,StringFormat='FROM {0}'}"/>
                                                 <Span Text=" " />
-                                                <Span Text="{Binding ActivityEndTime,StringFormat='TO {0}.'}"
-                                                      FontSize="18"/>
+                                                <Span Text="{Binding ActivityEndTime,StringFormat='TO {0}.'}"/>
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
