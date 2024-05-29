@@ -26,8 +26,8 @@
         <Frame Grid.Row="0" Grid.Column="1"
                Style="{StaticResource ImageFrameStyle}"
                HorizontalOptions="End" VerticalOptions="Start">
-            <Image Source="{Binding Student.Photo, TargetNullValue='ingredient_placeholder.jpg'}"
-                   WidthRequest="320" HeightRequest="240"
+            <Image Source="{Binding Student.Photo, TargetNullValue='book.png'}"
+                   WidthRequest="320" HeightRequest="320"
                    Aspect="AspectFill"/>
         </Frame>
 
