@@ -11,7 +11,8 @@
     
       <Grid HorizontalOptions="FillAndExpand" 
          RowDefinitions="Auto, *"
-         RowSpacing="20">
+         RowSpacing="20"
+         BackgroundColor="Black">
         <HorizontalStackLayout HorizontalOptions="End"
                                Spacing="15"
                                HeightRequest="30">
