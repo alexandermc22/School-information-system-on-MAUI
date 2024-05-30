@@ -3,7 +3,7 @@ using Project.DAL.Entities;
 namespace Project.BL.Mappers;
 
 public class StudentSubjectsModelMapper:
-    ModelMapperBase<StudentSubjectEntity,StudentSubjectsDetailModel,StudentSubjectsListModel>
+    ModelMapperBase<StudentSubjectEntity,StudentSubjectsDetailModel,StudentSubjectsListModel>, IStudentSubjectsModelMapper
 {
     
     public override StudentSubjectsListModel MapToListModel(StudentSubjectEntity? entity)
@@ -14,7 +14,8 @@ public class StudentSubjectsModelMapper:
                 Id = entity.Id,
                 SubjectCode = entity.Subject.Code,
                 SubjectId = entity.SubjectId,
-                SubjectName = entity.Subject.Name
+                SubjectName = entity.Subject.Name,
+                SubjectImageUrl = entity.Subject.ImageUrl
             };
     
     public override StudentSubjectsDetailModel MapToDetailModel(StudentSubjectEntity? entity)
@@ -36,6 +37,7 @@ public class StudentSubjectsModelMapper:
             SubjectId = detailModel.SubjectId,
             SubjectCode = detailModel.SubjectCode,
             SubjectName = detailModel.SubjectName,
+            SubjectImageUrl = detailModel.SubjectImageUrl
         };
     
     public void MapToExistingDetailModel(StudentSubjectsDetailModel existingDetailModel,
@@ -50,22 +52,22 @@ public class StudentSubjectsModelMapper:
     public override StudentSubjectEntity MapToEntity(StudentSubjectsDetailModel model)
         => throw new NotImplementedException("This method is unsupported. Use the other overload.");
     
-    public StudentSubjectEntity MapToEntity(StudentSubjectsDetailModel model, Guid studentId, Guid subjectId)
+    public StudentSubjectEntity MapToEntity(StudentSubjectsDetailModel model, Guid studentId)
         => new()
         {
             Id = model.Id,
             StudentId = studentId,
-            SubjectId = subjectId,
+            SubjectId = model.SubjectId,
             Student = null!,
             Subject = null!
         };
 
-    public StudentSubjectEntity MapToEntity(StudentSubjectsListModel model, Guid studentId, Guid subjectId)
+    public StudentSubjectEntity MapToEntity(StudentSubjectsListModel model, Guid studentId)
         => new()
         {
             Id = model.Id,
             StudentId = studentId,
-            SubjectId = subjectId,
+            SubjectId = model.SubjectId,
             Student = null!,
             Subject = null!
         };

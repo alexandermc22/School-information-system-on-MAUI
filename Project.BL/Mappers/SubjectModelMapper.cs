@@ -3,8 +3,8 @@ using Project.DAL.Entities;
 using Project.BL.Models;
 namespace Project.BL.Mappers;
 
-public class SubjectModelMapper(SubjectStudentsModelMapper subjectStudentsModelMapper)
-    : ModelMapperBase<SubjectEntity,SubjectDetailModel,SubjectListModel>
+public class SubjectModelMapper(IActivityModelMapper subjectStudentsModelMapper)
+    : ModelMapperBase<SubjectEntity,SubjectDetailModel,SubjectListModel>, ISubjectModelMapper
 {
 
     public override SubjectListModel MapToListModel(SubjectEntity? entity)
@@ -24,9 +24,8 @@ public class SubjectModelMapper(SubjectStudentsModelMapper subjectStudentsModelM
             Id = model.Id,
             Name = model.Name,
             Code = model.Code,
-            StudentSubject = null!,
+            ImageUrl = model.ImageUrl,
             Activity = null!,
-            ImageUrl = model.ImageUrl
         };
     
     public  SubjectEntity MapToEntity(SubjectListModel model)
@@ -36,7 +35,6 @@ public class SubjectModelMapper(SubjectStudentsModelMapper subjectStudentsModelM
             Name = model.Name,
             Code = model.Code,
             ImageUrl = model.ImageUrl,
-            StudentSubject = null!,
             Activity = null!,
         };
 
@@ -46,14 +44,25 @@ public class SubjectModelMapper(SubjectStudentsModelMapper subjectStudentsModelM
             return SubjectDetailModel.Empty;
         else
         {
-            return new SubjectDetailModel
-            {
-                Id = entity.Id,
-                Name = entity.Name,
-                Code = entity.Code,
-                ImageUrl = entity.ImageUrl,
-                SubjectStudents = subjectStudentsModelMapper.MapToListModel(entity.StudentSubject).ToObservableCollection()
-            };
+            if (entity.Activity != null)
+                return new SubjectDetailModel
+                {
+                    Id = entity.Id,
+                    Name = entity.Name,
+                    Code = entity.Code,
+                    ImageUrl = entity.ImageUrl,
+                    Activities = subjectStudentsModelMapper.MapToListModel(entity.Activity)
+                        .ToObservableCollection()
+                };
+            else
+                return new SubjectDetailModel
+                {
+                    Id = entity.Id,
+                    Name = entity.Name,
+                    Code = entity.Code,
+                    ImageUrl = entity.ImageUrl,
+                };
+
         }
    
     }

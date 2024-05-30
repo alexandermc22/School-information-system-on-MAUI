@@ -17,7 +17,7 @@ namespace Project.DAL.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
 
-            modelBuilder.Entity("Project.DAL.Entities.ActionEntity", b =>
+            modelBuilder.Entity("Project.DAL.Entities.ActivityEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace Project.DAL.Migrations
 
                     b.HasIndex("SubjectId");
 
-                    b.ToTable("Actions");
+                    b.ToTable("Activities");
                 });
 
             modelBuilder.Entity("Project.DAL.Entities.GradeEntity", b =>
@@ -54,21 +54,24 @@ namespace Project.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ActionId")
+                    b.Property<Guid>("ActivityId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Score")
-                        .HasColumnType("REAL");
+                    b.Property<DateTime>("GradeDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("GradeValue")
+                        .HasColumnType("INTEGER");
 
                     b.Property<Guid>("StudentId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ActionId");
+                    b.HasIndex("ActivityId");
 
                     b.HasIndex("StudentId");
 
@@ -115,7 +118,7 @@ namespace Project.DAL.Migrations
 
                     b.HasIndex("SubjectId");
 
-                    b.ToTable("StudentSubjectEntity");
+                    b.ToTable("StudentSubject");
                 });
 
             modelBuilder.Entity("Project.DAL.Entities.SubjectEntity", b =>
@@ -128,6 +131,9 @@ namespace Project.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -137,10 +143,10 @@ namespace Project.DAL.Migrations
                     b.ToTable("Subjects");
                 });
 
-            modelBuilder.Entity("Project.DAL.Entities.ActionEntity", b =>
+            modelBuilder.Entity("Project.DAL.Entities.ActivityEntity", b =>
                 {
                     b.HasOne("Project.DAL.Entities.SubjectEntity", "Subject")
-                        .WithMany("Actions")
+                        .WithMany("Activity")
                         .HasForeignKey("SubjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -150,19 +156,19 @@ namespace Project.DAL.Migrations
 
             modelBuilder.Entity("Project.DAL.Entities.GradeEntity", b =>
                 {
-                    b.HasOne("Project.DAL.Entities.ActionEntity", "Action")
+                    b.HasOne("Project.DAL.Entities.ActivityEntity", "Activity")
                         .WithMany("Grades")
-                        .HasForeignKey("ActionId")
+                        .HasForeignKey("ActivityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Project.DAL.Entities.StudentEntity", "Student")
-                        .WithMany()
+                        .WithMany("Grades")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Action");
+                    b.Navigation("Activity");
 
                     b.Navigation("Student");
                 });
@@ -186,19 +192,21 @@ namespace Project.DAL.Migrations
                     b.Navigation("Subject");
                 });
 
-            modelBuilder.Entity("Project.DAL.Entities.ActionEntity", b =>
+            modelBuilder.Entity("Project.DAL.Entities.ActivityEntity", b =>
                 {
                     b.Navigation("Grades");
                 });
 
             modelBuilder.Entity("Project.DAL.Entities.StudentEntity", b =>
                 {
+                    b.Navigation("Grades");
+
                     b.Navigation("StudentSubject");
                 });
 
             modelBuilder.Entity("Project.DAL.Entities.SubjectEntity", b =>
                 {
-                    b.Navigation("Actions");
+                    b.Navigation("Activity");
 
                     b.Navigation("StudentSubject");
                 });

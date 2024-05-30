@@ -1,0 +1,96 @@
+﻿<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:views="clr-namespace:Project.App.Views"
+                       xmlns:vm="clr-namespace:Project.App.ViewModels"
+                       xmlns:m="clr-namespace:Project.BL.Models;assembly=Project.BL"
+                       xmlns:behaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+                       x:Class="Project.App.Views.Student.StudentSubjectsEditView"
+                       Title="Student Add Subject"
+                       Style="{StaticResource ContentPageStyle}"
+                       x:DataType="vm:StudentSubjectsEditViewModel"
+                       x:Name="StudentSubjectsViewRoot">
+    
+    <Grid RowDefinitions="Auto, Auto, Auto, *" ColumnDefinitions="*, Auto">
+        <HorizontalStackLayout Grid.Row="0" Grid.Column="0"
+                               HorizontalOptions="StartAndExpand" VerticalOptions="Start"
+                               Spacing="10">
+            <Label Text="{Binding Student.FirstName}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Start"
+                   FontSize="29"/>
+            <Label Text="{Binding Student.LastName}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Start"
+                   FontSize="29"/>
+        </HorizontalStackLayout>
+        <Frame Grid.Row="0" Grid.Column="1"
+               Style="{StaticResource ImageFrameStyle}"
+               HorizontalOptions="End" VerticalOptions="Start">
+            <Image Source="{Binding Student.Photo, TargetNullValue='book.png'}"
+                   WidthRequest="320" HeightRequest="320"
+                   Aspect="AspectFill"/>
+        </Frame>
+
+        
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+              RowDefinitions="Auto" ColumnDefinitions="Auto, Auto, Auto, *"
+              RowSpacing="10" ColumnSpacing="10">
+            <Label Grid.Row="0" Grid.Column="0"
+                   Text="Subjects" 
+                   FontSize="20"
+                   VerticalOptions="Center"/>
+
+            <Picker Grid.Row="0" Grid.Column="1"
+                    ItemsSource="{Binding Subjects}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SubjectSelected}"
+                    HorizontalOptions="Start"
+                    WidthRequest="150"/>
+
+            <Button Grid.Row="0" Grid.Column="2"
+                    Text="Add"
+                    Command="{Binding AddNewSubjectToStudentCommand}"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    FontSize="15"
+                    VerticalOptions="Center"/>
+        </Grid>
+
+        
+        <CollectionView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                        ItemsSource="{Binding Student.StudentSubjects}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="m:StudentSubjectsDetailModel">
+                    <Grid ColumnDefinitions="Auto, *, Auto"
+                          ColumnSpacing="10" VerticalOptions="Start">
+                        <Frame Grid.Column="0"
+                               Margin="0,20,0,0"
+                               Style="{StaticResource ImageFrameStyle}">
+                            <Image Source="{Binding SubjectImageUrl, TargetNullValue='book.png'}"
+                                   WidthRequest="60" HeightRequest="60"
+                                   Aspect="AspectFill"/>
+                        </Frame>
+
+                        <Label Grid.Column="1"
+                               VerticalOptions="Center"
+                               Text="{Binding SubjectName}"
+                               Margin="0,20,0,0">
+                            <Entry.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="Unfocused"
+                                                                  Command="{Binding Source={x:Reference StudentSubjectsViewRoot}, Path=BindingContext.UpdateSubjectCommand}"
+                                                                  CommandParameter="{Binding .}"/>
+                            </Entry.Behaviors>
+                        </Label>
+
+                        <Button Grid.Column="2"
+                                Text="Delete"
+                                Margin="0,20,0,0"
+                                Command="{Binding Source={x:Reference StudentSubjectsViewRoot}, Path=BindingContext.RemoveSubjectCommand}"
+                                CommandParameter="{Binding .}"
+                                Style="{StaticResource ErrorButtonStyle}"
+                                VerticalOptions="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</views:ContentPageBase>

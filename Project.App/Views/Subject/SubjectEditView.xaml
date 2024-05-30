@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:viewModels="clr-namespace:Project.App.ViewModels"
+                       xmlns:views="clr-namespace:Project.App.Views"
+                       x:Class="Project.App.Views.Subject.SubjectEditView"
+                       Title="Subjects"
+                       x:DataType="viewModels:SubjectEditViewModel"
+                       x:Name="SubjectEditViewRoot"
+                       Style="{StaticResource ContentPageStyle}">
+                        
+<Grid RowDefinitions="70, *">
+        <Grid Grid.Row="0"
+              ColumnDefinitions="*, Auto"
+              ColumnSpacing="15">
+
+            <Button Grid.Column="1"
+                    VerticalOptions="Start"
+                    WidthRequest="70"
+                    HeightRequest="35"
+                    CornerRadius="5"
+                    Text="save"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    Command="{Binding SaveCommand}" />
+        </Grid>
+        <Grid Grid.Row="1"
+              HorizontalOptions="Fill" VerticalOptions="Start"
+              RowDefinitions="170, *" ColumnDefinitions="Auto, *"
+              RowSpacing="20" ColumnSpacing="20">
+            <Frame Grid.Row="0" Grid.Column="0"
+                   HorizontalOptions="Center"
+                   Style="{StaticResource ImageFrameStyle}">
+                <Grid>
+                    <Image Source="{Binding Subject.ImageUrl, TargetNullValue='book.png'}"
+                           WidthRequest="170" HeightRequest="170"
+                           Aspect="AspectFill" />
+                </Grid>
+            </Frame>
+
+            <VerticalStackLayout Grid.Row="0" Grid.RowSpan="2"
+                                 Grid.Column="1"
+                                 HorizontalOptions="Fill"
+                                 Spacing="10">
+                <Label Text="Name"
+                       TextColor="{StaticResource PrimaryLabelTextColor}" />
+                <Entry HorizontalOptions="Fill"
+                       Text="{Binding Subject.Name}" />
+                <Label Text="Code"
+                       TextColor="{StaticResource PrimaryLabelTextColor}" />
+                <Entry HorizontalOptions="Fill"
+                       Text="{Binding Subject.Code}" />
+                <Label Text="Image"
+                       TextColor="{StaticResource PrimaryLabelTextColor}" />
+                <Entry HorizontalOptions="Fill"
+                       Text="{Binding Subject.ImageUrl}" />
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</views:ContentPageBase>

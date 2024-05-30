@@ -9,24 +9,51 @@ namespace Project.BL.Facades;
 
 public class StudentFacade(
     IUnitOfWorkFactory unitOfWorkFactory,
-    StudentModelMapper modelMapper)
+    IStudentModelMapper modelMapper)
     :
-        FacadeBase<StudentEntity, StudentListModel, StudentDetailModel, StudentEntityMapper>(unitOfWorkFactory,
+        FacadeBase<StudentEntity, StudentDetailModel, StudentListModel, StudentEntityMapper>(unitOfWorkFactory,
             modelMapper), IStudentFacade
 {
-    public  async Task<StudentListModel?> GetByNameAsync(string firstName, string lastName)
+    public async Task<IEnumerable<StudentListModel>?> GetByNameAsync(string firstName)
     {
+        // Проверка на пустые строки
+        if (string.IsNullOrEmpty(firstName))
+        {
+            // Если оба параметра пустые, вернуть пустой список
+            return await base.GetAsync();
+        }
+
+        string[] names = firstName.Split(" ");
+        if (names.Length > 2)
+            return new List<StudentListModel>();
+
+
+
         await using IUnitOfWork uow = UnitOfWorkFactory.Create();
 
         IQueryable<StudentEntity> query = uow.GetRepository<StudentEntity, StudentEntityMapper>().Get();
-        
 
-        StudentEntity? entity = await query.SingleOrDefaultAsync(e => (e.FirstName == firstName && e.LastName == lastName)).ConfigureAwait(false);
+        // Формирование условий фильтрации
+        IQueryable<StudentEntity> filteredStudents = query;
+        if(names.Length == 2)
+        {
+            filteredStudents = filteredStudents.Where(s => s.LastName == names[0] || s.LastName == names[1] || s.FirstName == names[0] || s.FirstName == names[1]);
 
-        return entity is null
-            ? null
-            : ModelMapper.MapToListModel(entity);
+        }
+        if (names.Length == 1)
+        {
+            filteredStudents = filteredStudents.Where(s => s.LastName == names[0] || s.FirstName == names[0] );
+
+        }
+        // Преобразование отфильтрованных студентов в модели списка
+        List<StudentListModel> SLM = await filteredStudents
+            .OrderBy(s => s.LastName)
+            .Select(student => ModelMapper.MapToListModel(student))
+            .ToListAsync();
+
+        return SLM.Count == 0 ? null : SLM;
     }
+
     
     public  async Task<IEnumerable<StudentListModel>?> GetSortAsync()
     {
@@ -48,6 +75,8 @@ public class StudentFacade(
             ? null
             : SLM;
     }
+    
+    
     
     protected override ICollection<string> IncludesNavigationPathDetail =>
         new[] {$"{nameof(StudentEntity.StudentSubject)}.{nameof(StudentSubjectEntity.Subject)}"};

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:views="clr-namespace:Project.App.Views"
+                       x:Class="Project.App.Views.Grade.GradeListView"
+                       xmlns:m="clr-namespace:Project.BL.Models;assembly=Project.BL"
+                       xmlns:vm="clr-namespace:Project.App.ViewModels.Grade"
+                       x:DataType="vm:GradeListViewModel"
+                       x:Name="GradeListViewRoot">
+    
+      <Grid HorizontalOptions="FillAndExpand" 
+         RowDefinitions="Auto, *"
+         RowSpacing="20"
+         BackgroundColor="Black">
+        <HorizontalStackLayout HorizontalOptions="End"
+                               Spacing="15"
+                               HeightRequest="30">
+            <Button Text="Create"
+                    WidthRequest="70"
+                    HeightRequest="35"
+                    CornerRadius="5"
+                    Margin="0,10,10,0"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    Command="{Binding GoToCreateCommand}" />
+            <Button Text="Sort"
+                    WidthRequest="70"
+                    HeightRequest="35"
+                    CornerRadius="5"
+                    Margin="0,10,10,0"
+                    BackgroundColor="{StaticResource PrimaryButtonSortColor}"
+                    Command="{Binding GetSortCommand}" />
+        </HorizontalStackLayout>
+       
+        
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Grade}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" 
+                                   ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="m:GradeListModel">
+                    <Frame Padding="10"
+                           CornerRadius="10"
+                           HasShadow="True"
+                           BackgroundColor="Yellow"
+                           Margin="10,10,10,10"
+                           WidthRequest="1000">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference GradeListViewRoot}, Path=BindingContext.GoToCreateCommand}"
+                                                  CommandParameter="{Binding Id}" />
+                        </Frame.GestureRecognizers>
+                        <Grid ColumnDefinitions="Auto, *"
+                              RowDefinitions="Auto, Auto"
+                              ColumnSpacing="20">
+                            <Label Grid.Column="0" Grid.Row="0"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   TextTransform="Uppercase"
+                                   Text="{Binding StudentName}"
+                                   TextColor="Black"
+                                   VerticalOptions="Center" />
+                            <Label Grid.Column="0" Grid.Row="1"
+                                   FontSize="30"
+                                   FontAttributes="Bold"
+                                   TextTransform="Uppercase"
+                                   Text="{Binding GradeValue}"
+                                   TextColor="Black"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</views:ContentPageBase>

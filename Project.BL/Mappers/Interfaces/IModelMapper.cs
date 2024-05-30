@@ -1,6 +1,6 @@
 ﻿namespace Project.BL.Mappers;
 
-public interface IModelMapper<TEntity, out TListModel, TDetailModel>
+public interface IModelMapper<TEntity, TDetailModel, out TListModel>
 {
     TListModel MapToListModel(TEntity? entity);
 

@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:Project.App.Views"
+             xmlns:vm="clr-namespace:Project.App.ViewModels"
+             xmlns:m="clr-namespace:Project.BL.Models;assembly=Project.BL"
+             x:Class="Project.App.Views.Subject.SubjectListView"
+             x:DataType="vm:SubjectListViewModel"
+             x:Name="SubjectListViewRoot"
+             Title="Subjects"
+             Style="{StaticResource ContentPageStyle}">
+            
+    
+   <Grid HorizontalOptions="FillAndExpand" 
+         RowDefinitions="Auto, *"
+         RowSpacing="20">
+        <Label Grid.Row="0"
+               FontSize="24"
+               Text="Subjects" />
+        <SearchBar Grid.Row="0"
+                   Placeholder="Search...."
+                   WidthRequest="300"
+                   Text="{Binding Code}"
+                   SearchCommand="{Binding GetFilteredCommand }"
+                   ></SearchBar>
+        <HorizontalStackLayout HorizontalOptions="End"
+                               Spacing="15"
+                               HeightRequest="30">
+            <Button Text="Create"
+                    WidthRequest="70"
+                    HeightRequest="35"
+                    CornerRadius="5"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    Command="{Binding GoToCreateCommand}" />
+
+            <Button Text="Sort"
+                    WidthRequest="70"
+                    HeightRequest="35"
+                    CornerRadius="5"
+                    BackgroundColor="{StaticResource PrimaryButtonSortColor}"
+                    Command="{Binding SortCommand}" />
+        </HorizontalStackLayout>
+       
+        
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Subjects}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" 
+                                   ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="m:SubjectListModel">
+                    <Frame Padding="10"
+                           CornerRadius="10"
+                           HasShadow="True"
+                           BackgroundColor="Yellow"
+                           Margin="10,10,10,10"
+                           WidthRequest="1000">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference SubjectListViewRoot}, Path=BindingContext.GoToDetailCommand}"
+                                                  CommandParameter="{Binding Id}" />
+                        </Frame.GestureRecognizers>
+                        <Grid ColumnDefinitions="Auto, *"
+                              RowDefinitions="Auto, Auto"
+                              ColumnSpacing="10">
+                            <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"
+                                   Aspect="AspectFill"
+                                   WidthRequest="100" HeightRequest="100"
+                                   Source="{Binding ImageUrl, TargetNullValue='book.png'}"
+                                   Margin="0,0,10,0" />
+                            <Label Grid.Column="1" Grid.Row="0"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   TextTransform="Uppercase"
+                                   Text="{Binding Name}"
+                                   TextColor="Black"
+                                   VerticalOptions="Center" />
+                            <Label Grid.Column="1" Grid.Row="1"
+                                   FontSize="16"
+                                   TextTransform="Lowercase"
+                                   Text="{Binding Code}"
+                                   TextColor="Gray"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</views:ContentPageBase>

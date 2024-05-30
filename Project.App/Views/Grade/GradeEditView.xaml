@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:views="clr-namespace:Project.App.Views"
+                       xmlns:m="clr-namespace:Project.BL.Models;assembly=Project.BL"
+                       xmlns:behaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+                       xmlns:vm="clr-namespace:Project.App.ViewModels.Grade"
+                       x:Class="Project.App.Views.Grade.GradeEditView"
+                       Title="Edit grade"
+                       Style="{StaticResource ContentPageStyle}"
+                       x:DataType="vm:GradeEditViewModel"
+                       x:Name="GradeEditViewRoot">
+                        
+  <Grid RowDefinitions="Auto, Auto, Auto, *"
+          HorizontalOptions="Fill"
+          RowSpacing="20">
+        <HorizontalStackLayout Grid.Row="0"
+                               HorizontalOptions="Center"
+                               Spacing="10">
+        </HorizontalStackLayout>
+
+        <Label Grid.Row="1"
+               Text="Grades" />
+
+        <Grid Grid.Row="2"
+              RowDefinitions="Auto, Auto"
+              ColumnDefinitions="150, Auto, Auto, Auto, *"
+              RowSpacing="10" ColumnSpacing="15">
+
+            <Label Grid.Row="0" Grid.Column="0"
+                   Text="Description" />
+
+            <Entry Grid.Row="1" Grid.Column="0"
+                   Text="{Binding Grade.Description}" />
+
+            <Picker Grid.Row="1" Grid.Column="1"
+                    ItemsSource="{Binding Grades}"
+                    ItemDisplayBinding="{Binding ., Converter={StaticResource GradeToStringConverter}}"
+                    SelectedItem="{Binding Grade.GradeValue}" />
+
+            <Label Grid.Row="0" Grid.Column="2"
+                   Text="Student" />
+
+            <Picker Grid.Row="1" Grid.Column="2"
+                    ItemsSource="{Binding Students}"
+                    ItemDisplayBinding="{Binding FirstName}"
+                    SelectedItem="{Binding StudentSelected}" />
+
+            <Button Grid.Row="1" Grid.Column="3"
+                    Text="Add"
+                    HorizontalOptions="Start"
+                    Command="{Binding AddNewStudentToGradeCommand}"
+                    Style="{StaticResource PrimaryButtonStyle}"/>
+        </Grid>
+
+        <CollectionView Grid.Row="3"
+                        ItemsSource="{Binding Activity.Grades}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="m:GradeListModel">
+                    <Grid ColumnDefinitions="Auto, Auto, Auto, Auto, *"
+                          ColumnSpacing="10">
+                        
+
+                        <Entry Grid.Column="1"
+                               VerticalOptions="Center"
+                               Text="{Binding Description}">
+                            <Entry.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="Unfocused"
+                                                                  Command="{Binding Source={x:Reference GradeEditViewRoot}, Path=BindingContext.UpdateStudentCommand}"
+                                                                  CommandParameter="{Binding .}" />
+                            </Entry.Behaviors>
+                        </Entry>
+
+                        <Picker Grid.Column="2"
+                                VerticalOptions="Center"
+                                ItemsSource="{Binding Source={x:Reference GradeEditViewRoot}, Path=BindingContext.Grades}"
+                                ItemDisplayBinding="{Binding ., Converter={StaticResource GradeToStringConverter}}"
+                                SelectedItem="{Binding GradeValue}">
+                            <Picker.Behaviors>
+                                <behaviors:EventToCommandBehavior EventName="SelectedIndexChanged"
+                                                                  Command="{Binding Source={x:Reference GradeEditViewRoot}, Path=BindingContext.UpdateStudentCommand}"
+                                                                  CommandParameter="{Binding .}" />
+                            </Picker.Behaviors>
+                        </Picker>
+
+                        <Label Grid.Column="3"
+                               VerticalOptions="Center"
+                               Text="{Binding StudentName}" />
+
+                        <Button Grid.Column="4"
+                                HorizontalOptions="Start" VerticalOptions="Center"
+                                Text="Remove"
+                                Command="{Binding Source={x:Reference GradeEditViewRoot}, Path=BindingContext.RemoveGradeCommand}"
+                                CommandParameter="{Binding .}"
+                                Style="{StaticResource ErrorButtonStyle}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</views:ContentPageBase>

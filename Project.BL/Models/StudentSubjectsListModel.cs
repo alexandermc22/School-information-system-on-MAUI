@@ -6,6 +6,8 @@ public record StudentSubjectsListModel: ModelBase
     public required string SubjectName { get; set; }
     public required string SubjectCode { get; set; }
     
+    public string SubjectImageUrl { get; set; }
+    
     public static StudentSubjectsListModel Empty => new ()
     {
         Id = Guid.NewGuid(),

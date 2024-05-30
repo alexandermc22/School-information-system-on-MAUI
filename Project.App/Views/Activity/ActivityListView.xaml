@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:views="clr-namespace:Project.App.Views"
+                       x:Class="Project.App.Views.Activity.ActivityListView"
+                       xmlns:m="clr-namespace:Project.BL.Models;assembly=Project.BL"
+                       xmlns:vm="clr-namespace:Project.App.ViewModels.Activity"
+                       x:DataType="vm:ActivityListViewModel"
+                       x:Name="ActivityListViewRoot">
+    
+    
+    <Grid HorizontalOptions="FillAndExpand" RowDefinitions="Auto, *"
+          RowSpacing="20"
+          BackgroundColor="Black">
+        
+        <HorizontalStackLayout HorizontalOptions="End"
+                               Spacing="15"
+                               Margin="0, 10, 5 ,0"
+                               HeightRequest="35">
+            <Label Text="Start time"
+                   TextColor="{StaticResource PrimaryLabelTextColor}" />
+            <DatePicker Format="d"
+                        HeightRequest="35"
+                        Date="{Binding DateStartSelected}"
+                        MinimumDate="2022-07-10"
+                        MaximumDate="2028-07-20" />
+            <TimePicker  HeightRequest="35"
+                         Time="{Binding TimeStartSelected}" />
+            <Label Text="End time"
+                   TextColor="{StaticResource PrimaryLabelTextColor}" />
+            <DatePicker Format="d"
+                        HeightRequest="35"
+                        Date="{Binding DateEndSelected}"
+                        MinimumDate="2022-07-10"
+                        MaximumDate="2028-07-20" />
+            <TimePicker  HeightRequest="35"
+                         Time="{Binding TimeEndSelected}" />
+            
+            <Button Text="Sort"
+                    WidthRequest="70"
+                    HeightRequest="35"
+                    CornerRadius="5"
+                    Margin="0,0,5,0"
+                    BackgroundColor="{StaticResource PrimaryButtonSortColor}"
+                    Command="{Binding GetFilteredCommand}" />
+            
+
+            <Button Text="Create"
+                    WidthRequest="70"
+                    HeightRequest="35"
+                    CornerRadius="5"
+                    Margin="0,0,5,0"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    Command="{Binding GoToCreateCommand}" />
+            
+            
+        </HorizontalStackLayout>
+        
+        
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Activity}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" 
+                                   ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+        
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="m:ActivityListModel">
+                    <Frame
+                        Style="{StaticResource ImageFrameStyle}"
+                        BackgroundColor="Yellow"
+                        WidthRequest="1000">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference ActivityListViewRoot}, Path=BindingContext.GoToDetailCommand}"
+                                                  CommandParameter="{Binding Id}" />
+                        </Frame.GestureRecognizers>
+                        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+                            <Label Grid.Row="0"
+                                   HeightRequest="20"
+                                   Margin="0,10,0,0"
+                                   FontSize="18"
+                                   Text="{Binding ActivityType, StringFormat='TYPE: {0}'}"
+                                   FontAttributes="Bold"
+                                   TextTransform="Uppercase"
+                                   TextColor="Black" VerticalOptions="End" />
+                            <Label Grid.Row="1"
+                                   HeightRequest="20"
+                                   Margin="0,10,0,0"
+                                   FontSize="18"
+                                   Text="{Binding ActivityRoom, StringFormat='ROOM: {0}'}"
+                                   TextColor="Black" VerticalOptions="End" />
+                            <Label Grid.Row="2"
+                                   HeightRequest="20"
+                                   Margin="0,10,0,0"
+                                   FontSize="18"
+                                   Text="{Binding ActivityStartTime, StringFormat='FROM: {0:MM/dd/yyyy HH:mm}'}"
+                                   TextColor="Black" VerticalOptions="End" />
+                            <Label Grid.Row="3"
+                                   HeightRequest="20"
+                                   Margin="0,10,0,0"
+                                   FontSize="18"
+                                   Text="{Binding ActivityEndTime, StringFormat='TO: {0:MM/dd/yyyy HH:mm}'}"
+                                   TextColor="Black" VerticalOptions="End" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        
+        <!--<StackLayout Grid.Column="1" Padding="20">  
+          <Grid Padding="10" Margin="20,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    
+                    ~1~ Days of the week @1@
+                    <Label Grid.Column="0" Text="Mo" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="18"/>
+                    <Label Grid.Column="1" Text="Tu" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="18"/>
+                    <Label Grid.Column="2" Text="We" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="18"/>
+                    <Label Grid.Column="3" Text="Th" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="18"/>
+                    <Label Grid.Column="4" Text="Fr" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="18"/>
+                    <Label Grid.Column="5" Text="Su" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="18"/>
+                    
+                    ~1~ Example of an activity @1@
+                    <StackLayout Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" BackgroundColor="LightGray" Padding="5" Margin="5">
+                        <Label Text="English" FontSize="14" FontAttributes="Bold"/>
+                        <Label Text="[Eng]" FontSize="12"/>
+                        <Label Text="D105" FontSize="12"/>
+                        <Label Text="9:00 - 10:50" FontSize="12"/>
+                        <Label Text="Grades" FontSize="12"/>
+                    </StackLayout>
+                    --></CollectionView>
+          </Grid>
+</views:ContentPageBase>

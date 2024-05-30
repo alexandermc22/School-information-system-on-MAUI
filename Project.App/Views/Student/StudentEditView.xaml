@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:views="clr-namespace:Project.App.Views"
+                       xmlns:vm="clr-namespace:Project.App.ViewModels"
+                       xmlns:models="clr-namespace:Project.BL.Models;assembly=Project.BL"
+                       x:Class="Project.App.Views.Student.StudentEditView"
+                       Title="Student Edit"
+                       Style="{StaticResource ContentPageStyle}"
+                       x:Name="StudentEditViewRoot"
+                       x:DataType="vm:StudentEditViewModel">
+
+    <Grid RowDefinitions="70, *" ColumnDefinitions="*, Auto">
+        <!-- Row 0: Save Button -->
+        <Button Grid.Row="0" Grid.Column="1"
+                VerticalOptions="Start"
+                Text="Save"
+                TextColor="White"
+                WidthRequest="100"
+                HeightRequest="50"
+                CornerRadius="5"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                Command="{Binding SaveCommand}" />
+
+        <!-- Row 1: Student Details -->
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+              HorizontalOptions="Fill" VerticalOptions="Start"
+              RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, *"
+              ColumnDefinitions="Auto, *"
+              RowSpacing="20" ColumnSpacing="20">
+            
+            <!-- Student Photo -->
+            <Frame Grid.Row="0" Grid.Column="0"
+                   HorizontalOptions="Center"
+                   Style="{StaticResource ImageFrameStyle}">
+                <Image Source="{Binding Student.Photo, TargetNullValue='user_icon.png'}"
+                       WidthRequest="170" HeightRequest="170"
+                       Aspect="AspectFill" />
+            </Frame>
+
+            <!-- Student Information -->
+            <VerticalStackLayout Grid.Row="0" Grid.Column="1" Grid.RowSpan="4"
+                                 HorizontalOptions="Fill"
+                                 Spacing="10"
+                                 Margin="0,0,0,0">
+                <Label Text="Last name:"
+                       FontSize="20"
+                       TextColor="{StaticResource PrimaryLabelTextColor}" />
+                <Entry HorizontalOptions="Fill"
+                       Text="{Binding Student.LastName}" />
+                <Label Text="First name:"
+                       FontSize="20"
+                       TextColor="{StaticResource PrimaryLabelTextColor}" />
+                <Entry HorizontalOptions="Fill"
+                       Text="{Binding Student.FirstName}" />
+                <Label Text="Image:"
+                       FontSize="20"
+                       TextColor="{StaticResource PrimaryLabelTextColor}" />
+                <Entry HorizontalOptions="Fill"
+                       Text="{Binding Student.Photo}" />
+            </VerticalStackLayout>
+
+            <!-- Add New Subject Button -->
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                    Text="Add New Subject"
+                    WidthRequest="150"
+                    HeightRequest="50"
+                    Command="{Binding GoToStudentSubjectsEditCommand}"
+                    IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleInvertedConverter}}"
+                    Style="{StaticResource PrimaryButtonStyle}" />
+            <!-- <Label Grid.Row="5" Grid.Column="1" -->
+            <!--        Text="Create student for edit subjects" -->
+            <!--        HorizontalOptions="End" -->
+            <!--        IsVisible="{Binding Student, Converter={StaticResource ModelIsNewToIsVisibleConverter}}" /> -->
+
+            <!-- Student Subjects -->
+            <VerticalStackLayout Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
+                <Label Text="Subjects"
+                       FontSize="20"
+                       TextColor="{StaticResource PrimaryLabelTextColor}"
+                       Margin="0, 10, 0, 10"
+                       HorizontalOptions="Start" />
+                
+                <CollectionView ItemsSource="{Binding Student.StudentSubjects}"
+                                HorizontalOptions="Fill">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:StudentSubjectsDetailModel">
+                            <HorizontalStackLayout
+                                Margin="0, 10, 20, 0">
+                                <Frame 
+                                       Style="{StaticResource ImageFrameStyle}"
+                                       Margin="0,0,0,0">
+                                    <Image Source="{Binding SubjectImageUrl, TargetNullValue='book.png'}"
+                                           WidthRequest="60" HeightRequest="60"
+                                           Aspect="AspectFill" />
+                                </Frame>
+                                <Label VerticalOptions="Center"
+                                       Margin="15,0,0,0">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding SubjectName}" 
+                                                  FontSize="19"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</views:ContentPageBase>

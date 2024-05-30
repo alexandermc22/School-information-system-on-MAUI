@@ -7,8 +7,10 @@ public record SubjectDetailModel : ModelBase
     public required string Name { get; set; }
     public required string Code { get; set; }
 
-    public required Uri? ImageUrl { get; set; } 
+    public  string? ImageUrl { get; set; } 
     public ObservableCollection<SubjectStudentsListModel> SubjectStudents { get; set; } = new();
+    
+    public ObservableCollection<ActivityListModel> Activities { get; set; } = new();
     public static SubjectDetailModel Empty => new()
     {
         Id = Guid.NewGuid(),

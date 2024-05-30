@@ -3,8 +3,8 @@ using Project.BL.Models;
 
 namespace Project.BL.Mappers;
 
-public class StudentModelMapper(StudentSubjectsModelMapper studentSubjectsModelMapper)
-    : ModelMapperBase<StudentEntity, StudentDetailModel, StudentListModel>
+public class StudentModelMapper(IStudentSubjectsModelMapper studentSubjectsModelMapper)
+    : ModelMapperBase<StudentEntity, StudentDetailModel, StudentListModel> , IStudentModelMapper
 {
     public override StudentListModel MapToListModel(StudentEntity? entity)
         => entity is null
@@ -24,7 +24,8 @@ public class StudentModelMapper(StudentSubjectsModelMapper studentSubjectsModelM
             FirstName = model.FirstName,
             LastName = model.LastName,
             Photo = model.Photo,
-            StudentSubject = null!
+            StudentSubject = null!,
+            Grades = null!
         };
 
     public StudentEntity MapToEntity(StudentListModel model)
@@ -35,6 +36,7 @@ public class StudentModelMapper(StudentSubjectsModelMapper studentSubjectsModelM
             LastName = model.LastName,
             Photo = model.Photo,
             StudentSubject = null!,
+            Grades = null!
         };
 
     public override StudentDetailModel MapToDetailModel(StudentEntity? entity)
@@ -43,15 +45,29 @@ public class StudentModelMapper(StudentSubjectsModelMapper studentSubjectsModelM
             return StudentDetailModel.Empty;
         else
         {
-            return new StudentDetailModel
+            var student = new StudentDetailModel()
             {
                 Id = entity.Id,
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,
                 Photo = entity.Photo,
-                StudentSubjects = studentSubjectsModelMapper.MapToListModel(entity.StudentSubject)
-                    .ToObservableCollection()
             };
+            if (entity.StudentSubject != null)
+            {
+                student.StudentSubjects = studentSubjectsModelMapper.MapToListModel(entity.StudentSubject)
+                    .ToObservableCollection();
+            }
+
+            return student;
+            // return new StudentDetailModel
+            // {
+            //     Id = entity.Id,
+            //     FirstName = entity.FirstName,
+            //     LastName = entity.LastName,
+            //     Photo = entity.Photo,
+            //    StudentSubjects = studentSubjectsModelMapper.MapToListModel(entity.StudentSubject)
+            //        .ToObservableCollection()
+            // };
         }
     }
 }
