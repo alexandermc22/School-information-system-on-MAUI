@@ -1,20 +1,73 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+School Information System Documentation
+Overview
+The goal of this project is to develop a usable and easily extensible school information system. The application should be robust, user-friendly, and must persist data reliably.
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+Table of Contents
+Introduction
+Project Architecture
+Functionality
+Technologies Used
+Usage
+Development Process
+The School Information System is designed to manage data related to students, subjects, and activities. The application ensures persistent storage of data using SQLite and provides a user-friendly interface for CRUD operations. It also supports filtering and searching functionalities.
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+Project Architecture
+The project follows a layered architecture to ensure logical separation of concerns. It consists of the following layers:
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+Presentation Layer (App): Contains the MAUI front-end for the application.
+Business Logic Layer (BL): Contains business logic, including ViewModels and Services.
+Data Access Layer (DAL): Manages data access using Entity Framework Core.
+Solution Structure
+App: Contains the front-end code (Views and ViewModels).
+BL: Contains business logic, services, and DTOs.
+DAL: Contains entity classes, DbContext, and repositories.
+Functionality
+Core Features
+CRUD Operations: Create, Read, Update, Delete operations for Students, Activities, Subjects, and Grades.
+Filtering: Users can filter activities by start and end dates within a selected subject.
+Searching: Users can search for subjects and students.
+Sorting: Users can sort lists by various fields (name, points, subject abbreviation, etc.).
+Persistence: Data is saved immediately after user operations to ensure no data is lost on application restart.
+Concurrent Updates: Multiple instances of the application can run simultaneously, with changes in one instance reflected in others after data reload.
+Technologies Used
+.NET MAUI: For building the cross-platform user interface.
+Entity Framework Core: For ORM and database management.
+SQLite: For local data storage.
+xUnit: For unit and integration testing.
+Azure DevOps: For source code management, CI/CD, and project tracking.
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+Usage
+Adding a Student
+Navigate to the Students section.
+Click on "Add Student".
+Fill in the required fields (FirstName, LastName, Photo URL).
+Save the student.
+Adding an Activity
+Navigate to the Activities section.
+Click on "Add Activity".
+Fill in the required fields (Subject, Start, End, Room, Type/Tag, Description).
+Assign students to the activity.
+Save the activity.
+Filtering Activities
+Navigate to the Activities section.
+Use the filter options to set the start and end dates.
+Apply the filter to view the relevant activities.
+Searching
+Use the search bar in the Students or Subjects section to find specific entries.
+
+Development Process
+Phase 1: Object Design and Database
+Designed entity classes and relationships.
+Created DbContext and DbSet properties.
+Generated ER diagram and wireframes.
+Implemented Entity Framework Core with Code First approach.
+Phase 2: Repositories and Mapping
+Implemented repository pattern for data access.
+Created DTOs and mapping logic.
+Developed unit and integration tests to verify repository functionality.
+Set up CI/CD pipelines in Azure DevOps.
+Phase 3: MAUI Frontend and Data Binding
+Developed ViewModels and connected them to DTOs.
+Implemented data binding in XAML.
+Created user-friendly views for CRUD operations and data display.
+Conducted thorough testing to ensure application stability and correctness.
